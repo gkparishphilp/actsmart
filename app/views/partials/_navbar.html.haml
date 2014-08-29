@@ -1,0 +1,59 @@
+%nav.navbar.navbar-fixed-top{ role: 'navigation' }
+	.navbar-inner
+		.container{ style: 'border-bottom:1px #ddd solid;width:100%' }
+			.navbar-header
+				%a.navbar-brand.brand{ href: '/' }
+					= image_tag 'logo_sq.png', width: 30
+					Act SMART
+				%button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
+					%span.sr-only Toggle navigation
+					%span.icon-bar
+					%span.icon-bar
+					%span.icon-bar
+			#top-navigation.nav-collapse.subnav-collapse.navbar-collapse.collapse
+				%ul.nav.navbar-nav.navbar-left
+					%li
+						%a{ href: '/about' }
+							About
+					%li
+						%a{ href: '/team' }
+							Team
+					%li
+						%a{ href: '/faqs' }
+							FAQs
+
+				-#%ul.nav.navbar-nav.navbar-right{ style: 'margin-right:1em;' }				
+					- if current_user
+						%li
+							%a{ href: '/home', style: 'color:#ccc;' }
+								Hi
+								= "#{current_user}! "
+
+						- if current_user.unread_notifications.count > 0
+							%li
+								%a{ href: '/messages', style: 'color:#EF1657;text-decoration:none;font-size:140%;position:relative;top:3px;' }
+									%i.ll.ll-message-icon
+									%span.notification-count{ style: 'color:#EF1657;font-size:75%;position:relative;top:-4px;' }
+										= current_user.unread_notifications.count
+						- else
+							%li
+								%a{ href: '/messages', style: 'color:#ccc;text-decoration:none;font-size:140%;position:relative;top:3px;' }
+									%i.ll.ll-message-icon
+						%li.divider
+						%li
+							%a{ href:'/logout', style: 'color:#ccc;text-decoration:none;' }
+								Logout
+
+					- else
+						%li
+							%a{ href: '/contacts/new', style: 'color:#ccc;text-decoration:none;' }
+								Request an Invitation
+						%li.divider
+							%a{ href:'/login', style: 'color:#ccc;text-decoration:none;' }
+								Login
+			
+
+				
+
+
+

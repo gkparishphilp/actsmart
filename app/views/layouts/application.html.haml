@@ -1,0 +1,29 @@
+
+
+!!!strict
+
+%html{ lang: :en }
+	%head
+		%title
+			ActSMART
+		%meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
+
+		= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+		= stylesheet_link_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+		= stylesheet_link_tag "//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css"
+
+		= javascript_include_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js", "data-turbolinks-track" => true
+		= javascript_include_tag "application", "data-turbolinks-track" => true
+		
+		= csrf_meta_tags
+
+	%body{ style: 'padding-top: 60px;' }
+		= render 'partials/navbar'
+		=# render 'partials/flash'
+		
+		= yield
+
+		=# render 'partials/footer'
+
+
+					
