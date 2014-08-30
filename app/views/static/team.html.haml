@@ -10,7 +10,7 @@
 			= image_tag 'drahota.jpg', class: 'img img-responsive pull-right'
 		.col-xs-9
 			%h3{ style: 'margin-top: 0;' }
-				Dr. Amy Drahota, Ph.D.
+				= mail_to 'adrahota@mail.sdsu.edu', 'Dr. Amy Drahota, Ph.D.', style: 'color: #000; '
 			.subtitle
 				Principal Investigator
 			%p
@@ -53,7 +53,8 @@
 			= image_tag 'jon.jpg', class: 'img img-responsive pull-right'
 		.col-xs-9
 			%h3{ style: 'margin-top: 0;' }
-				Dr. Jonathan Martinez, Ph.D.
+				= mail_to 'jonathan.martinez@mail.sdsu.edu', 'Dr. Jonathan Martinez, Ph.D.', style: 'color: #000; '
+				
 			.subtitle
 				Postdoctoral Research Fellow
 			%p
