@@ -15,14 +15,25 @@ class V1Migration < ActiveRecord::Migration
 
 
 		create_table :organizations do |t|
-			t.string	:name
-			t.text		:description
+			t.references	:primary_contact
+			t.string		:name
+			t.text			:description
+			t.string		:address1
+			t.string		:address2
+			t.string		:city
+			t.string		:state 
+			t.string		:zip 
+			t.string		:phone
+			t.integer		:status, 	default: 1
 			t.timestamps
 		end
+		add_index :organizations, :primary_contact_id
+
 
 		create_table :organization_users do |t|
 			t.references	:organization
 			t.references 	:user
+			t.string		:role
 			t.timestamps
 		end
 		add_index :organization_users, :organization_id

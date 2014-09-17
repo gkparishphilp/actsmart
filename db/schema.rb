@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20140829183253) do
   create_table "organization_users", force: true do |t|
     t.integer  "organization_id"
     t.integer  "user_id"
+    t.string   "role"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -42,11 +43,21 @@ ActiveRecord::Schema.define(version: 20140829183253) do
   add_index "organization_users", ["user_id"], name: "index_organization_users_on_user_id", using: :btree
 
   create_table "organizations", force: true do |t|
+    t.integer  "primary_contact_id"
     t.string   "name"
     t.text     "description"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "phone"
+    t.integer  "status",             default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "organizations", ["primary_contact_id"], name: "index_organizations_on_primary_contact_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"

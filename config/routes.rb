@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
 	root to: 'home#index'
 
+	resources :organizations
+
 	resources :phase1 do
 		get :dashboard, on: :collection
 		get :step1, on: :collection
