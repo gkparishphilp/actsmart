@@ -14,5 +14,19 @@ class ApplicationController < ActionController::Base
   end
 
 
+  def set_flash( msg, code=:success, *objs )
+      if flash[code].blank?
+        flash[code] = "<p>#{msg}</p>"
+      else
+        flash[code] += "<p>#{msg}</p>"
+      end
+      objs.each do |obj|
+        obj.errors.each do |error|
+          flash[code] += "<p>#{error.to_s}: #{obj.errors[error].join(';')}</p>"
+        end
+      end
+    end
+
+
 
 end

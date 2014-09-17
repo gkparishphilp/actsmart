@@ -1,0 +1,22 @@
+#new_user.modal.fade
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%button.close{ type: :button, 'data-dismiss' => 'modal', 'aria-hidden' => 'true' }
+					&times;
+				%h4.modal-title
+					Add User
+			= form_for User.new do |f|
+				= hidden_field_tag :organization_id, args[:organization_id]
+				.modal-body
+					.form-group
+						= f.label :email
+						= f.text_field :email, class: 'form-control'
+					.form-group
+						= f.label :password
+						= f.text_field :password, class: 'form-control'
+
+				.modal-footer
+					%button.btn.btn-default{ type: :button, 'data-dismiss' => 'modal' }
+						Close
+					= f.submit 'Create', class: 'btn btn-primary'

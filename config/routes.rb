@@ -32,6 +32,7 @@ Rails.application.routes.draw do
 		get :dashboard, on: :collection
 	end
 
+	resources :users
 
 	devise_scope :user do
 		get '/login' => 'sessions#new', as: 'login'

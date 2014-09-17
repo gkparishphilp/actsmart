@@ -1,5 +1,16 @@
-
 .container
 	.row
+		.col-sm-12
+			%ol.breadcrumb
+				%li
+					= link_to 'Admin', admin_index_path
+				%li
+					New Organization
+.container
+	.row
+		.col-sm-12
+			%h1
+				Add an Organization
 		.col-sm-8
 			= render 'form', organization: Organization.new
+

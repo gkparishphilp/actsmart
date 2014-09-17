@@ -1,0 +1,13 @@
+- unless flash.empty?
+	.container
+		.row
+			.col-xs-10.col-xs-offset-1
+				- flash.each do |key, value|
+					- next if value.blank?
+					.alert.alert-dismissible{ class: "alert-#{key}", role: :alert }
+						%button.close{ type: "button", 'data-dismiss' => "alert" }
+							%span{ 'aria-hidden' => true }
+								&times;
+							%span.sr-only
+								Close
+						= raw value

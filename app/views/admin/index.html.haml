@@ -7,4 +7,22 @@
 				= current_user
 
 
-	= link_to 'Add Organization', new_organization_path
+	%a.btn.btn-success.pull-right{ { data: { toggle: :modal, target: '#new_organization' } } }
+		Add Organization
+
+	- if @organizations.present?
+		%table.table
+
+			%tbody
+				- @organizations.each do |org|
+					%tr
+						%td
+							= link_to org.name, edit_organization_path( org )
+						%td
+							= org.users.count
+
+
+
+
+
+= render 'organizations/new_modal'

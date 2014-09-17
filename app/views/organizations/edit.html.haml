@@ -1,0 +1,55 @@
+.container
+	.row
+		.col-sm-12
+			%ol.breadcrumb
+				%li
+					= link_to 'Admin', admin_index_path
+				%li
+					Edit Organization
+.container
+	.row
+		.col-sm-12
+			%h1
+				Edit
+				= @organization.name
+		.col-sm-8
+			= render 'form', organization: @organization
+		.col-sm-4
+			.well
+				.pull-right
+					%a.btn.btn-success{ data: { toggle: :modal, target: '#new_user' } }
+						Add
+				%h4{ style: 'text-align:center;' }
+					Users
+				- if @organization.users.present?
+					%table.table
+						%thead
+							%th
+								Email
+						%tbody
+							- @organization.users.each do |user|
+								%tr
+									%td
+										= link_to user.email, edit_user_path( user )
+									%td
+										.btn-group
+											%button.btn.btn-mini.btn-default.dropdown-toggle{ data: { toggle: :dropdown } }
+												%i.fa.fa-cog
+												%b.caret
+											%ul.dropdown-menu
+												%li
+													%a{ href: edit_user_path( user ) }
+														%i.fa.fa-pencil
+														Edit
+
+												%li.divider
+												%li
+													%a{ href: user_path( user ), data: { method: 'delete', confirm: 'Are you sure?' } }
+														%i.fa.fa-trash-o
+														Delete!
+
+						
+
+
+
+= render 'users/new_modal', args: { organization_id: @organization.id }
