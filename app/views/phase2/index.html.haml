@@ -1,0 +1,88 @@
+.container
+	.row
+		.col-sm-12
+			%ol.breadcrumb
+				%li
+					= link_to 'Dashboard', dashboard_index_path
+				%li
+					Phase 2
+
+	.row
+		.col-sm-12
+			%h1
+				Phase 2: Treatment Selection & Adoption Decision
+			%p
+				<u>Goal</u>:
+				Assist the implementation team select and adopt an appropriate research-based treatment to meet your agency’s needs.
+	.row
+		.col-sm-7
+			.well
+				%h5
+					General Description
+				%p
+					The purpose of phase 2 is to assist agency leaders select and adopt effective research-based treatments to meet your agency’s needs (<a href='/phase1'>Identified in phase 1</a>). 
+				%p
+					Information in this phase is used to select a research-based treatment and evaluate factors that are important to consider before you decide to adopt it. 
+				%p
+					Phase 2 is comprised of three steps: 
+					%ol
+						%li
+							Identifying an appropriate research-based treatment
+						%li
+							Evaluating treatment and provider factors (such as fit, benefit-cost estimator, feasibility)
+						%li
+							Making a decision whether or not to adopt the research-based treatment
+
+
+		.col-sm-5
+			.well
+				%h5 Phase 2 Progress
+				= check_box_tag :phase2_step1, 1, false, class: 'post'
+				Step 1:
+				%a{ href: step1_phase2_index_path }
+					Identify an appropriate research-based treatment
+				%ul.none
+					%li
+						= check_box_tag :phase2_step_1_resource
+						%a{ href: step1_resource_phase2_index_path }
+							Resource 1: Guide to Identify Research-Based Treatments
+				= check_box_tag :phase2_step2
+				%a{ href: step2_phase2_index_path }
+					Step 2: Evaluate treatment and provider factors
+				%ul.none
+					%li
+						= check_box_tag :phase2_step_2_activity1
+						%a{ href: step2_activity1_phase2_index_path }
+							Activity 1: Treatment Fit
+					%li
+						= check_box_tag :phase2_step_2_activity2
+						%a{ href: step2_activity2_phase2_index_path }
+							Activity 2: Treatment Feasibility
+					%li
+						= check_box_tag :phase2_step_2_activity3
+						%a{ href: step2_activity3_phase2_index_path }
+							Activity 3: Clinical Value and Research Validity
+					%li
+						= check_box_tag :phase2_step_2_activity4
+						%a{ href: step2_activity4_phase2_index_path }
+							Activity 4: Training Requirements
+					%li
+						= check_box_tag :phase2_step_2_activity5
+						%a{ href: step2_activity5_phase2_index_path }
+							Activity 5: Funding Source Checklist
+					%li
+						= check_box_tag :phase2_step_2_activity6
+						%a{ href: step2_activity6_phase2_index_path }
+							Activity 6: Benefit-Cost Estimator
+
+				= check_box_tag :phase2_step3, 1, false, class: 'post'
+				Step 3:
+				%a{ href: step3_phase2_index_path }
+					Make an adoption decision
+
+
+	.row
+		.col-sm-12
+			.well
+				%h5
+					Treatments Being Considered

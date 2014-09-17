@@ -17,8 +17,9 @@ class User < ActiveRecord::Base #SwellUsers::User
 	validates_length_of			:password, within: Devise.password_length, allow_blank: true, if: :encrypted_password_changed?
 
 	### RELATIONSHIPS   	--------------------------------------
-	has_many 	:user_roles, dependent: :destroy
-	has_many	:roles, through: :user_roles
+
+	has_many 	:organization_users
+	has_many	:organizations, through: :organization_users
 
 	
 

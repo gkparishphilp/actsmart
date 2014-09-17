@@ -30,6 +30,24 @@ ActiveRecord::Schema.define(version: 20140829183253) do
 
   add_index "contacts", ["email"], name: "index_contacts_on_email", using: :btree
 
+  create_table "organization_users", force: true do |t|
+    t.integer  "organization_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "organization_users", ["organization_id", "user_id"], name: "index_organization_users_on_organization_id_and_user_id", using: :btree
+  add_index "organization_users", ["organization_id"], name: "index_organization_users_on_organization_id", using: :btree
+  add_index "organization_users", ["user_id"], name: "index_organization_users_on_user_id", using: :btree
+
+  create_table "organizations", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "slug"

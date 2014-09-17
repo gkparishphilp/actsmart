@@ -2,7 +2,7 @@
 .container
 	.row
 		.col-xs-4
-			%center= image_tag 'logo_sq.png', style: 'margin: 2em 0;'
+			%center= image_tag 'logo_sq.png', style: 'margin: 2em 0;', class: 'img img-responsive'
 
 			.well
 				.panel-heading
@@ -32,4 +32,6 @@
 				Welcome to Act SMART
 
 			%p
+				.video-container
+					%iframe{ width: 560, height: 315, src: "//www.youtube.com/embed/nlEDHwChto4", frameborder: 0, allowfullscreen: true }
 				

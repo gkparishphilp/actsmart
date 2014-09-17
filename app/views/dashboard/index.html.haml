@@ -1,0 +1,34 @@
+.container
+	.row
+		.col-sm-12
+			%h1
+				Welcome
+				= current_user.name
+	.row
+		.col-sm-3.col-sm-offset-3
+			.well{ style: 'text-align:center;' }
+				%p{ style: 'font-weight:bold;' }	
+					= link_to 'Phase 1', phase1_index_path
+				Identify Practice & Delivery Gaps
+		.col-sm-3.col-sm-offset-3
+			.well{ style: 'text-align:center;' }
+				= link_to 'Preparation for ACT SMART', '/getting_ready'
+	.row
+		.col-sm-3.col-sm-offset-1
+			.well{ style: 'text-align:center;' }
+				%p{ style: 'font-weight:bold;' }
+					= link_to 'Phase 4', phase4_index_path
+				Implementation & Sustainment
+		.col-sm-3.col-sm-offset-1
+			.well{ style: 'text-align:center;' }
+				%p{ style: 'font-weight:bold;' }
+					= link_to 'Phase 2', phase2_index_path
+				Treatment Selection & Adoption Decision
+	.row
+		.col-sm-3.col-sm-offset-3
+			.well{ style: 'text-align:center;' }
+				%p{ style: 'font-weight:bold;' }
+					= link_to 'Phase 3', phase3_index_path
+				Planning for Implementation
+
+		

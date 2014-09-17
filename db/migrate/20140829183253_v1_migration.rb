@@ -14,6 +14,22 @@ class V1Migration < ActiveRecord::Migration
 		add_index :contacts, :email
 
 
+		create_table :organizations do |t|
+			t.string	:name
+			t.text		:description
+			t.timestamps
+		end
+
+		create_table :organization_users do |t|
+			t.references	:organization
+			t.references 	:user
+			t.timestamps
+		end
+		add_index :organization_users, :organization_id
+		add_index :organization_users, :user_id
+		add_index :organization_users, [ :organization_id, :user_id ]
+
+
 		create_table :users do |t|
 			t.string		:name
 			t.string 		:slug
