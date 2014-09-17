@@ -6,18 +6,25 @@
 				= current_user.name
 	.row
 		.col-sm-3.col-sm-offset-3
+			.pull-right
+				%i.fa.fa-check-circle-o{ style: 'color:#3a3;margin: 10px 10px;font-size:150%;'}
 			.well{ style: 'text-align:center;' }
 				%p{ style: 'font-weight:bold;' }	
 					= link_to 'Phase 1', phase1_index_path
 				Identify Practice & Delivery Gaps
 		.col-sm-3.col-sm-offset-3
+			.pull-right
+				%i.fa.fa-check-circle-o{ style: 'color:#3a3;margin: 10px 10px;font-size:150%;'}
 			.well{ style: 'text-align:center;' }
-				= link_to 'Preparation for ACT SMART', '/getting_ready'
-	.row
+				%p{ style: 'font-weight:bold;' }
+					= link_to 'Preparation for ACT SMART', '/getting_ready'
+
+	.row{ style: 'margin: 2em auto;' }
 		.col-sm-3.col-sm-offset-1
 			.well{ style: 'text-align:center;' }
 				%p{ style: 'font-weight:bold;' }
-					= link_to 'Phase 4', phase4_index_path
+					Phase 4
+					= #link_to 'Phase 4', phase4_index_path
 				Implementation & Sustainment
 		.col-sm-3.col-sm-offset-1
 			.well{ style: 'text-align:center;' }
@@ -28,7 +35,8 @@
 		.col-sm-3.col-sm-offset-3
 			.well{ style: 'text-align:center;' }
 				%p{ style: 'font-weight:bold;' }
-					= link_to 'Phase 3', phase3_index_path
+					Phase 3
+					=# link_to 'Phase 3', phase3_index_path
 				Planning for Implementation
 
 		

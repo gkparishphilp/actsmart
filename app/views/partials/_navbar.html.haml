@@ -25,5 +25,9 @@
 				%ul.nav.navbar-nav.navbar-right{ style: 'margin-right:1em;' }				
 					- if current_user
 						%li
+							%a{ href: dashboard_index_path, style: 'text-decoration:none;' }
+								Hi
+								= current_user
+						%li
 							%a{ href: '/logout' }
 								Logout
