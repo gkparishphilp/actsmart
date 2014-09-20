@@ -7,22 +7,35 @@
 				= current_user
 
 
-	%a.btn.btn-success.pull-right{ { data: { toggle: :modal, target: '#new_organization' } } }
-		Add Organization
+	%a.btn.btn-success.pull-right{ { data: { toggle: :modal, target: '#new_agency' } } }
+		Add Agency
 
-	- if @organizations.present?
+	- if @agencies.present?
 		%table.table
+			%thead
+				%th
+					Name
+				%th
+					Facilitator
+				%th
+					Lead
+				%th
+					Team Members
 
 			%tbody
-				- @organizations.each do |org|
+				- @agencies.each do |agency|
 					%tr
 						%td
-							= link_to org.name, edit_organization_path( org )
+							= link_to agency.name, edit_agency_path( agency )
 						%td
-							= org.users.count
+							= agency.facilitator
+						%td
+							= agency.lead
+						%td
+							= agency.users.count
 
 
 
 
 
-= render 'organizations/new_modal'
+= render 'agencies/new_modal'

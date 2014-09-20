@@ -4,8 +4,11 @@ class UsersController < ApplicationController
 	def create
 		@user = User.create( user_params )
 		if @user.save
-			if params[:organization_id].present?
-				@user.organization_users.first_or_initialize.update( organization_id: params[:organization_id] )
+			if params[:agency_id].present?
+				@user.agency_users.first_or_initialize.update( agency_id: params[:agency_id] )
+				if params[:lead].present?
+					Agency.find_by( id: params[:agency_id] ).update( lead_id: @user.id )
+				end
 			end
 			redirect_to :back
 		else

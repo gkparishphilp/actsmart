@@ -1,0 +1,97 @@
+.container
+	.row
+		.col-sm-12
+			%ol.breadcrumb
+				%li
+					= link_to 'Admin', admin_index_path
+				%li
+					Edit Agency
+.container
+	.row
+		.col-sm-12
+			%h1
+				Edit
+				= @agency.name
+
+	.row
+		= form_for @agency do |f|
+			.col-sm-8
+				.form-group
+					= f.label :name
+					= f.text_field :name, class: 'form-control'
+				.form-group
+					= f.label :description
+					= f.text_area :description, class: 'form-control'
+				.form-group
+					= f.label :address1
+					= f.text_field :address1, class: 'form-control'
+				.form-group
+					= f.label :address2
+					= f.text_field :address2, class: 'form-control'
+				.row.form-group
+					.col-sm-6
+						= f.label :city
+						= f.text_field :city, class: 'form-control'
+					.col-sm-4
+						= f.label :state
+						= f.text_field :state, class: 'form-control'
+					.col-sm-2
+						= f.label :zip
+						= f.text_field :zip, class: 'form-control'
+				.form-group
+					= f.label :phone
+					= f.text_field :phone, class: 'form-control'
+			.col-sm-4
+				.well
+					.form-group
+						= f.label :facilitator_id
+						= f.collection_select :facilitator_id, User.admin, :id, :name, {}, class: 'form-control'
+					%hr
+					.form-group
+						%label{ for: :agency_lead_id }
+							.pull-right{ style: 'margin-left:4em;' }
+								%a.btn.btn-sm.btn-success{ data: { toggle: :modal, target: '#new_user' } }
+									Add
+							Lead
+						= f.collection_select :lead_id, @agency.users, :id, :name, {}, class: 'form-control'
+
+					.form-group
+						= f.submit class: 'btn btn-primary'
+
+		
+
+-#.well
+	.pull-right
+		%a.btn.btn-success{ data: { toggle: :modal, target: '#new_user' } }
+			Add
+	%h4{ style: 'text-align:center;' }
+		Users
+	- if @agency.users.present?
+		%table.table
+			%thead
+				%th
+					Email
+			%tbody
+				- @agency.users.each do |user|
+					%tr
+						%td
+							= link_to user.email, edit_user_path( user )
+						%td
+							.btn-group
+								%button.btn.btn-mini.btn-default.dropdown-toggle{ data: { toggle: :dropdown } }
+									%i.fa.fa-cog
+									%b.caret
+								%ul.dropdown-menu
+									%li
+										%a{ href: edit_user_path( user ) }
+											%i.fa.fa-pencil
+											Edit
+
+									%li.divider
+									%li
+										%a{ href: user_path( user ), data: { method: 'delete', confirm: 'Are you sure?' } }
+											%i.fa.fa-trash-o
+											Delete!
+
+
+= render 'users/new_modal', args: { agency_id: @agency.id, lead: true }

@@ -16,6 +16,37 @@ ActiveRecord::Schema.define(version: 20140829183253) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "agencies", force: true do |t|
+    t.integer  "lead_id"
+    t.integer  "facilitator_id"
+    t.string   "name"
+    t.text     "description"
+    t.text     "notes"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "phone"
+    t.integer  "status",         default: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "agencies", ["lead_id"], name: "index_agencies_on_lead_id", using: :btree
+
+  create_table "agency_users", force: true do |t|
+    t.integer  "agency_id"
+    t.integer  "user_id"
+    t.string   "role"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "agency_users", ["agency_id", "user_id"], name: "index_agency_users_on_agency_id_and_user_id", using: :btree
+  add_index "agency_users", ["agency_id"], name: "index_agency_users_on_agency_id", using: :btree
+  add_index "agency_users", ["user_id"], name: "index_agency_users_on_user_id", using: :btree
+
   create_table "contacts", force: true do |t|
     t.string   "email"
     t.string   "subject"
@@ -30,34 +61,46 @@ ActiveRecord::Schema.define(version: 20140829183253) do
 
   add_index "contacts", ["email"], name: "index_contacts_on_email", using: :btree
 
-  create_table "organization_users", force: true do |t|
-    t.integer  "organization_id"
+  create_table "messages", force: true do |t|
+    t.integer  "from_id"
+    t.integer  "agency_id"
+    t.integer  "parent_obj_id"
+    t.string   "parent_obj_type"
+    t.string   "context"
+    t.string   "subject"
+    t.text     "content"
+    t.integer  "status",          default: 0
+    t.boolean  "read",            default: false
+    t.datetime "read_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "messages", ["agency_id"], name: "index_messages_on_agency_id", using: :btree
+  add_index "messages", ["from_id"], name: "index_messages_on_from_id", using: :btree
+  add_index "messages", ["parent_obj_id", "parent_obj_type"], name: "index_messages_on_parent_obj_id_and_parent_obj_type", using: :btree
+
+  create_table "user_events", force: true do |t|
     t.integer  "user_id"
-    t.string   "role"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "organization_users", ["organization_id", "user_id"], name: "index_organization_users_on_organization_id_and_user_id", using: :btree
-  add_index "organization_users", ["organization_id"], name: "index_organization_users_on_organization_id", using: :btree
-  add_index "organization_users", ["user_id"], name: "index_organization_users_on_user_id", using: :btree
-
-  create_table "organizations", force: true do |t|
-    t.integer  "primary_contact_id"
+    t.integer  "agency_id"
+    t.integer  "parent_obj_id"
+    t.string   "parent_obj_type"
     t.string   "name"
-    t.text     "description"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.string   "phone"
-    t.integer  "status",             default: 1
+    t.text     "content"
+    t.integer  "value"
+    t.string   "http_referrer"
+    t.string   "req_path"
+    t.integer  "status",          default: 0
+    t.datetime "publish_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "organizations", ["primary_contact_id"], name: "index_organizations_on_primary_contact_id", using: :btree
+  add_index "user_events", ["agency_id"], name: "index_user_events_on_agency_id", using: :btree
+  add_index "user_events", ["name", "user_id"], name: "index_user_events_on_name_and_user_id", using: :btree
+  add_index "user_events", ["name"], name: "index_user_events_on_name", using: :btree
+  add_index "user_events", ["parent_obj_id", "parent_obj_type"], name: "index_user_events_on_parent", using: :btree
+  add_index "user_events", ["user_id"], name: "index_user_events_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"

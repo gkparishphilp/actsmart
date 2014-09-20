@@ -28,5 +28,13 @@ class ApplicationController < ActionController::Base
     end
 
 
+  def set_page_info( args={} )
+      @page_info = args
+      @page_info[:title] ||= ENV['APP_NAME']
+      @page_info[:description] ||= ENV['APP_DESCRIPTION'] 
+
+    end
+
+
 
 end

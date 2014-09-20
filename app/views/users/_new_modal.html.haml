@@ -7,8 +7,12 @@
 				%h4.modal-title
 					Add User
 			= form_for User.new do |f|
-				= hidden_field_tag :organization_id, args[:organization_id]
+				= hidden_field_tag :agency_id, args[:agency_id]
+				= hidden_field_tag :lead, true if args[:lead].present?
 				.modal-body
+					.form-group
+						= f.label :name
+						= f.text_field :name, class: 'form-control'
 					.form-group
 						= f.label :email
 						= f.text_field :email, class: 'form-control'

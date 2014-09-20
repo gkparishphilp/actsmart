@@ -1,16 +1,19 @@
-#new_organization.modal.fade
+#new_agency.modal.fade
 	.modal-dialog
 		.modal-content
 			.modal-header
 				%button.close{ type: :button, 'data-dismiss' => 'modal', 'aria-hidden' => 'true' }
 					&times;
 				%h4.modal-title
-					New Organization
-			= form_for Organization.new do |f|
+					New Agency
+			= form_for Agency.new( facilitator_id: current_user.id ) do |f|
 				.modal-body
 					.form-group
 						= f.label :name
 						= f.text_field :name, class: 'form-control'
+					.form-group
+						= f.label :facilitator_id
+						= f.collection_select :facilitator_id, User.admin, :id, :name, {}, class: 'form-control'
 
 				.modal-footer
 					%button.btn.btn-default{ type: :button, 'data-dismiss' => 'modal' }

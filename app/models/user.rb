@@ -18,8 +18,8 @@ class User < ActiveRecord::Base #SwellUsers::User
 
 	### RELATIONSHIPS   	--------------------------------------
 
-	has_many 	:organization_users, dependent: :destroy
-	has_many	:organizations, through: :organization_users
+	has_many 	:agency_users, dependent: :destroy
+	has_many	:agencies, through: :agency_users
 
 	
 

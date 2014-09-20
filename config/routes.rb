@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-	root to: 'home#index'
+	root to: 'pages#home'
 
-	resources :organizations
+	resources :agencies
 
 	resources :phase1 do
 		get :dashboard, on: :collection
@@ -49,6 +49,6 @@ Rails.application.routes.draw do
 
 
 	# quick catch-all route for static pages
-	get '/:action', controller: 'static'
+	get '/:action', controller: 'pages'
 	
 end

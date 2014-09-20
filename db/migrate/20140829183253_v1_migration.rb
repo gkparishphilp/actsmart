@@ -1,6 +1,35 @@
 class V1Migration < ActiveRecord::Migration
 	def change
 
+		create_table :agencies do |t|
+			t.references	:lead
+			t.references	:facilitator
+			t.string		:name
+			t.text			:description
+			t.text			:notes
+			t.string		:address1
+			t.string		:address2
+			t.string		:city
+			t.string		:state 
+			t.string		:zip 
+			t.string		:phone
+			t.integer		:status, 	default: 1
+			t.timestamps
+		end
+		add_index :agencies, :lead_id
+
+
+		create_table :agency_users do |t|
+			t.references	:agency
+			t.references 	:user
+			t.string		:role
+			t.timestamps
+		end
+		add_index :agency_users, :agency_id
+		add_index :agency_users, :user_id
+		add_index :agency_users, [ :agency_id, :user_id ]
+
+
 		create_table :contacts do |t|
 			t.string		:email
 			t.string		:subject
@@ -14,31 +43,21 @@ class V1Migration < ActiveRecord::Migration
 		add_index :contacts, :email
 
 
-		create_table :organizations do |t|
-			t.references	:primary_contact
-			t.string		:name
-			t.text			:description
-			t.string		:address1
-			t.string		:address2
-			t.string		:city
-			t.string		:state 
-			t.string		:zip 
-			t.string		:phone
-			t.integer		:status, 	default: 1
+		create_table :messages do |t|
+			t.references 	:from
+			t.references	:agency
+			t.references	:parent_obj, polymorphic: true
+			t.string		:context
+			t.string		:subject
+			t.text			:content
+			t.integer		:status, 	default: 0
+			t.boolean		:read, 		default: false
+			t.datetime		:read_at
 			t.timestamps
 		end
-		add_index :organizations, :primary_contact_id
-
-
-		create_table :organization_users do |t|
-			t.references	:organization
-			t.references 	:user
-			t.string		:role
-			t.timestamps
-		end
-		add_index :organization_users, :organization_id
-		add_index :organization_users, :user_id
-		add_index :organization_users, [ :organization_id, :user_id ]
+		add_index :messages, :from_id
+		add_index :messages, :agency_id
+		add_index :messages, [ :parent_obj_id, :parent_obj_type ]
 
 
 		create_table :users do |t|
@@ -109,6 +128,27 @@ class V1Migration < ActiveRecord::Migration
 		add_index :users, :confirmation_token,		unique: true
 		add_index :users, :unlock_token,			unique: true
 		add_index :users, :authentication_token,	unique: true
+
+
+		create_table :user_events do |t|
+			t.references		:user
+			t.references		:agency
+			t.references 		:parent_obj, 			polymorphic: true
+			t.string			:name
+			t.text				:content
+			t.integer			:value
+			t.string			:http_referrer
+			t.string			:req_path
+			t.integer			:status, 						default: 0
+			t.datetime			:publish_at
+			t.timestamps
+		end
+		add_index :user_events, :user_id
+		add_index :user_events, :agency_id
+		add_index :user_events, [ :parent_obj_id, :parent_obj_type ], name: 'index_user_events_on_parent'
+		add_index :user_events, :name
+		add_index :user_events, [ :name, :user_id ]
+
 
 	end
 end

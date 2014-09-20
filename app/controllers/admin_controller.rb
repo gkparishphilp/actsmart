@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
 
 	def index
-		@organizations = Organization.all
+		@agencies = Agency.active.all
 	end
 
 end
