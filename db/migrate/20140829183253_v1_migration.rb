@@ -150,5 +150,6 @@ class V1Migration < ActiveRecord::Migration
 		add_index :user_events, [ :name, :user_id ]
 
 
+
 	end
 end
