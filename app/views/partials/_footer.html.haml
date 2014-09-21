@@ -1,3 +1,11 @@
 
-%footer
-	
+%footer.footer
+	.container
+		.row
+			.col-sm-2
+				ACT SMART
+			.col-sm-2
+				%a{ href: '/about' }
+					About
+			.col-sm-2
+				= @current_agency.try( :name )

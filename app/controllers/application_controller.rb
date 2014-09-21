@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_filter :set_agency
+
 
   def after_sign_in_path_for( resource )
   	if resource.admin?
@@ -35,6 +37,11 @@ class ApplicationController < ActionController::Base
 
     end
 
+    private
+
+    def set_agency
+      @current_agency = current_user.try( :agency )
+    end
 
 
 end

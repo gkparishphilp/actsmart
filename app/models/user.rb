@@ -44,6 +44,9 @@ class User < ActiveRecord::Base #SwellUsers::User
 
 	### Instance Methods  	--------------------------------------
 
+	def agency
+		self.agencies.last
+	end
 
 
 	def avatar_tag( opts={} )

@@ -9,5 +9,13 @@ class Agency < ActiveRecord::Base
 	has_many	:users, through: :agency_users
 
 	has_many	:messages
+
+
+
+
+
+	def to_s
+		self.name
+	end
 	
 end

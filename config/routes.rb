@@ -4,6 +4,12 @@ Rails.application.routes.draw do
 
 	resources :agencies
 
+	resources :phases do
+		resources :steps do
+			resources :activities
+		end
+	end
+
 	resources :phase1 do
 		get :dashboard, on: :collection
 		get :step1, on: :collection
@@ -33,6 +39,8 @@ Rails.application.routes.draw do
 	end
 
 	resources :users
+
+	resources :user_events
 
 	devise_scope :user do
 		get '/login' => 'sessions#new', as: 'login'

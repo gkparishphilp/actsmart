@@ -133,23 +133,78 @@ class V1Migration < ActiveRecord::Migration
 		create_table :user_events do |t|
 			t.references		:user
 			t.references		:agency
-			t.references 		:parent_obj, 			polymorphic: true
+			t.string			:parent_obj
 			t.string			:name
 			t.text				:content
 			t.integer			:value
 			t.string			:http_referrer
 			t.string			:req_path
-			t.integer			:status, 						default: 0
+			t.integer			:status, 						default: 1
 			t.datetime			:publish_at
 			t.timestamps
 		end
 		add_index :user_events, :user_id
 		add_index :user_events, :agency_id
-		add_index :user_events, [ :parent_obj_id, :parent_obj_type ], name: 'index_user_events_on_parent'
+		add_index :user_events, :parent_obj
 		add_index :user_events, :name
 		add_index :user_events, [ :name, :user_id ]
+
+
+		create_table :activities do |t|
+			t.string		:name
+			t.integer		:phase
+			t.integer		:step
+			t.string		:activity_type
+			t.text			:content
+			t.timestamps
+		end
+
+
+		create_table :prompts do |t|
+			t.references	:question
+			t.string		:prompt_type, default: 'radio'
+			t.text			:content
+			t.integer		:value
+			t.boolean		:correct
+			t.timestamps
+		end
+
+
+		create_table :questions do |t|
+			t.references	:activity
+			t.string 		:name
+			t.text			:content
+			t.string		:question_type
+			t.integer		:seq
+			t.timestamps
+		end
+		add_index :questions, :activity_id
+		add_index :questions, :name
+
+
+		create_table :responses do |t|
+			t.references 	:user
+			t.references	:agency
+			t.references 	:question
+			t.references 	:prompt
+			t.text			:content     # in the case of free-response
+			t.datetime		:started_at
+			t.datetime		:responded_at
+			t.timestamps
+		end
+		add_index :responses, :user_id
+		add_index :responses, :agency_id
+		add_index :responses, :question_id
+		add_index :responses, :prompt_id
 
 
 
 	end
 end
+
+
+
+
+
+
+

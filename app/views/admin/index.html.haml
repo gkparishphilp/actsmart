@@ -5,6 +5,13 @@
 			%h1
 				Hi
 				= current_user
+	.row
+		.col-sm-10
+			= form_tag admin_index_path, method: :get, class: 'form-inline' do
+				= select_tag :facilitator_id, options_from_collection_for_select( User.admin, :id, :name, params[:facilitator_id] ), prompt: 'All', class: 'form-control'
+				= submit_tag 'Filter', class: 'btn btn-primary'
+		.col-sm-2
+			
 
 
 	%a.btn.btn-success.pull-right{ { data: { toggle: :modal, target: '#new_agency' } } }
@@ -15,6 +22,16 @@
 			%thead
 				%th
 					Name
+					%a{ href: admin_index_path( sort_by: 'name', sort_dir: 'asc' ) }
+						%i.fa.fa-arrow-up
+					%a{ href: admin_index_path( sort_by: 'name', sort_dir: 'desc' ) }
+						%i.fa.fa-arrow-down
+				%th
+					Joined
+					%a{ href: admin_index_path( sort_by: 'created_at', sort_dir: 'asc' ) }
+						%i.fa.fa-arrow-up
+					%a{ href: admin_index_path( sort_by: 'created_at', sort_dir: 'desc' ) }
+						%i.fa.fa-arrow-down
 				%th
 					Facilitator
 				%th
@@ -28,11 +45,16 @@
 						%td
 							= link_to agency.name, edit_agency_path( agency )
 						%td
+							= time_ago_in_words agency.created_at
+							ago
+						%td
 							= agency.facilitator
 						%td
 							= agency.lead
 						%td
 							= agency.users.count
+	- else
+		%h3 No Agencies
 
 
 

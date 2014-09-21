@@ -16,6 +16,16 @@ ActiveRecord::Schema.define(version: 20140829183253) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "activities", force: true do |t|
+    t.string   "name"
+    t.integer  "phase"
+    t.integer  "step"
+    t.string   "activity_type"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "agencies", force: true do |t|
     t.integer  "lead_id"
     t.integer  "facilitator_id"
@@ -80,17 +90,56 @@ ActiveRecord::Schema.define(version: 20140829183253) do
   add_index "messages", ["from_id"], name: "index_messages_on_from_id", using: :btree
   add_index "messages", ["parent_obj_id", "parent_obj_type"], name: "index_messages_on_parent_obj_id_and_parent_obj_type", using: :btree
 
+  create_table "prompts", force: true do |t|
+    t.integer  "question_id"
+    t.string   "prompt_type", default: "radio"
+    t.text     "content"
+    t.integer  "value"
+    t.boolean  "correct"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "questions", force: true do |t|
+    t.integer  "activity_id"
+    t.string   "name"
+    t.text     "content"
+    t.string   "question_type"
+    t.integer  "seq"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "questions", ["activity_id"], name: "index_questions_on_activity_id", using: :btree
+  add_index "questions", ["name"], name: "index_questions_on_name", using: :btree
+
+  create_table "responses", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "agency_id"
+    t.integer  "question_id"
+    t.integer  "prompt_id"
+    t.text     "content"
+    t.datetime "started_at"
+    t.datetime "responded_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "responses", ["agency_id"], name: "index_responses_on_agency_id", using: :btree
+  add_index "responses", ["prompt_id"], name: "index_responses_on_prompt_id", using: :btree
+  add_index "responses", ["question_id"], name: "index_responses_on_question_id", using: :btree
+  add_index "responses", ["user_id"], name: "index_responses_on_user_id", using: :btree
+
   create_table "user_events", force: true do |t|
     t.integer  "user_id"
     t.integer  "agency_id"
-    t.integer  "parent_obj_id"
-    t.string   "parent_obj_type"
+    t.string   "parent_obj"
     t.string   "name"
     t.text     "content"
     t.integer  "value"
     t.string   "http_referrer"
     t.string   "req_path"
-    t.integer  "status",          default: 0
+    t.integer  "status",        default: 1
     t.datetime "publish_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -99,7 +148,7 @@ ActiveRecord::Schema.define(version: 20140829183253) do
   add_index "user_events", ["agency_id"], name: "index_user_events_on_agency_id", using: :btree
   add_index "user_events", ["name", "user_id"], name: "index_user_events_on_name_and_user_id", using: :btree
   add_index "user_events", ["name"], name: "index_user_events_on_name", using: :btree
-  add_index "user_events", ["parent_obj_id", "parent_obj_type"], name: "index_user_events_on_parent", using: :btree
+  add_index "user_events", ["parent_obj"], name: "index_user_events_on_parent_obj", using: :btree
   add_index "user_events", ["user_id"], name: "index_user_events_on_user_id", using: :btree
 
   create_table "users", force: true do |t|

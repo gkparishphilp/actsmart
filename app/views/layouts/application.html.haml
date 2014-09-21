@@ -21,12 +21,20 @@
 		= csrf_meta_tags
 
 	%body{ style: 'padding-top: 60px;' }
-		= render 'partials/navbar'
-		= render 'partials/flash'
+		.wrapper
+			- if @current_agency.present?
+				= render 'partials/agency_nav'
+			- elsif current_user && current_user.admin?
+				= render 'partials/admin_nav'
+			- else
+				= render 'partials/nav'
+			= render 'partials/flash'
 		
-		= yield
+			= yield
 
-		=# render 'partials/footer'
+			.push
+
+		= render 'partials/footer'
 
 
 					

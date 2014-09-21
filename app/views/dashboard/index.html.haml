@@ -3,14 +3,14 @@
 		.col-sm-12
 			%h1
 				Welcome
-				= current_user.name
+				= current_user.try( :name )
 	.row
 		.col-sm-3.col-sm-offset-3
 			.pull-right
 				%i.fa.fa-check-circle-o{ style: 'color:#3a3;margin: 10px 10px;font-size:150%;'}
 			.well{ style: 'text-align:center;' }
 				%p{ style: 'font-weight:bold;' }	
-					= link_to 'Phase 1', phase1_index_path
+					= link_to 'Phase 1', phase_path( 1 )
 				Identify Practice & Delivery Gaps
 		-#.col-sm-3.col-sm-offset-3
 			.pull-right
@@ -24,19 +24,19 @@
 			.well{ style: 'text-align:center;' }
 				%p{ style: 'font-weight:bold;' }
 					Phase 4
-					= #link_to 'Phase 4', phase4_index_path
+					= #link_to 'Phase 4', phase_path( 4 )
 				Implementation & Sustainment
 		.col-sm-3.col-sm-offset-1
 			.well{ style: 'text-align:center;' }
 				%p{ style: 'font-weight:bold;' }
-					= link_to 'Phase 2', phase2_index_path
+					= link_to 'Phase 2', phase_path( 2 )
 				Treatment Selection & Adoption Decision
 	.row
 		.col-sm-3.col-sm-offset-3
 			.well{ style: 'text-align:center;' }
 				%p{ style: 'font-weight:bold;' }
 					Phase 3
-					=# link_to 'Phase 3', phase3_index_path
+					=# link_to 'Phase 3', phase_path( 3 )
 				Planning for Implementation
 
 		

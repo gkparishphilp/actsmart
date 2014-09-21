@@ -4,14 +4,12 @@ class UserEvent < ActiveRecord::Base
 
 	belongs_to 		:user
 	belongs_to		:agency
-	belongs_to		:parent_obj, polymorphic: true
-
 
 	### Class Methods   	--------------------------------------
 
 	def self.by_object( obj )
 		return scoped if obj.nil?
-		where( parent_obj_type: obj.class.name, parent_obj_id: obj.id )
+		where( parent_obj: obj )
 	end
 
 	def self.dated_between( start_date=1.month.ago, end_date=1.month.from_now )
@@ -25,15 +23,12 @@ class UserEvent < ActiveRecord::Base
 	
 	def self.record( name, args={} )
 		return false unless name = name.to_s
-		return false unless agency_id = args[:agency_id] || args[:agency].try( :id )
 		user_id = args[:user].try( :id )
+		agency_id = args[:agency].try( :id ) || args[:user].try( :agency )
 		parent_obj = args[:on] || args[:obj] || args[:parent_obj]
 
 
 		rate = args[:rate] || 5.minutes
-
-		# setting owner_type so logging with nill owner doesn't populate owner_type with NilClass
-		parent_obj_type = parent_obj.nil? ? nil : parent_obj.class.name
 
 		dup_events = self.where( name: name, user_id: user_id ).within_last( rate )
 		dup_events = dup_events.by_object( parent_obj ) if parent_obj.present?
@@ -43,7 +38,7 @@ class UserEvent < ActiveRecord::Base
 		event = self.create( 	name: name, 
 								user_id: user_id, 
 								agency_id: agency_id,
-								parent_obj_id: parent_obj.try( :id ), parent_obj_type: parent_obj_type,
+								parent_obj: parent_obj,
 								value: args[:value],
 								content: args[:content]
 							)

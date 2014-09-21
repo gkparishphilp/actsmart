@@ -1,0 +1,36 @@
+%nav.navbar.navbar-fixed-top{ role: 'navigation', style: 'background: #eee;' }
+	.navbar-inner
+		.container{ style: 'border-bottom:1px #ddd solid;width:100%' }
+			.navbar-header
+				%a.navbar-brand.brand{ href: '/' }
+					= image_tag 'logo_sq.png', width: 30
+					Act SMART
+				%button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
+					%span.sr-only Toggle navigation
+					%span.icon-bar
+					%span.icon-bar
+					%span.icon-bar
+			#top-navigation.nav-collapse.subnav-collapse.navbar-collapse.collapse
+				%ul.nav.navbar-nav.navbar-left
+					%li
+						%a{ href: '/about' }
+							About
+					%li
+						%a{ href: '/team' }
+							Team
+					%li
+						%a{ href: '/faqs' }
+							FAQs
+					%li
+						%a{ href: dashboard_index_path }
+							Dashboard
+
+				%ul.nav.navbar-nav.navbar-right{ style: 'margin-right:1em;' }				
+					- if current_user
+						%li
+							%a{ href: dashboard_index_path, style: 'text-decoration:none;' }
+								Hi
+								= current_user
+						%li
+							%a{ href: '/logout' }
+								Logout

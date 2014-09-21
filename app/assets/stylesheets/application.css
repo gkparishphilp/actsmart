@@ -14,6 +14,27 @@
  *= require_self
  */
 
+html, body {
+    height: 100%;
+}
+
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -80px; /* the bottom margin is the negative value of the footer's height */
+}
+
+.footer, .push {
+    height: 80px; /* .push must be the same height as .footer */
+}
+
+.footer{
+    background-color: #eee;
+    padding: 2em;
+    border-top: 1px #aaa solid;
+}
+
 ul.none {list-style-type: none;}
 
 .subtitle{

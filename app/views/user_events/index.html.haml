@@ -1,0 +1,64 @@
+
+
+.container
+	.row
+		.col-xs-10
+			%ul.breadcrumb
+				%li
+					= link_to 'Admin', admin_index_path
+				%li
+					%strong
+						Events
+	.row
+		.col-xs-6
+			= raw paginate @events
+		.col-xs-6
+			= form_tag user_events_path, method: :get, class: 'form-inline' do
+				= select_tag :name, options_from_collection_for_select( UserEvent.select( :name ).distinct, :name, :name, params[:name] ), prompt: 'All', class: 'form-control'
+				= submit_tag 'Filter', class: 'btn btn-primary'
+				= link_to 'Clear', user_events_path, class: 'btn btn-default btn-xs'
+	.row
+		.col-xs-12
+			%table.table
+				%thead
+					%th Name
+					%th Agency
+					%th User
+					%th Content
+					%th Parent Obj
+					%th Happened
+					%th
+				%tbody
+					- @events.each do |event|
+						%tr
+							%td
+								= link_to event.name, edit_user_event_path( event.id )
+							%td
+								= event.agency || 'N/A'
+							%td
+								= event.user
+							%td
+								= raw event.content
+							%td
+								= event.parent_obj || 'None'
+							%td
+								= time_ago_in_words event.created_at
+								ago
+							%td
+								.btn-group
+									%button.btn.btn-mini.btn-default.dropdown-toggle{ data: { toggle: :dropdown } }
+										%i.fa.fa-cog
+										%b.caret
+									%ul.dropdown-menu
+										%li
+											%a{ href: edit_user_event_path( event ) }
+												%i.fa.fa-pencil
+												Edit
+										%li.divider
+										%li
+											%a{ href: user_event_path( event ), data: { method: 'delete', confirm: 'Are you sure?' } }
+												%i.fa.fa-trash-o
+												Delete!
+
+
+

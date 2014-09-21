@@ -36,7 +36,7 @@
 				%h5 Phase 1 Progress
 				= check_box_tag :phase1_step1, 1, false, class: 'post'
 				Step 1:
-				%a{ href: step1_phase1_index_path }
+				%a{ href: phase_step_path( 1, 1 ) }
 					Complete the Agency Assessment
 				%ul
 					%li
@@ -49,7 +49,7 @@
 						Optional: Assess Caregiver/Consumer Satisfaction
 				= check_box_tag :phase1_step2, 1, false, class: 'post'
 				Step 2:
-				%a{ href: step2_phase1_index_path }
+				%a{ href: phase_step_path( 1, 2) }
 					Receptivity to new Treatment
 
 			
