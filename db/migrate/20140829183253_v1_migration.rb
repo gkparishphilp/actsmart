@@ -17,6 +17,7 @@ class V1Migration < ActiveRecord::Migration
 			t.timestamps
 		end
 		add_index :agencies, :lead_id
+		add_index :agencies, :facilitator_id
 
 
 		create_table :agency_users do |t|
@@ -154,16 +155,19 @@ class V1Migration < ActiveRecord::Migration
 			t.string		:name
 			t.integer		:phase
 			t.integer		:step
+			t.integer		:num
 			t.string		:activity_type
 			t.text			:content
 			t.timestamps
 		end
+		add_index :activities, [ :phase, :step, :num ]
 
 
 		create_table :prompts do |t|
 			t.references	:question
 			t.string		:prompt_type, default: 'radio'
 			t.text			:content
+			t.integer 		:seq
 			t.integer		:value
 			t.boolean		:correct
 			t.timestamps

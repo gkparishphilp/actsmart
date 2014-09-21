@@ -20,11 +20,14 @@ ActiveRecord::Schema.define(version: 20140829183253) do
     t.string   "name"
     t.integer  "phase"
     t.integer  "step"
+    t.integer  "num"
     t.string   "activity_type"
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "activities", ["phase", "step", "num"], name: "index_activities_on_phase_and_step_and_num", using: :btree
 
   create_table "agencies", force: true do |t|
     t.integer  "lead_id"
@@ -43,6 +46,7 @@ ActiveRecord::Schema.define(version: 20140829183253) do
     t.datetime "updated_at"
   end
 
+  add_index "agencies", ["facilitator_id"], name: "index_agencies_on_facilitator_id", using: :btree
   add_index "agencies", ["lead_id"], name: "index_agencies_on_lead_id", using: :btree
 
   create_table "agency_users", force: true do |t|
@@ -94,6 +98,7 @@ ActiveRecord::Schema.define(version: 20140829183253) do
     t.integer  "question_id"
     t.string   "prompt_type", default: "radio"
     t.text     "content"
+    t.integer  "seq"
     t.integer  "value"
     t.boolean  "correct"
     t.datetime "created_at"

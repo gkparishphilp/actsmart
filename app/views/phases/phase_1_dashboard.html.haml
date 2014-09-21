@@ -34,7 +34,7 @@
 		.col-sm-5
 			.well
 				%h5 Phase 1 Progress
-				= check_box_tag :phase1_step1, 1, false, class: 'post'
+				%i.fa.fa-circle-o
 				Step 1:
 				%a{ href: phase_step_path( 1, 1 ) }
 					Complete the Agency Assessment
@@ -47,7 +47,8 @@
 						Encourage your staff to complete the online Agency Assessment.
 					%li
 						Optional: Assess Caregiver/Consumer Satisfaction
-				= check_box_tag :phase1_step2, 1, false, class: 'post'
+				%i.fa.fa-circle-o
+				
 				Step 2:
 				%a{ href: phase_step_path( 1, 2) }
 					Receptivity to new Treatment

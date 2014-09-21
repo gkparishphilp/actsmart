@@ -37,45 +37,45 @@
 		.col-sm-5
 			.well
 				%h5 Phase 2 Progress
-				= check_box_tag :phase2_step1, 1, false, class: 'post'
+				%i.fa.fa-circle-o
 				Step 1:
 				%a{ href: phase_step_path( 2, 1 ) }
 					Identify an appropriate research-based treatment
 				%ul.none
 					%li
-						= check_box_tag :phase2_step_1_resource
+						%i.fa.fa-circle-o
 						%a{ href: step1_resource_phase2_index_path }
 							Resource 1: Guide to Identify Research-Based Treatments
-				= check_box_tag :phase2_step2
+				%i.fa.fa-circle-o
 				%a{ href: phase_step_path( 2, 2 ) }
 					Step 2: Evaluate treatment and provider factors
 				%ul.none
 					%li
-						= check_box_tag :phase2_step_2_activity1
-						%a{ href: step2_activity1_phase2_index_path }
+						%i.fa.fa-circle-o
+						%a{ href: phase_step_activity_path( 2, 2, 1 ) }
 							Activity 1: Treatment Fit
 					%li
-						= check_box_tag :phase2_step_2_activity2
-						%a{ href: step2_activity2_phase2_index_path }
+						%i.fa.fa-circle-o
+						%a{ href: phase_step_activity_path( 2, 2, 2 ) }
 							Activity 2: Treatment Feasibility
 					%li
-						= check_box_tag :phase2_step_2_activity3
-						%a{ href: step2_activity3_phase2_index_path }
+						%i.fa.fa-circle-o
+						%a{ href: phase_step_activity_path( 2, 2, 3 ) }
 							Activity 3: Clinical Value and Research Validity
 					%li
-						= check_box_tag :phase2_step_2_activity4
-						%a{ href: step2_activity4_phase2_index_path }
+						%i.fa.fa-circle-o
+						%a{ href: phase_step_activity_path( 2, 2, 4 ) }
 							Activity 4: Training Requirements
 					%li
-						= check_box_tag :phase2_step_2_activity5
-						%a{ href: step2_activity5_phase2_index_path }
+						%i.fa.fa-circle-o
+						%a{ href: phase_step_activity_path( 2, 2, 5 ) }
 							Activity 5: Funding Source Checklist
 					%li
-						= check_box_tag :phase2_step_2_activity6
-						%a{ href: step2_activity6_phase2_index_path }
+						%i.fa.fa-circle-o
+						%a{ href: phase_step_activity_path( 2, 2, 6 ) }
 							Activity 6: Benefit-Cost Estimator
 
-				= check_box_tag :phase2_step3, 1, false, class: 'post'
+				%i.fa.fa-circle-o
 				Step 3:
 				%a{ href: phase_step_path( 2, 3 ) }
 					Make an adoption decision

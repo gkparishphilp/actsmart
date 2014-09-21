@@ -1,0 +1,46 @@
+.container
+	.row
+		.col-sm-12
+			%ol.breadcrumb
+				%li
+					= link_to 'Dashboard', dashboard_index_path
+				%li
+					= link_to "Phase #{@phase_num}", phase_path( @phase_num )
+				%li
+					= link_to "Step #{@step_num}", phase_step_path( @step_num, @phase_num )
+				%li
+					= @activity.name
+	.row
+		.col-sm-12
+			%h1
+				= @activity.name
+	.row
+		.col-sm-12
+			= raw @activity.content
+
+	.row
+		.col-sm-12
+			- if @activity.questions.present?
+				%table.table
+					%thead
+						%th
+						%th
+						%th
+							Yes
+						%th
+							No
+						%th
+							DK
+					%tbody
+						- @activity.questions.order( :seq ).each do |question|
+							%tr
+								%td
+									= question.seq
+								%td
+									= question.content
+								%td
+									= radio_button_tag "question_#{question.id}", :yes
+								%td
+									= radio_button_tag "question_#{question.id}", :no
+								%td
+									= radio_button_tag "question_#{question.id}", :dk

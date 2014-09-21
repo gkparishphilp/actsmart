@@ -6,18 +6,16 @@
 				= current_user.try( :name )
 	.row
 		.col-sm-3.col-sm-offset-3
-			.pull-right
-				%i.fa.fa-check-circle-o{ style: 'color:#3a3;margin: 10px 10px;font-size:150%;'}
 			.well{ style: 'text-align:center;' }
-				%p{ style: 'font-weight:bold;' }	
-					= link_to 'Phase 1', phase_path( 1 )
+				%p
+					%i.fa.fa-check-circle-o{ style: 'color:#3a3;font-size:150%;'}	
+					= link_to 'Phase 1', phase_path( 1 ), style: 'font-weight:bold;'
 				Identify Practice & Delivery Gaps
 		-#.col-sm-3.col-sm-offset-3
-			.pull-right
-				%i.fa.fa-check-circle-o{ style: 'color:#3a3;margin: 10px 10px;font-size:150%;'}
 			.well{ style: 'text-align:center;' }
-				%p{ style: 'font-weight:bold;' }
-					= link_to 'Preparation for ACT SMART', '/getting_ready'
+				%p
+					%i.fa.fa-circle-o{ style: 'font-size:130%;'}
+					= link_to 'Preparation for ACT SMART', '/getting_ready', style: 'font-weight:bold;'
 
 	.row{ style: 'margin: 2em auto;' }
 		.col-sm-3.col-sm-offset-1
@@ -28,13 +26,15 @@
 				Implementation & Sustainment
 		.col-sm-3.col-sm-offset-1
 			.well{ style: 'text-align:center;' }
-				%p{ style: 'font-weight:bold;' }
-					= link_to 'Phase 2', phase_path( 2 )
+				%p
+					%i.fa.fa-circle-o{ style: 'font-size:130%;' }
+					= link_to 'Phase 2', phase_path( 2 ), style: 'font-weight:bold;'
 				Treatment Selection & Adoption Decision
 	.row
 		.col-sm-3.col-sm-offset-3
 			.well{ style: 'text-align:center;' }
 				%p{ style: 'font-weight:bold;' }
+					%i.fa.fa-circle-o{ style: 'font-size:130%;'}
 					Phase 3
 					=# link_to 'Phase 3', phase_path( 3 )
 				Planning for Implementation
