@@ -4,39 +4,15 @@ Rails.application.routes.draw do
 
 	resources :agencies
 
+	resources :messages
+
 	resources :phases do
 		resources :steps do
 			resources :activities
 		end
 	end
 
-	resources :phase1 do
-		get :dashboard, on: :collection
-		get :step1, on: :collection
-		get :step2, on: :collection
-	end
-
-	resources :phase2 do
-		get :dashboard, on: :collection
-		get :step1, on: :collection
-		get :step1_resource, on: :collection
-		get	:step2, on: :collection
-		get	:step2_activity1, on: :collection
-		get	:step2_activity2, on: :collection
-		get	:step2_activity3, on: :collection
-		get	:step2_activity4, on: :collection
-		get	:step2_activity5, on: :collection
-		get	:step2_activity6, on: :collection
-		get	:step3, on: :collection
-	end
-
-	resources :phase3 do
-		get :dashboard, on: :collection
-	end
-
-	resources :phase4 do
-		get :dashboard, on: :collection
-	end
+	resource :responses
 
 	resources :users
 

@@ -1,0 +1,22 @@
+.container
+	.row
+		.col-sm-12
+			%ol.breadcrumb
+				%li
+					= link_to 'Admin', admin_index_path
+				%li
+					= @agency.name
+
+	.row
+		.col-sm-12
+			%h1
+				= @agency.name
+			%a.btn.btn-success.pull-right{ { data: { toggle: :modal, target: '#new_message' } } }
+				Message
+
+
+
+
+
+
+= render 'messages/new_modal', args: { agency_id: @agency.id }

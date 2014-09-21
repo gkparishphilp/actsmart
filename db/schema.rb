@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140829183253) do
+ActiveRecord::Schema.define(version: 20140921204547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "activities", force: true do |t|
     t.string   "name"
-    t.integer  "phase"
-    t.integer  "step"
+    t.string   "label"
+    t.integer  "phase_id"
+    t.integer  "step_id"
     t.integer  "num"
     t.string   "activity_type"
     t.text     "content"
@@ -27,10 +28,11 @@ ActiveRecord::Schema.define(version: 20140829183253) do
     t.datetime "updated_at"
   end
 
-  add_index "activities", ["phase", "step", "num"], name: "index_activities_on_phase_and_step_and_num", using: :btree
+  add_index "activities", ["phase_id", "step_id", "num"], name: "index_activities_on_phase_id_and_step_id_and_num", using: :btree
+  add_index "activities", ["phase_id"], name: "index_activities_on_phase_id", using: :btree
+  add_index "activities", ["step_id"], name: "index_activities_on_step_id", using: :btree
 
   create_table "agencies", force: true do |t|
-    t.integer  "lead_id"
     t.integer  "facilitator_id"
     t.string   "name"
     t.text     "description"
@@ -47,12 +49,11 @@ ActiveRecord::Schema.define(version: 20140829183253) do
   end
 
   add_index "agencies", ["facilitator_id"], name: "index_agencies_on_facilitator_id", using: :btree
-  add_index "agencies", ["lead_id"], name: "index_agencies_on_lead_id", using: :btree
 
   create_table "agency_users", force: true do |t|
     t.integer  "agency_id"
     t.integer  "user_id"
-    t.string   "role"
+    t.string   "role",       default: "member"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -83,7 +84,7 @@ ActiveRecord::Schema.define(version: 20140829183253) do
     t.string   "context"
     t.string   "subject"
     t.text     "content"
-    t.integer  "status",          default: 0
+    t.integer  "status",          default: 1
     t.boolean  "read",            default: false
     t.datetime "read_at"
     t.datetime "created_at"
@@ -93,6 +94,13 @@ ActiveRecord::Schema.define(version: 20140829183253) do
   add_index "messages", ["agency_id"], name: "index_messages_on_agency_id", using: :btree
   add_index "messages", ["from_id"], name: "index_messages_on_from_id", using: :btree
   add_index "messages", ["parent_obj_id", "parent_obj_type"], name: "index_messages_on_parent_obj_id_and_parent_obj_type", using: :btree
+
+  create_table "phases", force: true do |t|
+    t.string   "name"
+    t.string   "label"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "prompts", force: true do |t|
     t.integer  "question_id"
@@ -134,6 +142,16 @@ ActiveRecord::Schema.define(version: 20140829183253) do
   add_index "responses", ["prompt_id"], name: "index_responses_on_prompt_id", using: :btree
   add_index "responses", ["question_id"], name: "index_responses_on_question_id", using: :btree
   add_index "responses", ["user_id"], name: "index_responses_on_user_id", using: :btree
+
+  create_table "steps", force: true do |t|
+    t.integer  "phase_id"
+    t.string   "name"
+    t.string   "label"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "steps", ["phase_id"], name: "index_steps_on_phase_id", using: :btree
 
   create_table "user_events", force: true do |t|
     t.integer  "user_id"

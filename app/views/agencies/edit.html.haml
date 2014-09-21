@@ -5,7 +5,9 @@
 				%li
 					= link_to 'Admin', admin_index_path
 				%li
-					Edit Agency
+					= link_to @agency.name, agency_path( @agency )
+				%li
+					Edit
 .container
 	.row
 		.col-sm-12
@@ -53,8 +55,12 @@
 								%a.btn.btn-sm.btn-success{ data: { toggle: :modal, target: '#new_user' } }
 									Add
 							Lead
-						= f.collection_select :lead_id, @agency.users, :id, :name, {}, class: 'form-control'
-
+						= select_tag :lead_id, options_from_collection_for_select( @agency.users, :id, :name, @agency.lead ), class: 'form-control'
+					%hr
+						.form-group
+							= f.label :status
+							= f.collection_select :status, Agency.statuses, :first, :first, {}, class: 'form-control'
+					%hr
 					.form-group
 						= f.submit class: 'btn btn-primary'
 

@@ -1,34 +1,5 @@
-class V1Migration < ActiveRecord::Migration
+class UserBaseMigration < ActiveRecord::Migration
 	def change
-
-		create_table :agencies do |t|
-			t.references	:lead
-			t.references	:facilitator
-			t.string		:name
-			t.text			:description
-			t.text			:notes
-			t.string		:address1
-			t.string		:address2
-			t.string		:city
-			t.string		:state 
-			t.string		:zip 
-			t.string		:phone
-			t.integer		:status, 	default: 1
-			t.timestamps
-		end
-		add_index :agencies, :lead_id
-		add_index :agencies, :facilitator_id
-
-
-		create_table :agency_users do |t|
-			t.references	:agency
-			t.references 	:user
-			t.string		:role
-			t.timestamps
-		end
-		add_index :agency_users, :agency_id
-		add_index :agency_users, :user_id
-		add_index :agency_users, [ :agency_id, :user_id ]
 
 
 		create_table :contacts do |t|
@@ -42,23 +13,6 @@ class V1Migration < ActiveRecord::Migration
 			t.timestamps
 		end
 		add_index :contacts, :email
-
-
-		create_table :messages do |t|
-			t.references 	:from
-			t.references	:agency
-			t.references	:parent_obj, polymorphic: true
-			t.string		:context
-			t.string		:subject
-			t.text			:content
-			t.integer		:status, 	default: 0
-			t.boolean		:read, 		default: false
-			t.datetime		:read_at
-			t.timestamps
-		end
-		add_index :messages, :from_id
-		add_index :messages, :agency_id
-		add_index :messages, [ :parent_obj_id, :parent_obj_type ]
 
 
 		create_table :users do |t|
@@ -149,59 +103,6 @@ class V1Migration < ActiveRecord::Migration
 		add_index :user_events, :parent_obj
 		add_index :user_events, :name
 		add_index :user_events, [ :name, :user_id ]
-
-
-		create_table :activities do |t|
-			t.string		:name
-			t.integer		:phase
-			t.integer		:step
-			t.integer		:num
-			t.string		:activity_type
-			t.text			:content
-			t.timestamps
-		end
-		add_index :activities, [ :phase, :step, :num ]
-
-
-		create_table :prompts do |t|
-			t.references	:question
-			t.string		:prompt_type, default: 'radio'
-			t.text			:content
-			t.integer 		:seq
-			t.integer		:value
-			t.boolean		:correct
-			t.timestamps
-		end
-
-
-		create_table :questions do |t|
-			t.references	:activity
-			t.string 		:name
-			t.text			:content
-			t.string		:question_type
-			t.integer		:seq
-			t.timestamps
-		end
-		add_index :questions, :activity_id
-		add_index :questions, :name
-
-
-		create_table :responses do |t|
-			t.references 	:user
-			t.references	:agency
-			t.references 	:question
-			t.references 	:prompt
-			t.text			:content     # in the case of free-response
-			t.datetime		:started_at
-			t.datetime		:responded_at
-			t.timestamps
-		end
-		add_index :responses, :user_id
-		add_index :responses, :agency_id
-		add_index :responses, :question_id
-		add_index :responses, :prompt_id
-
-
 
 	end
 end

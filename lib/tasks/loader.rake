@@ -3,6 +3,41 @@ desc "Loader"
 namespace :activities do
 
 	task load: :environment do
+
+		radio_prompts = [
+			{
+				content: 'yes',
+				value: 1,
+				seq: 1
+			},
+			{
+				content: 'no',
+				value: 0,
+				seq: 2
+			},
+			{
+				content: 'DK',
+				value: nil,
+				seq: 3
+			}
+		]
+
+		p1 = Phase.create name: 'phase_1', label: 'Phase 1'
+		p2 = Phase.create name: 'phase_2', label: 'Phase 2'
+		p3 = Phase.create name: 'phase_3', label: 'Phase 3'
+		p4 = Phase.create name: 'phase_4', label: 'Phase 4'
+
+		step = phase1.steps.create name: 'phase1_step1'
+		a = p1.activities.create step: step, name: 'complete_assessment'
+		q = a.questions.create content: 'Is the Agency Assessment Complete?'
+
+		step = phase1.steps.create name: 'phase1_step2'
+		a = p1.activities.create step: step, name: 'receptivity_to_treatment'
+		q = a.questions.create content: 'Is the Agency Assessment Receptive to Treatment?'
+
+
+
+
 		a = Activity.create phase: 2, step: 2, num: 1, name: "Activity 1: Treatment Fit", content: <<-END
 		<p><u>Goal</u>: Assess whether the potential research-based treatment will be compatible with your agency’s values and mission.
 		</p>
@@ -22,23 +57,7 @@ namespace :activities do
 			"Does the treatment fit with the culture of the clients served at your agency or the culture of the community?"		
 		]
 
-		prompts = [
-			{
-				content: 'yes',
-				value: 1,
-				seq: 1
-			},
-			{
-				content: 'no',
-				value: 0,
-				seq: 2
-			},
-			{
-				content: 'DK',
-				value: nil,
-				seq: 3
-			}
-		]
+		
 
 		questions.each_with_index do |question, i|
 			q = a.questions.create seq: i+1, content: question

@@ -21,26 +21,29 @@
 	.row
 		.col-sm-12
 			- if @activity.questions.present?
-				%table.table
-					%thead
-						%th
-						%th
-						%th
-							Yes
-						%th
-							No
-						%th
-							DK
-					%tbody
-						- @activity.questions.order( :seq ).each do |question|
-							%tr
-								%td
-									= question.seq
-								%td
-									= question.content
-								%td
-									= radio_button_tag "question_#{question.id}", :yes
-								%td
-									= radio_button_tag "question_#{question.id}", :no
-								%td
-									= radio_button_tag "question_#{question.id}", :dk
+				= form_tag responses_path do
+					= hidden_field_tag :activity_id, @activity.id
+					%table.table
+						%thead
+							%th
+							%th
+							%th
+								Yes
+							%th
+								No
+							%th
+								DK
+						%tbody
+							- @activity.questions.order( :seq ).each do |question|
+								%tr
+									%td
+										= question.seq
+									%td
+										= question.content
+									%td
+										= radio_button_tag "question_#{question.id}", :yes
+									%td
+										= radio_button_tag "question_#{question.id}", :no
+									%td
+										= radio_button_tag "question_#{question.id}", :dk
+					= submit_tag 'Save'

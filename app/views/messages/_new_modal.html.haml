@@ -1,0 +1,22 @@
+#new_message.modal.fade
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%button.close{ type: :button, 'data-dismiss' => 'modal', 'aria-hidden' => 'true' }
+					&times;
+				%h4.modal-title
+					Message
+			= form_for Message.new do |f|
+				= f.hidden_field :agency_id, value: args[:agency_id]
+				.modal-body
+					.form-group
+						= f.label :subject
+						= f.text_field :subject, class: 'form-control'
+					.form-group
+						= f.label :content
+						= f.text_area :content, class: 'form-control'
+
+				.modal-footer
+					%button.btn.btn-default{ type: :button, 'data-dismiss' => 'modal' }
+						Close
+					= f.submit 'Send', class: 'btn btn-primary'
