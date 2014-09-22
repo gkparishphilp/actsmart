@@ -23,9 +23,26 @@ class AgenciesController < ApplicationController
 	def update
 		@agency = Agency.find( params[:id] )
 		if @agency.update( agency_params )
-			if membership = AgencyUsers.where( agency_id: @agency.id, user_id: params[:lead_id] ).last
+			if membership = AgencyUser.where( agency_id: @agency.id, user_id: params[:lead_id] ).last
 				membership.update( role: 'lead' )
 			end
+
+			if params[:assessment_complete].present?
+				res = @agency.responses.where( question_id: 1 ).first_or_initialize
+				res.update( content: 'yes' )
+			else
+				res = @agency.responses.where( question_id: 1 ).first
+				res.update( content: 'no' ) if res.present?
+			end
+
+			if params[:receptive_to_treatment].present?
+				res = @agency.responses.where( question_id: 2 ).first_or_initialize
+				res.update( content: 'yes' )
+			else
+				res = @agency.responses.where( question_id: 2 ).first
+				res.update( content: 'no' ) if res.present?
+			end
+
 			redirect_to admin_index_path
 		else
 			render :edit

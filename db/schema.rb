@@ -17,19 +17,20 @@ ActiveRecord::Schema.define(version: 20140921204547) do
   enable_extension "plpgsql"
 
   create_table "activities", force: true do |t|
-    t.string   "name"
-    t.string   "label"
     t.integer  "phase_id"
     t.integer  "step_id"
-    t.integer  "num"
+    t.string   "name"
+    t.string   "label"
+    t.integer  "seq"
     t.string   "activity_type"
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "activities", ["phase_id", "step_id", "num"], name: "index_activities_on_phase_id_and_step_id_and_num", using: :btree
+  add_index "activities", ["phase_id", "step_id"], name: "index_activities_on_phase_id_and_step_id", using: :btree
   add_index "activities", ["phase_id"], name: "index_activities_on_phase_id", using: :btree
+  add_index "activities", ["seq"], name: "index_activities_on_seq", using: :btree
   add_index "activities", ["step_id"], name: "index_activities_on_step_id", using: :btree
 
   create_table "agencies", force: true do |t|
@@ -98,9 +99,12 @@ ActiveRecord::Schema.define(version: 20140921204547) do
   create_table "phases", force: true do |t|
     t.string   "name"
     t.string   "label"
+    t.integer  "seq"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "phases", ["seq"], name: "index_phases_on_seq", using: :btree
 
   create_table "prompts", force: true do |t|
     t.integer  "question_id"
@@ -115,6 +119,8 @@ ActiveRecord::Schema.define(version: 20140921204547) do
 
   create_table "questions", force: true do |t|
     t.integer  "activity_id"
+    t.integer  "step_id"
+    t.integer  "phase_id"
     t.string   "name"
     t.text     "content"
     t.string   "question_type"
@@ -125,11 +131,17 @@ ActiveRecord::Schema.define(version: 20140921204547) do
 
   add_index "questions", ["activity_id"], name: "index_questions_on_activity_id", using: :btree
   add_index "questions", ["name"], name: "index_questions_on_name", using: :btree
+  add_index "questions", ["phase_id"], name: "index_questions_on_phase_id", using: :btree
+  add_index "questions", ["seq"], name: "index_questions_on_seq", using: :btree
+  add_index "questions", ["step_id"], name: "index_questions_on_step_id", using: :btree
 
   create_table "responses", force: true do |t|
     t.integer  "user_id"
     t.integer  "agency_id"
     t.integer  "question_id"
+    t.integer  "activity_id"
+    t.integer  "step_id"
+    t.integer  "phase_id"
     t.integer  "prompt_id"
     t.text     "content"
     t.datetime "started_at"
@@ -138,31 +150,37 @@ ActiveRecord::Schema.define(version: 20140921204547) do
     t.datetime "updated_at"
   end
 
+  add_index "responses", ["activity_id"], name: "index_responses_on_activity_id", using: :btree
   add_index "responses", ["agency_id"], name: "index_responses_on_agency_id", using: :btree
+  add_index "responses", ["phase_id"], name: "index_responses_on_phase_id", using: :btree
   add_index "responses", ["prompt_id"], name: "index_responses_on_prompt_id", using: :btree
   add_index "responses", ["question_id"], name: "index_responses_on_question_id", using: :btree
+  add_index "responses", ["step_id"], name: "index_responses_on_step_id", using: :btree
   add_index "responses", ["user_id"], name: "index_responses_on_user_id", using: :btree
 
   create_table "steps", force: true do |t|
     t.integer  "phase_id"
     t.string   "name"
     t.string   "label"
+    t.integer  "seq"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "steps", ["phase_id"], name: "index_steps_on_phase_id", using: :btree
+  add_index "steps", ["seq"], name: "index_steps_on_seq", using: :btree
 
   create_table "user_events", force: true do |t|
     t.integer  "user_id"
     t.integer  "agency_id"
-    t.string   "parent_obj"
+    t.integer  "parent_obj_id"
+    t.string   "parent_obj_type"
     t.string   "name"
     t.text     "content"
     t.integer  "value"
     t.string   "http_referrer"
     t.string   "req_path"
-    t.integer  "status",        default: 1
+    t.integer  "status",          default: 1
     t.datetime "publish_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -171,7 +189,7 @@ ActiveRecord::Schema.define(version: 20140921204547) do
   add_index "user_events", ["agency_id"], name: "index_user_events_on_agency_id", using: :btree
   add_index "user_events", ["name", "user_id"], name: "index_user_events_on_name_and_user_id", using: :btree
   add_index "user_events", ["name"], name: "index_user_events_on_name", using: :btree
-  add_index "user_events", ["parent_obj"], name: "index_user_events_on_parent_obj", using: :btree
+  add_index "user_events", ["parent_obj_type", "parent_obj_id"], name: "index_user_events_on_parent", using: :btree
   add_index "user_events", ["user_id"], name: "index_user_events_on_user_id", using: :btree
 
   create_table "users", force: true do |t|

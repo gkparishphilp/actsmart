@@ -88,7 +88,7 @@ class UserBaseMigration < ActiveRecord::Migration
 		create_table :user_events do |t|
 			t.references		:user
 			t.references		:agency
-			t.string			:parent_obj
+			t.references		:parent_obj, polymorphic: true
 			t.string			:name
 			t.text				:content
 			t.integer			:value
@@ -100,7 +100,7 @@ class UserBaseMigration < ActiveRecord::Migration
 		end
 		add_index :user_events, :user_id
 		add_index :user_events, :agency_id
-		add_index :user_events, :parent_obj
+		add_index :user_events, [ :parent_obj_type, :parent_obj_id ], name: 'index_user_events_on_parent'
 		add_index :user_events, :name
 		add_index :user_events, [ :name, :user_id ]
 

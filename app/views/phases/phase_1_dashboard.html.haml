@@ -34,9 +34,12 @@
 		.col-sm-5
 			.well
 				%h5 Phase 1 Progress
-				%i.fa.fa-circle-o
+				- if @current_agency.responses.where( question_id: 1 ).last.try( :content ) == 'yes' 
+					%i.fa.fa-check-circle-o{ style: 'color:#3a3;font-size:150%;'}
+				- else
+					%i.fa.fa-circle-o{ style: 'font-size:130%;'}
 				Step 1:
-				%a{ href: phase_step_path( 1, 1 ) }
+				%a{ href: phase_step_path( @phase, @phase.steps.first ) }
 					Complete the Agency Assessment
 				%ul
 					%li
@@ -47,10 +50,14 @@
 						Encourage your staff to complete the online Agency Assessment.
 					%li
 						Optional: Assess Caregiver/Consumer Satisfaction
-				%i.fa.fa-circle-o
+				
+				- if @current_agency.responses.where( question_id: 2 ).last.try( :content ) == 'yes'
+					%i.fa.fa-check-circle-o{ style: 'color:#3a3;font-size:150%;'}
+				- else
+					%i.fa.fa-circle-o{ style: 'font-size:130%;'}
 				
 				Step 2:
-				%a{ href: phase_step_path( 1, 2) }
+				%a{ href: phase_step_path( @phase, @phase.steps.second ) }
 					Receptivity to new Treatment
 
 			

@@ -8,35 +8,53 @@
 		.col-sm-3.col-sm-offset-3
 			.well{ style: 'text-align:center;' }
 				%p
-					%i.fa.fa-check-circle-o{ style: 'color:#3a3;font-size:150%;'}	
+					- if @current_agency.phase_complete?( Phase.find_by( name: 'phase_1' ) ) 
+						%i.fa.fa-check-circle-o{ style: 'color:#3a3;font-size:150%;'}
+					- else
+						%i.fa.fa-circle-o{ style: 'font-size:130%;'}
 					= link_to 'Phase 1', phase_path( 1 ), style: 'font-weight:bold;'
 				Identify Practice & Delivery Gaps
-		-#.col-sm-3.col-sm-offset-3
-			.well{ style: 'text-align:center;' }
-				%p
-					%i.fa.fa-circle-o{ style: 'font-size:130%;'}
-					= link_to 'Preparation for ACT SMART', '/getting_ready', style: 'font-weight:bold;'
 
 	.row{ style: 'margin: 2em auto;' }
 		.col-sm-3.col-sm-offset-1
 			.well{ style: 'text-align:center;' }
-				%p{ style: 'font-weight:bold;' }
-					Phase 4
-					= #link_to 'Phase 4', phase_path( 4 )
+				%p
+					- if @current_agency.phase_complete?( Phase.find_by( name: 'phase_4' ) ) 
+						%i.fa.fa-check-circle-o{ style: 'color:#3a3;font-size:150%;'}
+					- else
+						%i.fa.fa-circle-o{ style: 'font-size:130%;'}
+					%span{ style: 'font-weight: bold;' }
+						- if @current_agency.phase_complete?( Phase.find_by( name: 'phase_3' ) ) 
+							= link_to 'Phase 4', phase_path( 4 )
+						- else
+							Phase 4
 				Implementation & Sustainment
 		.col-sm-3.col-sm-offset-1
 			.well{ style: 'text-align:center;' }
 				%p
-					%i.fa.fa-circle-o{ style: 'font-size:130%;' }
-					= link_to 'Phase 2', phase_path( 2 ), style: 'font-weight:bold;'
+					- if @current_agency.phase_complete?( Phase.find_by( name: 'phase_2' ) ) 
+						%i.fa.fa-check-circle-o{ style: 'color:#3a3;font-size:150%;'}
+					- else
+						%i.fa.fa-circle-o{ style: 'font-size:130%;'}
+					%span{ style: 'font-weight: bold;' }
+						- if @current_agency.phase_complete?( Phase.find_by( name: 'phase_1' ) ) 
+							= link_to 'Phase 2', phase_path( 2 )
+						- else
+							Phase 2
 				Treatment Selection & Adoption Decision
 	.row
 		.col-sm-3.col-sm-offset-3
 			.well{ style: 'text-align:center;' }
-				%p{ style: 'font-weight:bold;' }
-					%i.fa.fa-circle-o{ style: 'font-size:130%;'}
-					Phase 3
-					=# link_to 'Phase 3', phase_path( 3 )
+				%p
+					- if @current_agency.phase_complete?( Phase.find_by( name: 'phase_3' ) ) 
+						%i.fa.fa-check-circle-o{ style: 'color:#3a3;font-size:150%;'}
+					- else
+						%i.fa.fa-circle-o{ style: 'font-size:130%;'}
+					%span{ style: 'font-weight: bold;' }
+						- if @current_agency.phase_complete?( Phase.find_by( name: 'phase_2' ) ) 
+							= link_to 'Phase 3', phase_path( 3 )
+						- else
+							Phase 3
 				Planning for Implementation
 
 		

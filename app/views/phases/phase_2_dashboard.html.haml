@@ -39,45 +39,45 @@
 				%h5 Phase 2 Progress
 				%i.fa.fa-circle-o
 				Step 1:
-				%a{ href: phase_step_path( 2, 1 ) }
+				%a{ href: phase_step_path( @phase, @phase.steps.first ) }
 					Identify an appropriate research-based treatment
 				%ul.none
 					%li
 						%i.fa.fa-circle-o
-						%a{ href: '#' }
+						%a{ href: phase_step_activity_path( @phase, @phase.steps.first, @phase.steps.first.activities.first ) }
 							Resource 1: Guide to Identify Research-Based Treatments
 				%i.fa.fa-circle-o
-				%a{ href: phase_step_path( 2, 2 ) }
+				%a{ href: phase_step_path( @phase, @phase.steps.second ) }
 					Step 2: Evaluate treatment and provider factors
 				%ul.none
 					%li
 						%i.fa.fa-circle-o
-						%a{ href: phase_step_activity_path( 2, 2, 1 ) }
+						%a{ href: phase_step_activity_path( @phase, @phase.steps.second, @phase.steps.second.activities.find_by_seq( 1 ) ) }
 							Activity 1: Treatment Fit
 					%li
 						%i.fa.fa-circle-o
-						%a{ href: phase_step_activity_path( 2, 2, 2 ) }
+						%a{ href: phase_step_activity_path( @phase, @phase.steps.second, @phase.steps.second.activities.find_by_seq( 2 ) ) }
 							Activity 2: Treatment Feasibility
 					%li
 						%i.fa.fa-circle-o
-						%a{ href: phase_step_activity_path( 2, 2, 3 ) }
+						%a{ href: phase_step_activity_path( @phase, @phase.steps.second, @phase.steps.second.activities.find_by_seq( 3 ) ) }
 							Activity 3: Clinical Value and Research Validity
 					%li
 						%i.fa.fa-circle-o
-						%a{ href: phase_step_activity_path( 2, 2, 4 ) }
+						%a{ href: phase_step_activity_path( @phase, @phase.steps.second, @phase.steps.second.activities.find_by_seq( 4 ) ) }
 							Activity 4: Training Requirements
 					%li
 						%i.fa.fa-circle-o
-						%a{ href: phase_step_activity_path( 2, 2, 5 ) }
+						%a{ href: phase_step_activity_path( @phase, @phase.steps.second, @phase.steps.second.activities.find_by_seq( 5 ) ) }
 							Activity 5: Funding Source Checklist
 					%li
 						%i.fa.fa-circle-o
-						%a{ href: phase_step_activity_path( 2, 2, 6 ) }
+						%a{ href: phase_step_activity_path( @phase, @phase.steps.second, @phase.steps.second.activities.find_by_seq( 6 ) ) }
 							Activity 6: Benefit-Cost Estimator
 
 				%i.fa.fa-circle-o
 				Step 3:
-				%a{ href: phase_step_path( 2, 3 ) }
+				%a{ href: phase_step_path( @phase, @phase.steps.third ) }
 					Make an adoption decision
 
 

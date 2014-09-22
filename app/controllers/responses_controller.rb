@@ -9,7 +9,7 @@ class ResponsesController < ApplicationController
 	private
 
 		def response_params
-			params.require( :response ).permit( :prompt_id, :content )
+			params.require( :response ).permit( :prompt_id, :question_id, :content )
 		end
 
 end

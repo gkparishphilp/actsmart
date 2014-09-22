@@ -7,8 +7,13 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 u = User.create name: 'Gk', email: 'gk@gk.com', password: '1234', role: 'admin'
-u = User.create name: 'admin', email: 'admin@admin.com', password: '1234', role: 'admin'
-u = User.create name: 'Amy', email: 'amy@amy.com', password: '1234', role: 'admin'
+amy = User.create name: 'Amy', email: 'amy@amy.com', password: '1234', role: 'admin'
 
 
+
+
+
+a = Agency.create name: 'Test Agency', facilitator: amy
 u = User.create name: 'joe', email: 'joe@joe.com', password: '1234'
+
+a.agency_users.create user: u, role: 'lead'

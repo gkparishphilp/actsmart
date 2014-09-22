@@ -58,12 +58,24 @@
 						= select_tag :lead_id, options_from_collection_for_select( @agency.users, :id, :name, @agency.lead ), class: 'form-control'
 					%hr
 						.form-group
+							= check_box_tag :assessment_complete, 'yes', @agency.responses.where( question_id: 1 ).last.try( :content ) == 'yes'
+							Assessment Complete?
+						.form-group
+							= check_box_tag :receptive_to_treatment, 'yes', @agency.responses.where( question_id: 2 ).last.try( :content ) == 'yes'
+							Receptive to Treatment?
+					%hr
+						.form-group
 							= f.label :status
 							= f.collection_select :status, Agency.statuses, :first, :first, {}, class: 'form-control'
 					%hr
 					.form-group
 						= f.submit class: 'btn btn-primary'
 
+
+%br
+%br
+%br
+%br
 		
 
 -#.well

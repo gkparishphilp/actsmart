@@ -2,18 +2,19 @@ class AppBaseMigration < ActiveRecord::Migration
 	def change
 
 		create_table :activities do |t|
-			t.string			:name
-			t.string			:label
 			t.references		:phase
 			t.references		:step
-			t.integer			:num
+			t.string			:name
+			t.string			:label
+			t.integer			:seq
 			t.string			:activity_type
 			t.text				:content
 			t.timestamps
 		end
 		add_index :activities, :phase_id
 		add_index :activities, :step_id
-		add_index :activities, [ :phase_id, :step_id, :num ]
+		add_index :activities, :seq
+		add_index :activities, [ :phase_id, :step_id ]
 
 
 		create_table :agencies do |t|
@@ -64,8 +65,10 @@ class AppBaseMigration < ActiveRecord::Migration
 		create_table :phases do |t|
 			t.string 			:name
 			t.string			:label
+			t.integer 			:seq
 			t.timestamps
 		end
+		add_index :phases, :seq
 
 
 		create_table :prompts do |t|
@@ -81,12 +84,17 @@ class AppBaseMigration < ActiveRecord::Migration
 
 		create_table :questions do |t|
 			t.references	:activity
+			t.references	:step
+			t.references	:phase
 			t.string 		:name
 			t.text			:content
 			t.string		:question_type
 			t.integer		:seq
 			t.timestamps
 		end
+		add_index :questions, :step_id
+		add_index :questions, :phase_id
+		add_index :questions, :seq
 		add_index :questions, :activity_id
 		add_index :questions, :name
 
@@ -95,6 +103,9 @@ class AppBaseMigration < ActiveRecord::Migration
 			t.references 	:user
 			t.references	:agency
 			t.references 	:question
+			t.references	:activity
+			t.references	:step
+			t.references 	:phase
 			t.references 	:prompt
 			t.text			:content     # in the case of free-response
 			t.datetime		:started_at
@@ -103,6 +114,9 @@ class AppBaseMigration < ActiveRecord::Migration
 		end
 		add_index :responses, :user_id
 		add_index :responses, :agency_id
+		add_index :responses, :activity_id
+		add_index :responses, :step_id
+		add_index :responses, :phase_id
 		add_index :responses, :question_id
 		add_index :responses, :prompt_id
 
@@ -111,9 +125,11 @@ class AppBaseMigration < ActiveRecord::Migration
 			t.references 	:phase
 			t.string		:name
 			t.string		:label
+			t.integer 		:seq
 			t.timestamps
 		end
 		add_index :steps, :phase_id
+		add_index :steps, :seq
 
 
 	end
