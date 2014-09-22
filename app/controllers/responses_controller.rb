@@ -2,8 +2,11 @@
 class ResponsesController < ApplicationController
 
 	def create
-		dsf
-		@question = Question.find_by( id: params[:question_id] )
+		params[:question_answers].each do |question_id, answer|
+			r = @current_agency.responses.where( question_id: question_id ).first_or_initialize
+			r.update( content: answer )
+		end
+		redirect_to :back
 	end
 
 	private

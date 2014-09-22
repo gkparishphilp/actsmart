@@ -89,6 +89,7 @@ class AppBaseMigration < ActiveRecord::Migration
 			t.string 		:name
 			t.text			:content
 			t.string		:question_type
+			t.string		:section
 			t.integer		:seq
 			t.timestamps
 		end

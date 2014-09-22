@@ -1,0 +1,97 @@
+.container
+	.row
+		.col-sm-12
+			%ol.breadcrumb
+				%li
+					= link_to 'Dashboard', dashboard_index_path
+				%li
+					= link_to 'Phase 2', phase_path( 2 )
+				%li
+					= link_to 'Step 2', phase_step_path( @phase, @step )
+				%li
+					Activity 3: Clinical Value and Research Validity
+	.row
+		.col-sm-12
+			%h1
+				Activity 3: Clinical Value and Research Validity
+
+			%p
+				<u>Goal</u>: Evaluate the clinical value and research validity of the treatment you are considering to adopt within your agency.
+
+			%p
+				There are a many treatments available for individuals with ASD. Treatments may vary in terms of their clinical value and/or research validity. To make the most informed choices about a new treatment, it is important to assess these factors before making a decision about adopting the treatment. The scores obtained from the clinical value and validity can be summed up to provide guidance for adopting a research-based treatment at your agency.
+
+			%p
+				<b>Clinical Value</b>: How meaningful and important the benefits and outcomes achieved by the treatment are to your agency, service providers, and clients served.
+
+			%p
+				<b>Research Validity</b>: The evidence-base supporting the use of the research-based treatment. 
+
+			%h3
+				Evaluating the Clinical Value of the Treatment
+
+			= form_tag responses_path do
+				%table.table
+					%thead
+						%th
+						%th
+						%th
+							Yes
+						%th
+							No
+						%th
+							DK
+					%tbody
+						- @activity.questions.where( section: 'section_1' ).order( :seq ).each do |question|
+							%tr
+								%td
+									= question.seq
+								%td
+									= raw question.content
+								%td
+									= radio_button_tag "question_answers[#{question.id}]", :yes, @current_agency.responses.where( question_id: question.id ).first.try( :content ) == 'yes'
+								%td
+									= radio_button_tag "question_answers[#{question.id}]", :no, @current_agency.responses.where( question_id: question.id ).first.try( :content ) == 'no'
+								%td
+									= radio_button_tag "question_answers[#{question.id}]", :dk, @current_agency.responses.where( question_id: question.id ).first.try( :content ) == 'dk'
+
+				%h3
+					Evaluating the Research Validity of the Treatment
+
+				%table.table
+					%thead
+						%th
+						%th
+						%th
+							Yes
+						%th
+							No
+						%th
+							DK
+					%tbody
+						- @activity.questions.where( section: 'section_2' ).order( :seq ).each do |question|
+							%tr
+								%td
+									= question.seq
+								%td
+									= raw question.content
+								%td
+									= radio_button_tag "question_answers[#{question.id}]", :yes, @current_agency.responses.where( question_id: question.id ).first.try( :content ) == 'yes'
+								%td
+									= radio_button_tag "question_answers[#{question.id}]", :no, @current_agency.responses.where( question_id: question.id ).first.try( :content ) == 'no'
+								%td
+									= radio_button_tag "question_answers[#{question.id}]", :dk, @current_agency.responses.where( question_id: question.id ).first.try( :content ) == 'dk'
+
+				= submit_tag 'Save', class: 'btn btn-primary'
+
+
+
+
+
+
+
+
+
+
+
+

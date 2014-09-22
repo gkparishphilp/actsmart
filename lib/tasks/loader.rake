@@ -48,12 +48,66 @@ namespace :activities do
 
 		step2 = p2.steps.create seq: 2
 
-			step2.activities.create seq: 1
-			step2.activities.create seq: 2
-			step2.activities.create seq: 3
-			step2.activities.create seq: 4
-			step2.activities.create seq: 5
-			step2.activities.create seq: 6
+		act = step2.activities.create seq: 1
+
+		[
+			"Does this treatment fit with the value system of your agency?",
+			"Is this treatment likely to fit the need that was identified in the ACT SMART Agency Assessment?",
+			"Will this treatment fit with the philosophy of your agency?",
+			"Do you believe that staff and consumers feel/will feel that this treatment fits with the mission and aim of your agency?",
+			"Do you think that this treatment will be useful for your agency, staff, or clients?",
+			"Does the treatment fit with the culture of the clients served at your agency or the culture of the community?"		
+		].each_with_index do |q, i|
+			q = act.questions.create seq: i+1, content: q
+			puts q.content
+		end
+
+
+
+		act = step2.activities.create seq: 2
+
+		[
+			"Will it be possible to provide this treatment in the setting that you typically deliver services (home, clinic, school, etc.)?",
+			"Does your agency have the staff, materials, space, and other necessities to deliver this treatment?",
+			"Will this treatment be able to be delivered within your agency without modification?",
+			"Will this treatment be used daily by multiple staff?",
+			"Can components of this treatment be tried out to evaluate its utility or suitability?",
+			"Is the treatment administratively feasible, given the policies and procedures of your agency?"		
+		].each_with_index do |q, i|
+			q = act.questions.create seq: i+1, content: q
+			puts q.content
+		end
+
+
+		act = step2.activities.create seq: 3
+
+		[
+			"Are the <b>outcomes</b> potentially achieved by the treatment meaningful and important to your <b>agency overall</b>?",
+			"Are the <b>outcomes</b> potentially achieved by the treatment meaningful and important to the <b>service providers</b> at your agency?",
+			"Are the <b>outcomes</b> potentially achieved by the treatment meaningful and important to the <b>clients and families</b> at your agency?",
+			"Do the <b>benefits</b> of the treatment <b>outweigh any potential risks</b> to your clients, service providers, and agency?",
+			"Has the treatment been <b>evaluated in community agencies</b> (e.g., such as your agency) and demonstrate <b>positive results</b>? "
+		].each_with_index do |q, i|
+			q = act.questions.create seq: i+1, content: q, section: 'section_1'
+			puts q.content
+		end
+
+		[
+			"Was the treatment study published in a <b>scientific journal</b> (i.e., a peer-reviewed academic journal)?",
+			"Did the treatment study use a <b>comparison group</b> to test whether their treatment achieved <b>better results</b> compared to another group?",
+			"Did the treatment study take into consideration how <b>other factors</b> (e.g., age, IQ, ASD severity, etc.) may have influenced the results?",
+			"Were the researchers <b>critical of their own study</b> (e.g., address study limitations, offer alternative explanations, consider areas for improvement, etc.)?",
+			"Has <b>more than 1 research team</b> tested this treatment and obtain positive results?"
+		].each_with_index do |q, i|
+			q = act.questions.create seq: i+1, content: q, section: 'section_2'
+			puts q.content
+		end
+
+
+
+		act = step2.activities.create seq: 4
+		act = step2.activities.create seq: 5
+		act = step2.activities.create seq: 6
 
 
 		step3 = p2.steps.create seq: 3
@@ -86,62 +140,6 @@ namespace :activities do
 
 
 
-		# a = Activity.create phase: 2, step: 2, num: 1, name: "Activity 1: Treatment Fit", content: <<-END
-		# <p><u>Goal</u>: Assess whether the potential research-based treatment will be compatible with your agency’s values and mission.
-		# </p>
-		# <p>After selecting a potential treatment to adopt within your agency, it is important to evaluate the fit of the treatment with your agency’s values. The checklist below is designed to quickly think about the fit of the treatment that your agency is considering for implementation. Use the resources that helped you identify this research-based treatment to gather information about the treatment you are considering.
-		# </p>
-		# <h3>Evaluating Fit of the Treatment</h3>
-		# END
-
-		# puts a.name
-
-		# questions = [
-		# 	"Does this treatment fit with the value system of your agency?",
-		# 	"Is this treatment likely to fit the need that was identified in the ACT SMART Agency Assessment?",
-		# 	"Will this treatment fit with the philosophy of your agency?",
-		# 	"Do you believe that staff and consumers feel/will feel that this treatment fits with the mission and aim of your agency?",
-		# 	"Do you think that this treatment will be useful for your agency, staff, or clients?",
-		# 	"Does the treatment fit with the culture of the clients served at your agency or the culture of the community?"		
-		# ]
-
-		
-
-		# questions.each_with_index do |question, i|
-		# 	q = a.questions.create seq: i+1, content: question
-		# 	puts q.content
-		# 	prompts.each do |prompt|
-		# 		q.prompts.create content: prompt[:content], value: prompt[:value], seq: prompt[:seq]
-		# 	end
-		# end
-
-		
-
-		# a = Activity.create phase: 2, step: 2, num: 2, name: "Activity 2: Treatment Feasibility", content: <<-END
-		# <p><u>Goal</u>: Assess whether the potential research-based treatment is easy for your providers to deliver.
-		# </p>
-		# <p>It is important to assess how easy or likely it would be for your staff to deliver the potential treatment. The worksheet below is designed to quickly think about the feasibility of the treatment that your agency is considering for implementation. Use the resources that helped you identify this research-based treatment to gather information about the treatment you are considering. 
-		# </p>
-		# <h3>Evaluating the Feasibility of the Treatment</h3>
-		# END
-		# puts a.name
-
-		# questions = [
-		# 	"Will it be possible to provide this treatment in the setting that you typically deliver services (home, clinic, school, etc.)?",
-		# 	"Does your agency have the staff, materials, space, and other necessities to deliver this treatment?",
-		# 	"Will this treatment be able to be delivered within your agency without modification?",
-		# 	"Will this treatment be used daily by multiple staff?",
-		# 	"Can components of this treatment be tried out to evaluate its utility or suitability?",
-		# 	"Is the treatment administratively feasible, given the policies and procedures of your agency?"		
-		# ]
-
-		# questions.each_with_index do |question, i|
-		# 	q = a.questions.create seq: i+1, content: question
-		# 	puts q.content
-		# 	prompts.each do |prompt|
-		# 		q.prompts.create content: prompt[:content], value: prompt[:value], seq: prompt[:seq]
-		# 	end
-		# end
 
 
 

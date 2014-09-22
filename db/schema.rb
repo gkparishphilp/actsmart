@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 20140921204547) do
     t.string   "name"
     t.text     "content"
     t.string   "question_type"
+    t.string   "section"
     t.integer  "seq"
     t.datetime "created_at"
     t.datetime "updated_at"

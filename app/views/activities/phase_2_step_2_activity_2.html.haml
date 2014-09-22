@@ -1,0 +1,52 @@
+.container
+	.row
+		.col-sm-12
+			%ol.breadcrumb
+				%li
+					= link_to 'Dashboard', dashboard_index_path
+				%li
+					= link_to 'Phase 2', phase_path( 2 )
+				%li
+					= link_to 'Step 2', phase_step_path( @phase, @step )
+				%li
+					Activity 2: Treatment Feasibility
+	.row
+		.col-sm-12
+			%h1
+				Activity 2: Treatment Feasibility
+			%p
+				<u>Goal</u>: Assess whether the potential research-based treatment is easy for your providers to deliver.
+
+			%p
+				It is important to assess how easy or likely it would be for your staff to deliver the potential treatment. The worksheet below is designed to quickly think about the feasibility of the treatment that your agency is considering for implementation. Use the resources that helped you identify this research-based treatment to gather information about the treatment you are considering. 
+
+			%h3
+				Evaluating the Feasibility of the Treatment
+
+			= form_tag responses_path do
+				%table.table
+					%thead
+						%th
+						%th
+						%th
+							Yes
+						%th
+							No
+						%th
+							DK
+					%tbody
+						- @activity.questions.order( :seq ).each do |question|
+							%tr
+								%td
+									= question.seq
+								%td
+									= question.content
+								%td
+									= radio_button_tag "question_answers[#{question.id}]", :yes, @current_agency.responses.where( question_id: question.id ).first.try( :content ) == 'yes'
+								%td
+									= radio_button_tag "question_answers[#{question.id}]", :no, @current_agency.responses.where( question_id: question.id ).first.try( :content ) == 'no'
+								%td
+									= radio_button_tag "question_answers[#{question.id}]", :dk, @current_agency.responses.where( question_id: question.id ).first.try( :content ) == 'dk'
+
+				= submit_tag 'Save', class: 'btn btn-primary'
+
