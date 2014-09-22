@@ -78,38 +78,4 @@
 %br
 		
 
--#.well
-	.pull-right
-		%a.btn.btn-success{ data: { toggle: :modal, target: '#new_user' } }
-			Add
-	%h4{ style: 'text-align:center;' }
-		Users
-	- if @agency.users.present?
-		%table.table
-			%thead
-				%th
-					Email
-			%tbody
-				- @agency.users.each do |user|
-					%tr
-						%td
-							= link_to user.email, edit_user_path( user )
-						%td
-							.btn-group
-								%button.btn.btn-mini.btn-default.dropdown-toggle{ data: { toggle: :dropdown } }
-									%i.fa.fa-cog
-									%b.caret
-								%ul.dropdown-menu
-									%li
-										%a{ href: edit_user_path( user ) }
-											%i.fa.fa-pencil
-											Edit
-
-									%li.divider
-									%li
-										%a{ href: user_path( user ), data: { method: 'delete', confirm: 'Are you sure?' } }
-											%i.fa.fa-trash-o
-											Delete!
-
-
 = render 'users/new_modal', args: { agency_id: @agency.id, lead: true }

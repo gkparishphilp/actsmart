@@ -106,6 +106,17 @@ namespace :activities do
 
 
 		act = step2.activities.create seq: 4
+
+		q = act.questions.create seq: 1, section: 'Necessity For Training', content: "Are there training requirements that must be met in order to deliver the treatment?"
+
+		[
+			"What staff are required to receive training? (Select all that apply)",
+			"Who is required to deliver training? (Select all that apply)"
+		].each_with_index do |q, i|
+			q = act.questions.create seq: i+2, content: q, section: 'Staff Involved', question_type: 'multi_select'
+			puts q.content
+		end
+
 		act = step2.activities.create seq: 5
 		act = step2.activities.create seq: 6
 

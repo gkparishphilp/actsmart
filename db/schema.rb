@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 20140921204547) do
     t.integer  "phase_id"
     t.string   "name"
     t.text     "content"
-    t.string   "question_type"
+    t.string   "question_type", default: "radio"
     t.string   "section"
     t.integer  "seq"
     t.datetime "created_at"

@@ -14,6 +14,10 @@ Rails.application.routes.draw do
 
 	resource :responses
 
+	resources :team do
+		get :manage, on: :collection
+	end
+
 	resources :users
 
 	resources :user_events

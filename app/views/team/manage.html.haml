@@ -1,0 +1,60 @@
+.container
+	.row
+		.col-sm-12
+			%h1 Manage Team
+			.pull-right
+				%a.btn.btn-success{ data: { toggle: :modal, target: '#new_user' } }
+					Add
+
+	.row
+		.col-sm-12
+			- if @members.present?
+				%table.table
+					%thead
+						%th
+							Name
+						%th
+							Email
+						%th
+							Added
+						%th
+							Last Logged In
+						%th
+					%tbody
+						- @members.each do |user|
+							%tr
+								%td
+									= user.name
+								%td
+									= link_to user.email, edit_user_path( user )
+								%td
+									= time_ago_in_words( user.created_at )
+									ago
+								%td
+									- if user.last_sign_in_at
+										= time_ago_in_words user.last_sign_in_at
+										ago
+									- else
+										Never
+								%td
+									.btn-group
+										%button.btn.btn-mini.btn-default.dropdown-toggle{ data: { toggle: :dropdown } }
+											%i.fa.fa-cog
+											%b.caret
+										%ul.dropdown-menu
+											%li
+												%a{ href: edit_user_path( user ) }
+													%i.fa.fa-pencil
+													Edit
+
+											%li.divider
+											%li
+												%a{ href: user_path( user ), data: { method: 'delete', confirm: 'Are you sure?' } }
+													%i.fa.fa-trash-o
+													Delete!
+
+
+
+
+= render 'users/new_modal', args: { agency_id: @current_agency.id }
+
