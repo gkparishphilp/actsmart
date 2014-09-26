@@ -11,6 +11,13 @@ class MessagesController < ApplicationController
 		redirect_to :back
 	end
 
+	def destroy
+		@message = Message.find( params[:id] )
+		@message.destroy
+		set_flash 'Message deleted'
+		redirect_to :back
+	end
+
 
 
 	private

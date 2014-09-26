@@ -8,7 +8,7 @@ class ProgressController < ApplicationController
 	def show
 		@agency = Agency.find( params[:agency_id] )
 		@phase = Phase.find_by( seq: params[:phase] )
-		render "phase_#{@phase.seq}_dashboard"
+		render "phase_#{@phase.seq}_console"
 	end
 
 end
