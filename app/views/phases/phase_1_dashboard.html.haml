@@ -17,7 +17,7 @@
 	.row
 		.col-sm-7
 			.well
-				%h5
+				%h4
 					General Description
 				%p
 					The first goal of Phase 1 is to identify areas of strength to build upon, and areas of growth that your agency can address by implementation a new research-based treatment. The second goal is to determine your agency’s receptivity to implementing a new research-based treatment. Both of these goals are accomplished completing the ACT SMART Agency Assessment. 
@@ -27,13 +27,38 @@
 					ACT SMART facilitators will analyze the data and provide specific feedback to your agency including: areas of strength, areas of growth, recommendations for next steps, and guidance about prioritizing agency goals.
 
 			.well
-				%h5
+				%h4
 					Agency Assessment Outcomes and Recommendations
+
+				%h5 Areas of Strength
+				- @current_agency.messages.where( parent_obj: @phase, context: 'strength' ).each do |message|
+					%li
+						= message.content
+				
+
+				%h5 Areas for Growth
+				- @current_agency.messages.where( parent_obj: @phase, context: 'growth' ).each do |message|
+					%li
+						= message.content
+				
+
+				%h5 Recommendations
+				- @current_agency.messages.where( parent_obj: @phase, context: 'recs' ).each do |message|
+					%li
+						= message.content
+				
+			.well
+				%h4
+					Receptivity to New Treatment
+				- @current_agency.messages.where( parent_obj: @phase, context: 'receptivity' ).each do |message|
+					%li
+						= message.content
+				
 
 
 		.col-sm-5
 			.well
-				%h5 Phase 1 Progress
+				%h4 Phase 1 Progress
 				- if @current_agency.responses.where( question_id: 1 ).last.try( :content ) == 'yes' 
 					%i.fa.fa-check-circle-o{ style: 'color:#3a3;font-size:150%;'}
 				- else
@@ -62,5 +87,6 @@
 
 			
 			.well
-				%h5
+				%h4
 					What's Next
+

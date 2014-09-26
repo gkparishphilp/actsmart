@@ -6,4 +6,10 @@ class Step < ActiveRecord::Base
 	has_many	:questions
 	has_many 	:responses
 	
+
+	def to_s
+		self.name
+	end
+
+	
 end

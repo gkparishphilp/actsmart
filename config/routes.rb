@@ -34,7 +34,8 @@ Rails.application.routes.draw do
 
 	get '/admin' => 'admin#index', as: :admin_index
 	get '/dashboard' => 'dashboard#index', as: :dashboard_index
-
+	get '/progress/:agency_id' => 'progress#index', as: :agency_progress
+	get '/progress/:agency_id/:phase' => 'progress#show', as: :agency_phase_progress
 
 	# quick catch-all route for static pages
 	get '/:action', controller: 'pages'

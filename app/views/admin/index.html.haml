@@ -38,6 +38,8 @@
 					Lead
 				%th
 					Team Members
+				%th
+				%th
 
 			%tbody
 				- @agencies.each do |agency|
@@ -53,6 +55,14 @@
 							= agency.lead
 						%td
 							= agency.users.count
+						%td
+							%a{ href: edit_agency_path( agency ) }
+								%i.fa.fa-pencil
+								Edit
+						%td
+							%a{ href: agency_progress_path( agency ) }
+								%i.fa.fa-eye
+								Review Progress
 	- else
 		%h3 No Agencies
 

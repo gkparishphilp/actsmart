@@ -11,8 +11,6 @@ amy = User.create name: 'Amy', email: 'amy@amy.com', password: '1234', role: 'ad
 
 
 
-
-
 a = Agency.create name: 'Test Agency', facilitator: amy
 u = User.create name: 'joe', email: 'joe@joe.com', password: '1234'
 

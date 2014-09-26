@@ -9,6 +9,11 @@ class Activity < ActiveRecord::Base
 	has_many 	:responses
 
 
+
+	def to_s
+		self.name
+	end
+
 	private
 		def set_parents
 			self.phase_id ||= self.step.phase.id

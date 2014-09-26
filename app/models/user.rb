@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base #SwellUsers::User
 
 	enum status: { 'pending' => 0, 'active' => 1, 'inactive' => 2 }
-	enum role: { 'basic' => 0, 'admin' => 1, 'godmin' => 2 }
+	enum role: { 'basic' => 0, 'admin' => 1 }
 
 	attr_accessor	:login
 

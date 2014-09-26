@@ -1,0 +1,8 @@
+.container
+	.row
+		.col-sm-12
+			%h1
+				= @agency.name
+
+			%a{ href: agency_phase_progress_path( @agency, Phase.first ) }
+				Phase I
