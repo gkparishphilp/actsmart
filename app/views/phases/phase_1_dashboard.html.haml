@@ -89,4 +89,11 @@
 			.well
 				%h4
 					What's Next
+				- if @current_agency.responses.where( question_id: 1 ).last.try( :content ) == 'yes' && @current_agency.responses.where( question_id: 2 ).last.try( :content ) == 'yes'
+					Completed!
+				- elsif @current_agency.responses.where( question_id: 1 ).last.try( :content ) == 'yes'
+					Step 2: Receptivity to New Treatment
+				- else
+					Step 1: Agency Assessment
+
 
