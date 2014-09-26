@@ -24,6 +24,11 @@
 					%li
 						%a{ href: dashboard_index_path }
 							Dashboard
+					- if @current_agency
+						%li
+							%a{ href: '/getting_ready' }
+								Getting Ready
+
 					- if @current_agency.lead == current_user
 						%li
 							%a{ href: manage_team_index_path }
