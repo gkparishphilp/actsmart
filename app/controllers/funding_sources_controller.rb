@@ -21,7 +21,7 @@ class FundingSourcesController < ApplicationController
 	private
 
 		def funding_source_params
-			params.require( :funding_source ).permit( :name, :offer_finding, :reimbursement_rate )
+			params.require( :funding_source ).permit( :name, :offer_funding, :reimbursement_rate )
 		end
 
 end

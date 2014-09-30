@@ -22,10 +22,72 @@
 
 			%p
 				1)	Funding sources to check with:
-			- @current_agency.funding_sources.each do |source|
-				.col-xs-4
-					= source.name
+			%table.table
+				%thead
+					%th
+						Name
+					%th
+						Offer Funding?
+					%th
+						Reimbursement Rate
+				%tbody
+					- @current_agency.funding_sources.each do |source|
+						%tr
+							%td
+								= source.name
+							%td
+								= source.offer_funding? ? 'Yes' : 'No'
+							%td
+								- if source.reimbursement_rate.is_a?( Numeric )
+									- if source.reimbursement_rate <= 1
+										= number_to_percentage( source.reimbursement_rate * 100, precision: 0 )
+									- else
+										= number_to_percentage( source.reimbursement_rate, precision: 0 )
+								- else
+									= source.reimbursement_rate
 
-			= form_for FundingSouce.new do |f|
-				= f.text_field :name
-				= f.submit
+					= form_for FundingSource.new do |f|
+						%tr
+							%td
+								= f.text_field :name, class: 'form-control'
+							%td
+								= f.radio_button :offer_funding, 1
+								Yes
+								= f.radio_button :offer_funding, 0
+								No
+							%td
+								= f.text_field :reimbursement_rate, class: 'form-control'
+							%td
+								= f.submit 'Add', class: 'btn btn-primary'
+
+			
+			= form_tag responses_path do
+				= hidden_field_tag :activity_id, @activity.id
+				%p
+					2)	If funders do not currently fund this treatment, what are your next steps? 
+
+				= radio_button_tag "question_answers[#{@activity.questions.first.id}]", 'Proceed with treatment as a pay-out-of-pocket service.', @current_agency.responses.where( question_id: @activity.questions.first.id ).first.try( :content ) == 'Proceed with treatment as a pay-out-of-pocket service.'
+				Proceed with treatment as a pay-out-of-pocket service.
+				%br
+				= radio_button_tag "question_answers[#{@activity.questions.first.id}]", 'Try to secure funding for the treatment.', @current_agency.responses.where( question_id: @activity.questions.first.id ).first.try( :content ) == 'Try to secure funding for the treatment.'
+				Try to secure funding for the treatment.
+				%br
+				= radio_button_tag "question_answers[#{@activity.questions.first.id}]", 'Do not proceed with treatment.', @current_agency.responses.where( question_id: @activity.questions.first.id ).first.try( :content ) == 'Do not proceed with treatment.'
+				Do not proceed with treatment.
+				%p
+				%p
+					3)	If you selected “try to secure funding for the treatment,” please explain how you will proceed with attempting to secure funding.
+				.form-group.col-xs-8
+					= text_area_tag "question_answers[#{@activity.questions.second.id}]", @current_agency.responses.where( question_id: @activity.questions.second.id ).first.try( :content ), class: 'form-control'
+				
+				.clearfix
+				.form-group
+					= submit_tag 'Save', class: 'btn btn-primary'
+
+
+
+
+
+
+
+

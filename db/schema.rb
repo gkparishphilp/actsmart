@@ -77,6 +77,17 @@ ActiveRecord::Schema.define(version: 20140921204547) do
 
   add_index "contacts", ["email"], name: "index_contacts_on_email", using: :btree
 
+  create_table "funding_sources", force: true do |t|
+    t.integer  "agency_id"
+    t.string   "name"
+    t.boolean  "offer_funding"
+    t.float    "reimbursement_rate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "funding_sources", ["agency_id"], name: "index_funding_sources_on_agency_id", using: :btree
+
   create_table "messages", force: true do |t|
     t.integer  "from_id"
     t.integer  "agency_id"

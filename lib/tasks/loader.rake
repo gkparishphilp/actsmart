@@ -233,9 +233,10 @@ namespace :activities do
 
 
 
-
-
 		act = step2.activities.create seq: 6
+		q = act.questions.create seq: 1, name: 'todo'
+		q = act.questions.create seq: 2, name: 'todo'
+		q = act.questions.create seq: 3, name: 'todo'
 
 
 		step3 = p2.steps.create seq: 3
@@ -257,7 +258,19 @@ namespace :activities do
 		p3 = Phase.create name: 'phase_3', label: 'Phase 3', seq: 3
 		puts p3.label
 
+		step1 = p3.steps.create seq: 1
 
+		act = step1.activities.create seq: 1, name: 'gathering_treatment_materials'
+
+		act = step1.activities.create seq: 2, name: 'evaluating_adaptions'
+
+		act = step1.activities.create seq: 3, name: 'treatment_adaptation_plan'
+
+		step2 = p3.steps.create seq: 2
+		act = step2.activities.create seq: 1, name: 'training_plan'
+
+		step3 = p3.steps.create seq: 3
+		act = step3.activities.create seq: 1, name: 'implementation_plan'
 
 
 		################################
@@ -265,6 +278,15 @@ namespace :activities do
 
 		p4 = Phase.create name: 'phase_4', label: 'Phase 4', seq: 4
 		puts p4.label
+
+		step1 = p4.steps.create seq: 1
+		act = step1.activities.create seq: 1, name: 'action_step_evaluation'
+
+		step2 = p4.steps.create seq: 2
+		act = step2.activities.create seq: 1, name: 'action_evaluation_2'
+
+		step3 = p4.steps.create seq: 3
+		act = step3.activities.create seq: 1, name: 'action_evaluation_3'
 
 
 

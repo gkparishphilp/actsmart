@@ -1,0 +1,64 @@
+.container
+	.row
+		.col-sm-12
+			%ol.breadcrumb
+				%li
+					= link_to 'Dashboard', dashboard_index_path
+				%li
+					Phase 4
+
+	.row
+		.col-sm-12
+			%h1
+				Phase 4: Implementation and Sustainment
+			%p
+				<u>Goal</u>:
+				Assist the implementation team track progress toward completing the Implementation plan, and guide the evaluation of the identified action steps.
+	.row
+		.col-sm-7
+			.well
+				%h5
+					General Description
+				%p
+					The purpose of phase 4 is to track and evaluate the progress of adapting, training, and implementing the research-based treatment your agency has selected to adopt. This phase is comprised of three steps that will result in the initial and sustained use of this new research-based treatment. 
+				%p
+					These steps include: 
+					%ol
+						%li
+							Treatment Adaptation
+						%li
+							Staff Training, and 
+						%li
+							Treatment Implementation and Sustainment.
+
+				%p
+					The implementation team will be asked to complete the “Action Step Evaluation” after each action step has been completed or when the scheduled date for the action step has passed. 
+				%p
+					The evaluation survey will allow the implementation team to reflect on the progress being made. If the progress is considered to be positive, the implementation team can continue to follow the plans that were previously designed. If the progress is considered to be neutral or challenging, the evaluation will guide the implementation to consider and make changes to the adaptation, training, and implementation plans. This can be done in an ongoing manner. 
+
+
+		.col-sm-5
+			.well
+				%h5 Phase 4 Progress
+				- if @current_agency.step_complete?( @phase.steps.first )
+					%i.fa.fa-check-circle-o{ style: 'color:#3a3;'}
+				- else
+					%i.fa.fa-circle-o
+				Step 1: Treatment Adaptation
+				%ul.none
+					%li
+						- if @current_agency.activity_complete?( @phase.steps.first.activities.find_by_seq( 1 ) )
+							%i.fa.fa-check-circle-o{ style: 'color:#3a3;'}
+						- else
+							%i.fa.fa-circle-o
+						%a{ href: phase_step_activity_path( @phase, @phase.steps.first, @phase.steps.first.activities.first ) }
+							Activity 1: Action Step Evaluation
+
+				
+
+
+	.row
+		.col-sm-12
+			.well
+				%h5
+					TODO

@@ -1,0 +1,113 @@
+.container
+	.row
+		.col-sm-12
+			%ol.breadcrumb
+				%li
+					= link_to 'Dashboard', dashboard_index_path
+				%li
+					Phase 3
+
+	.row
+		.col-sm-12
+			%h1
+				Phase 3: Planning for Implementation and Sustainment
+			%p
+				<u>Goal</u>:
+				Assist the implementation team to plan for adapting the research-based treatment to fit their agency structure, develop the agency-wide training plan, and select specific implementation and sustainment strategies to support to initial and ongoing use of the treatment.
+	.row
+		.col-sm-7
+			.well
+				%h5
+					General Description
+				%p
+					The purpose of phase 3 is to plan for the implementation of the research-based treatment your agency has selected to adopt. This phase is comprised of three steps that will result in a comprehensive implementation plan. 
+				%p
+					These steps include: 
+					%ol
+						%li
+							Developing the Adaptation Plan
+						%li
+							Developing the Training Plan, and 
+						%li
+							Developing the Implementation and Sustainment Plan.
+
+				%p
+					The plans that are developed in this phase will be carried out in phase 4 to guide and facilitate the successful implementation of the selected treatment. 
+				%p
+					Planning ahead for treatment implementation will allow your agency to increase implementation efficiency, identify and avoid potential barriers and problems, and develop procedures in a thoughtful and proactive manner.
+
+
+		.col-sm-5
+			.well
+				%h5 Phase 3 Progress
+				- if @current_agency.step_complete?( @phase.steps.first )
+					%i.fa.fa-check-circle-o{ style: 'color:#3a3;'}
+				- else
+					%i.fa.fa-circle-o
+				Step 1:
+				%a{ href: phase_step_path( @phase, @phase.steps.first ) }
+					Develop the Adaptation Plan
+				%ul.none
+					%li
+						- if @current_agency.activity_complete?( @phase.steps.first.activities.find_by_seq( 1 ) )
+							%i.fa.fa-check-circle-o{ style: 'color:#3a3;'}
+						- else
+							%i.fa.fa-circle-o
+						%a{ href: phase_step_activity_path( @phase, @phase.steps.first, @phase.steps.first.activities.first ) }
+							Activity 1: Gathering Treatment Materials
+
+					%li
+						- if @current_agency.activity_complete?( @phase.steps.first.activities.find_by_seq( 2 ) )
+							%i.fa.fa-check-circle-o{ style: 'color:#3a3;'}
+						- else
+							%i.fa.fa-circle-o
+						%a{ href: phase_step_activity_path( @phase, @phase.steps.first, @phase.steps.first.activities.second ) }
+							Activity 2: Evaluating Prospective Adaptations to the Treatment
+
+					%li
+						- if @current_agency.activity_complete?( @phase.steps.first.activities.find_by_seq( 3 ) )
+							%i.fa.fa-check-circle-o{ style: 'color:#3a3;'}
+						- else
+							%i.fa.fa-circle-o
+						%a{ href: phase_step_activity_path( @phase, @phase.steps.first, @phase.steps.first.activities.third ) }
+							Activity 3: Treatment Adaptation Plan
+				
+
+				- if @current_agency.step_complete?( @phase.steps.second )
+					%i.fa.fa-check-circle-o{ style: 'color:#3a3;'}
+				- else
+					%i.fa.fa-circle-o
+				Step 2:
+				%a{ href: phase_step_path( @phase, @phase.steps.second ) }
+					Develop the Training Plan
+				%ul.none
+					%li
+						- if @current_agency.activity_complete?( @phase.steps.second.activities.find_by_seq( 1 ) )
+							%i.fa.fa-check-circle-o{ style: 'color:#3a3;'}
+						- else
+							%i.fa.fa-circle-o
+						%a{ href: phase_step_activity_path( @phase, @phase.steps.second, @phase.steps.first.activities.first ) }
+							Activity 1: Training Plan
+
+				- if @current_agency.step_complete?( @phase.steps.second )
+					%i.fa.fa-check-circle-o{ style: 'color:#3a3;'}
+				- else
+					%i.fa.fa-circle-o
+				Step 3:
+				%a{ href: phase_step_path( @phase, @phase.steps.third ) }
+					Develop the Implementation and Sustainment Plan
+				%ul.none
+					%li
+						- if @current_agency.activity_complete?( @phase.steps.third.activities.find_by_seq( 1 ) )
+							%i.fa.fa-check-circle-o{ style: 'color:#3a3;'}
+						- else
+							%i.fa.fa-circle-o
+						%a{ href: phase_step_activity_path( @phase, @phase.steps.third, @phase.steps.first.activities.first ) }
+							Activity 1: Implementation and Sustainment Plan
+
+
+	.row
+		.col-sm-12
+			.well
+				%h5
+					TODO
