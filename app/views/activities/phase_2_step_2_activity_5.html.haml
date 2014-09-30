@@ -22,3 +22,10 @@
 
 			%p
 				1)	Funding sources to check with:
+			- @current_agency.funding_sources.each do |source|
+				.col-xs-4
+					= source.name
+
+			= form_for FundingSouce.new do |f|
+				= f.text_field :name
+				= f.submit
