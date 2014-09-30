@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
 	resources :agencies
 
+	resources :funding_sources
+
 	resources :messages
 
 	resources :phases do
@@ -12,7 +14,7 @@ Rails.application.routes.draw do
 		end
 	end
 
-	resource :responses
+	resources :responses
 
 	resources :team do
 		get :manage, on: :collection

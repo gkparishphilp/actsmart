@@ -1,0 +1,163 @@
+.container
+	.row
+		.col-sm-12
+			%ol.breadcrumb
+				%li
+					= link_to 'Dashboard', dashboard_index_path
+				%li
+					= link_to 'Phase 2', phase_path( 2 )
+				%li
+					= link_to 'Step 2', phase_step_path( @phase, @step )
+				%li
+					Activity 4: Training Requirements
+	.row
+		.col-sm-12
+			%h1
+				Activity 4: Training Requirements
+
+			%p
+				This activity is designed to assist with evaluating the training requirements specified by the treatment developers or outside training organization that must be met in order to deliver the research-based treatment you are considering adopting. 
+			%p
+				To identify the training requirements of a new research-based treatment, search for the original treatment or treatment article on the Internet or in the research literature. 
+
+			= form_tag responses_path do
+				= hidden_field_tag :activity_id, @activity.id
+				%h4
+					Necessity for Training:
+				1)	Are there training requirements that must be met in order to deliver the treatment? 
+				%p
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 1 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).first.try( :content ) == 'yes'
+					Yes
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 1 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).first.try( :content ) == 'no'
+					No
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 1 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).first.try( :content ) == 'dk'
+					Don't Know
+
+				%h4
+					Staff Involved:
+				1)	What staff are required to receive training? (Select all that apply)
+				%table.table
+					%tr
+						%td
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 2 ).id}][]", 'Direct Providers', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 2 ).id ).pluck( :content ).include?( 'Direct Providers' )
+							Direct Providers
+						%td
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 2 ).id}][]", 'Support Staff', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 2 ).id ).pluck( :content ).include?( 'Support Staff' )
+							Support Staff
+					%tr
+						%td
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 2 ).id}][]", 'Supervisors', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 2 ).id ).pluck( :content ).include?( 'Supervisors' )
+							Supervisors
+						%td
+							Other
+							= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 3 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 3 ).id ).first.try( :content )
+					%tr
+						%td
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 2 ).id}][]", 'Agency Leaders', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 2 ).id ).pluck( :content ).include?( 'Agency Leaders' )
+							Agency Leaders
+						%td
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 2 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 2 ).id ).pluck( :content ).include?( 'dk' )
+							No requirements specified
+
+				2)	Who is required to deliver training? (Select all that apply)
+				%table.table
+					%tr
+						%td
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 4 ).id}][]", 'Direct Providers', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 4 ).id ).pluck( :content ).include?( 'Direct Providers' )
+							Direct Providers
+						%td
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 4 ).id}][]", 'Outside Trainer', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 4 ).id ).pluck( :content ).include?( 'Outside Trainer' )
+							Outside Trainer
+					%tr
+						%td
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 4 ).id}][]", 'Supervisors', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 4 ).id ).pluck( :content ).include?( 'Supervisors' )
+							Supervisors
+						%td
+							Other
+							= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 5 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 5 ).id ).first.try( :content )
+					%tr
+						%td
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 4 ).id}][]", 'Agency Leaders', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 4 ).id ).pluck( :content ).include?( 'Agency Leaders' )
+							Agency Leaders
+						%td
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 4 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 4 ).id ).pluck( :content ).include?( 'dk' )
+							No requirements specified
+					%tr
+						%td
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 4 ).id}][]", 'Support Staff', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 4 ).id ).pluck( :content ).include?( 'Support Staff' )
+							Support Staff
+						%td
+
+				%h4
+					Training Model:
+				1)	Is there a specific training model required? (Select all that apply)
+				%table.table
+					%tr
+						%td
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 6 ).id}][]", 'Didactics', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 6 ).id ).pluck( :content ).include?( 'Didactics' )
+							Didactics
+						%td
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 6 ).id}][]", 'Educational brochure/handout', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 6 ).id ).pluck( :content ).include?( 'Educational brochure/handout' )
+							Educational brochure/handout
+					%tr
+						%td
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 6 ).id}][]", 'Workshop / Seminars', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 6 ).id ).pluck( :content ).include?( 'Workshop / Seminars' )
+							Workshop / Seminars
+						%td
+							Other
+							= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 7 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 7 ).id ).first.try( :content )
+					%tr
+						%td
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 6 ).id}][]", 'Online Training', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 6 ).id ).pluck( :content ).include?( 'Online Training' )
+							Online Training
+						%td
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 6 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 6 ).id ).pluck( :content ).include?( 'dk' )
+							No requirements specified
+					%tr
+						%td
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 6 ).id}][]", 'On-the-job training', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 6 ).id ).pluck( :content ).include?( 'On-the-job training' )
+							On-the-job training
+						%td
+
+				2)	Are there training strategies that are required to be used during trainings? (Select all that apply)
+				%table.table
+					%tr
+						%td
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 8 ).id}][]", 'Didactics', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 8 ).id ).pluck( :content ).include?( 'Didactics' )
+							Didactics
+						%td
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 8 ).id}][]", 'Educational brochure/handout', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 8 ).id ).pluck( :content ).include?( 'Educational brochure/handout' )
+							Educational brochure/handout
+					%tr
+						%td
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 8 ).id}][]", 'Workshop / Seminars', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 8 ).id ).pluck( :content ).include?( 'Workshop / Seminars' )
+							Workshop / Seminars
+						%td
+							Other
+							= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 9 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 9 ).id ).first.try( :content )
+					%tr
+						%td
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 8 ).id}][]", 'Online Training', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 8 ).id ).pluck( :content ).include?( 'Online Training' )
+							Online Training
+						%td
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 8 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 8 ).id ).pluck( :content ).include?( 'dk' )
+							No requirements specified
+					%tr
+						%td
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 8 ).id}][]", 'On-the-job training', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 8 ).id ).pluck( :content ).include?( 'On-the-job training' )
+							On-the-job training
+						%td
+
+
+
+
+
+
+
+
+
+
+				= submit_tag 'Submit'
+				

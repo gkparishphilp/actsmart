@@ -45,6 +45,16 @@ class AppBaseMigration < ActiveRecord::Migration
 		add_index :agency_users, [ :agency_id, :user_id ]
 
 
+		create_table :funding_sources do |t|
+			t.references	:agency
+			t.string		:name
+			t.boolean		:offer_funding
+			t.float			:reimbursement_rate
+			t.timestamps
+		end
+		add_index :funding_sources, :agency_id
+
+
 		create_table :messages do |t|
 			t.references 	:from
 			t.references	:agency
@@ -91,6 +101,7 @@ class AppBaseMigration < ActiveRecord::Migration
 			t.string		:question_type, default: :radio
 			t.string		:section
 			t.integer		:seq
+			t.boolean		:required, 	default: true
 			t.timestamps
 		end
 		add_index :questions, :step_id

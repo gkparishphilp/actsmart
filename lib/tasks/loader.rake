@@ -107,17 +107,134 @@ namespace :activities do
 
 		act = step2.activities.create seq: 4
 
-		q = act.questions.create seq: 1, section: 'Necessity For Training', content: "Are there training requirements that must be met in order to deliver the treatment?"
+		q = act.questions.create seq: 1, name: 'are_there_training_requirements'
 
+		q = act.questions.create seq: 2, name: 'what_staff_are_required', question_type: 'multi_select', section: 'staff_involved'
 		[
-			"What staff are required to receive training? (Select all that apply)",
-			"Who is required to deliver training? (Select all that apply)"
-		].each_with_index do |q, i|
-			q = act.questions.create seq: i+2, content: q, section: 'Staff Involved', question_type: 'multi_select'
-			puts q.content
+			"Direct Providers", "Support Staff", "Supervisors", "Agency Leaders"
+		].each do |prompt|
+			q.prompts.create content: prompt
 		end
+		q = act.questions.create seq: 3, name: 'what_staff_are_required_other', section: 'staff_involved', required: false
+
+
+		q = act.questions.create seq: 4, name: 'who_is_required', question_type: 'multi_select', section: 'staff_involved'
+		[
+			"Direct Providers", "Outside Trainer", "Supervisors", "Agency Leaders", "Support Staff"
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+		q = act.questions.create seq: 5, name: 'who_is_required_other', section: 'staff_involved', required: false
+
+		q = act.questions.create seq: 6, name: 'training_model_required', question_type: 'multi_select', section: 'training_model'
+		[
+			"Didactics", "Educational brochure/handout", "Workshop / Seminars", "Online Training", "On-the-job training"
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+		q = act.questions.create seq: 7, name: 'training_model_required_other', section: 'training_model', required: false
+
+
+		q = act.questions.create seq: 8, name: 'training_strategies_required', question_type: 'multi_select', section: 'training_model'
+		[
+			"Behavior rehearsal", "Role playing", "PowerPoint presentations", "Reading materials", "Modeling", "Watching videos", "Group activities", "Supervision", "Individual activities", "Shadowing", "Active participation"
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+		q = act.questions.create seq: 9, name: 'training_strategies_required_other', section: 'training_model', required: false
+
+
+		q = act.questions.create seq: 10, name: 'training_materials_required', question_type: 'multi_select', section: 'training_model'
+		[
+			"Manuals", "Toolkits", "Handouts/Brochures", "Technology devices", "Guidelines", "Videos"
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+		q = act.questions.create seq: 11, name: 'training_materials_required_other', section: 'training_model', required: false
+
+
+		q = act.questions.create seq: 12, name: 'outside_training_required', section: 'outside_training'
+		
+		q = act.questions.create seq: 13, name: 'which_staff_need_outside_training', question_type: 'multi_select', section: 'outside_training'
+		[
+			"Direct providers", "One staff member who can train the rest of the staff in your agency (train-the-trainer)", "Supervisors", "Agency leaders", "Support staff"
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+		q = act.questions.create seq: 14, name: 'which_staff_need_outside_training_other', section: 'outside_training', required: false
+
+
+		q = act.questions.create seq: 15, name: 'training_duration_required', section: 'duration_of_training'
+		q = act.questions.create seq: 16, name: 'training_duration', section: 'duration_of_training'
+
+		q = act.questions.create seq: 17, name: 'training_travel_required', section: 'travel'
+
+		q = act.questions.create seq: 18, name: 'which_staff_need_training_travel', question_type: 'multi_select', section: 'travel'
+		[
+			"Direct providers", "Support staff", "Supervisors", "Agency leaders"
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+		q = act.questions.create seq: 19, name: 'which_staff_need_training_travel_other', section: 'travel', required: false
+		q = act.questions.create seq: 20, name: 'training_travel_destination', section: 'travel', required: false
+
+
+		q = act.questions.create seq: 21, name: 'training_maintenance_required', section: 'maintenance'
+		q = act.questions.create seq: 22, name: 'training_maintenance_who', question_type: 'multi_select', section: 'maintenance'
+		[
+			"Direct provider(s)", "Support staff", "Supervisor (s)", "Outside trainer(s)", "Agency leader(s)", "Clinical Director(s)"
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+		q = act.questions.create seq: 23, name: 'training_maintenance_who_other', section: 'maintenance', required: false
+
+		q = act.questions.create seq: 24, name: 'training_maintenance_components', question_type: 'multi_select', section: 'maintenance'
+		[
+			"Ongoing consultation", "Booster sessions", "Supervision upon request", "Submission of videos", "Submission of materials", "Regular supervision"
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+		q = act.questions.create seq: 25, name: 'training_maintenance_components_other', section: 'maintenance', required: false
+
+
+		q = act.questions.create seq: 26, name: 'training_certificate_required', section: 'provider_credentials'
+		q = act.questions.create seq: 27, name: 'training_certificate_name', section: 'provider_credentials'
+
+		q = act.questions.create seq: 28, name: 'certification_required', section: 'provider_credentials'
+		q = act.questions.create seq: 29, name: 'certification_name', section: 'provider_credentials'
+
+		q = act.questions.create seq: 30, name: 'degree_required', question_type: 'multi_select', section: 'provider_credentials'
+		[
+			"High school diploma", "Doctoral degree", "Bachelor’s degree", "Master’s degree"
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+		q = act.questions.create seq: 31, name: 'degree_required_other', section: 'provider_credentials', required: false
+
+		q = act.questions.create seq: 32, name: 'discipline_required', question_type: 'multi_select', section: 'provider_credentials'
+		[
+			"Psychology", "Physical Therapy", "Marriage and Family Therapy", "Education", "Social Work", "Behavior Specialist", "Speech / Language/ Communication", "Occupational Therapy"
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+		q = act.questions.create seq: 33, name: 'discipline_required_other', section: 'provider_credentials', required: false
+
+		q = act.questions.create seq: 34, name: 'years_experience_required', section: 'provider_credentials'
+		q = act.questions.create seq: 35, name: 'years_experience', section: 'provider_credentials'
+
+		q = act.questions.create seq: 36, name: 'additional_training_required', section: 'additional_requirements'
+		q = act.questions.create seq: 37, name: 'additional_training', section: 'additional_requirements', required: false
+
+
 
 		act = step2.activities.create seq: 5
+		q = act.questions.create seq: 1, name: 'next_steps', required: false
+		q = act.questions.create seq: 2, name: 'explain', required: false
+
+
+
+
+
 		act = step2.activities.create seq: 6
 
 

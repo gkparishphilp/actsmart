@@ -23,19 +23,19 @@
 	%body{ style: 'padding-top: 60px;' }
 		.wrapper
 			- if @current_agency.present?
-				= render 'partials/agency_nav'
+				= render 'application/agency_nav'
 			- elsif current_user && current_user.admin?
-				= render 'partials/admin_nav'
+				= render 'application/admin_nav'
 			- else
-				= render 'partials/nav'
-			= render 'partials/flash'
+				= render 'application/nav'
+			= render 'application/flash'
 		
 			= yield
 			%br
 			%br
 			.push
 
-		= render 'partials/footer'
+		= render 'application/footer'
 
 
 					

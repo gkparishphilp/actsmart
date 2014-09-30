@@ -31,6 +31,7 @@
 				Evaluating the Clinical Value of the Treatment
 
 			= form_tag responses_path do
+				= hidden_field_tag :activity_id, @activity.id
 				%table.table
 					%thead
 						%th

@@ -1,0 +1,24 @@
+
+.container
+	.row
+		.col-sm-12
+			%ol.breadcrumb
+				%li
+					= link_to 'Dashboard', dashboard_index_path
+				%li
+					= link_to 'Phase 2', phase_path( 2 )
+				%li
+					= link_to 'Step 2', phase_step_path( @phase, @step )
+				%li
+					Activity 5: Funding Source Checklist
+	.row
+		.col-sm-12
+			%h1
+				Activity 5: Funding Source Checklist
+
+			%p
+				This worksheet is designed to assist with identifying the funding sources that are available for the treatment you are considering adopting. It may be necessary to contact various funding agencies to gather the information to complete this worksheet. 
+
+
+			%p
+				1)	Funding sources to check with:

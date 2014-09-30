@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 20140921204547) do
     t.string   "question_type", default: "radio"
     t.string   "section"
     t.integer  "seq"
+    t.boolean  "required",      default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
