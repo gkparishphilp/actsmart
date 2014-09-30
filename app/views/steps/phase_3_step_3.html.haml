@@ -1,0 +1,59 @@
+.container
+	.row
+		.col-sm-12
+			%ol.breadcrumb
+				%li
+					= link_to 'Dashboard', dashboard_index_path
+				%li
+					= link_to 'Phase 3', phase_path( 3 )
+				%li
+					Step 3
+	.row
+		.col-sm-12
+			%h1
+				Step 3. Develop the Implementation and Sustainment Plan
+			%p
+				<u>Goal</u>: To select specific implementation and sustainment strategies that will support the initial and ongoing use of the research-based treatment, and develop a plan for using the selected strategies.
+			%h4
+				Introduction
+
+			%p
+				Research has shown that passive implementation efforts often lead to limited implementation or discontinuation of a research-based treatment. Therefore, many strategies have been developed and studied to support the successful implementation and sustained use of research-based treatments. These strategies vary greatly in their level of involvement, time commitment, and cost. It is important to identify strategies that will fit well with your agency, setting, and the treatment that you will be implementing. This Implementation and Sustainment Plan worksheet is designed to assist your implementation team in selecting which strategy or set of strategies is most feasible for your agency to use, and specify how these strategies will be used throughout your agency. 
+
+			.col-xs-8.col-xs-offset-2{ style: 'border: 1px #999 solid;' }
+				%center
+					%b
+						What is Initial Implementation?
+				%p
+					The process of putting to use or integrating evidence-based interventions within a setting (National Institutes of Health, 2011).
+				%center
+					%b
+						What is Sustained Use?
+				%p
+					The (a) capacity to deliver and/or (b) core elements of an intervention is maintained (e.g., remain recognizable or delivered at a sufficient level of fidelity or intensity to yield desirable results) after initial implementation support has been withdrawn (Wiltsey Stirman et al., 2012).
+			.clearfix
+			%p
+				Some implementation strategies support initial implementation while others also support both initial implementation and sustained use. Some overlap in their purpose or may require only a slight modification to be used first as an implementation strategy and then as a sustainment strategy. 
+			%p
+				This worksheet has been designed to be flexible to accommodate the variability in agency structures as well as the variability in the new treatment that has been selected to implement. As such, a menu of evidence-informed implementation and sustainment strategies are described below.
+			%p
+				To identify implementation and sustainment strategies for your agency, please review your 
+				%a{ href: phase_path( Phase.first ) }
+					Agency Assessment Feedback 
+				for strategy recommendations. Also, speak with your ACT SMART facilitator to match strategies with your agency’s structure.
+			%p
+				%a{ href: '/phase_3_step_3_activity_1_instructions', target: '_new' }
+					Implementation and Sustainment Plan Instructions
+			%p
+				%a{ href: phase_step_activity_path( @phase, @phase.steps.third, @phase.steps.third.activities.first ) }
+					Activity 1: Implementation and Sustainment Plan
+
+
+
+
+
+
+
+
+
+

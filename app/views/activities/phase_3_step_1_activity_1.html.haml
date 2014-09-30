@@ -1,0 +1,50 @@
+.container
+	.row
+		.col-sm-12
+			%ol.breadcrumb
+				%li
+					= link_to 'Dashboard', dashboard_index_path
+				%li
+					= link_to 'Phase 3', phase_path( 3 )
+				%li
+					= link_to 'Step 1', phase_step_path( @phase, @step )
+				%li
+					Activity 1
+	.row
+		.col-sm-12
+			%h1
+				Activity 1: Gathering Treatment Materials
+
+			%h4
+				Introduction
+			%p
+				It is important to gather the treatment resources that describe the research-based treatment in great detail. This will assist you while your implementation team considers what potential adaptations may be needed. Treatment resources may include treatment manuals, materials, and information about treatment implementation. The 
+				%a{ href: phase_step_path( Phase.second, Phase.second.steps.first ) }
+					Instructions for Identifying and Selecting ASD Treatments 
+				provides guidance on how to access many of these resources. 
+
+			.well
+				Gather treatment resources to assist in considering what potential adaptations may be needed. 
+
+			%p
+				Which of the following treatment resources were you able to obtain (check all that apply)?
+			= form_tag responses_path do
+				= hidden_field_tag :activity_id, @activity.id
+				- @activity.questions.find_by( seq: 1 ).prompts.each do |prompt|
+					.separator
+						= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 1 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).pluck( :content ).include?( prompt.content )
+						= prompt.content
+				.separator
+					Other
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 2 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 2 ).id ).first.try( :content )
+				.separator
+					= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 1 ).id}][]", 'none', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).pluck( :content ).include?( 'none' )
+					None
+
+				= submit_tag 'Save', class: 'btn btn-primary'
+
+
+
+
+
+

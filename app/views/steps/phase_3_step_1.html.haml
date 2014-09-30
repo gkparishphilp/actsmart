@@ -1,0 +1,54 @@
+.container
+	.row
+		.col-sm-12
+			%ol.breadcrumb
+				%li
+					= link_to 'Dashboard', dashboard_index_path
+				%li
+					= link_to 'Phase 3', phase_path( 3 )
+				%li
+					Step 1
+	.row
+		.col-sm-12
+			%h1
+				Step 1. Develop the Adaptation Plan
+			%p
+				<u>Goals</u>: To identify the types of adaptations needed and develop a plan to perform specific adaptations to the research-based treatment.
+			%h4
+				Introduction
+
+			%p
+				Many treatments for ASD symptoms and co-occurring problems have demonstrated 
+				%a{ href: '/glossary#efficacy' }
+					efficacy 
+				and 
+				%a{ href: '/glossary#effectiveness' }
+					effectiveness 
+
+				in the research literature. Yet, you may need to 
+				%a{ href: '/glossary#adapt' }
+					adapt 
+				the research-based treatment selected for agency-wide use at your agency. This may be needed to address the needs of your specific client population or address differences between the research setting and the community-based setting where your staff will implement the treatment. 
+			.well{ style: 'float:right;width:25%;margin:1em;' }
+				<b>Core elements</b> of a treatment are the specific strategies or techniques that are responsible for a treatment’s effectiveness. When making adaptation decisions, it is critical not to impact the core elements of a treatment.
+			%p
+				When making adaptation decisions, it is critical not to impact the core elements of the treatment. These are the specific strategies or techniques that are responsible for a treatment’s effectiveness. To avoid unintentional deviations from a research-based treatment, all treatment adaptations should be carefully planned and carried out. The goal of this step is to systematically evaluate whether adaptations are needed for the research-based treatment your agency will implement, and to develop a plan to perform any necessary adaptations.
+			%p
+				It is important to anticipate the types of treatment adaptations that may be necessary prior to implementing a research-based treatment. This will ensure its fit and effectiveness at your agency. The Gathering Treatment Materials activity guides you and your team in obtaining all of the materials necessary to make informed adaptation decisions. The Evaluating Prospective Adaptations to a Treatment worksheet is a tool for agencies to consider and plan for adaptations that will be needed when implementing a new research-based treatment. The worksheet is a checklist of questions about potential adaptations to the intervention you are considering in order to make well-informed decisions for the Treatment Adaptation Plan.
+
+
+			%p
+				%a{ href: phase_step_activity_path( @phase, @phase.steps.first, @phase.steps.first.activities.first ) }
+					Activity 1: Gathering Treatment Materials
+			%p
+				%a{ href: phase_step_activity_path( @phase, @phase.steps.first, @phase.steps.first.activities.second ) }
+					Activity 2: Evaluating Prospective Adaptations to the Treatment
+			%p
+				%a{ href: phase_step_activity_path( @phase, @phase.steps.first, @phase.steps.first.activities.third ) }
+					Activity 3: Treatment Adaptation Plan
+
+
+
+
+
+

@@ -1,0 +1,111 @@
+.container
+	.row
+		.col-sm-12
+			%ol.breadcrumb
+				%li
+					= link_to 'Dashboard', dashboard_index_path
+				%li
+					= link_to 'Phase 3', phase_path( 3 )
+				%li
+					= link_to 'Step 1', phase_step_path( @phase, @step )
+				%li
+					Activity 2
+	.row
+		.col-sm-12
+			%h1
+				Activity 2: Evaluating Prospective Adaptations to the Treatment
+
+
+			%p
+				When adapting a research-based treatment you are considering adopting and implementing at your agency, it is important to consider and anticipate the types of adaptations you will be making to the treatment. The checklist below is a series of questions about potential adaptations to the treatment you are considering in order to make well-informed decisions for your Treatment Adaptation Plan.
+
+			%p
+				In the broadest sense, adaptations can include modifications to the: 
+
+			%ul
+				%li
+					Content: How components of the treatment are delivered.
+				%li
+					Context: How the overall treatment is delivered.
+			%p{ style: 'font-weight:bold;' }
+				Gather treatment resources to assist in considering what potential adaptations may be needed. 
+
+			%p
+				Treatment resources may include treatment manuals, materials, and information about treatment implementation. The 
+				%a{ href: '' }
+					Instructions for Identifying and Selecting ASD Treatments 
+				provides guidance on how to access many of these resources. 
+
+			%p{ style: 'font-weight:bold;' }
+				Do you anticipate making the following content adaptations to the intervention you are considering at your agency: 
+
+			= form_tag responses_path do
+				= hidden_field_tag :activity_id, @activity.id
+
+				%table.table
+					%thead
+						%th
+						%th
+						%th
+							Yes
+						%th
+							No
+						%th
+							DK
+					%tbody
+						- @activity.questions.where( section: 'content_adaptations' ).order( :seq ).each do |question|
+							%tr
+								%td
+									= question.seq
+								%td
+									= question.content
+								%td
+									= radio_button_tag "question_answers[#{question.id}]", :yes, @current_agency.responses.where( question_id: question.id ).first.try( :content ) == 'yes'
+								%td
+									= radio_button_tag "question_answers[#{question.id}]", :no, @current_agency.responses.where( question_id: question.id ).first.try( :content ) == 'no'
+								%td
+									= radio_button_tag "question_answers[#{question.id}]", :dk, @current_agency.responses.where( question_id: question.id ).first.try( :content ) == 'dk'
+
+				%p{ style: 'font-weight:bold;' }
+					Do you anticipate making the following context adaptations to the intervention you are considering at your agency: 
+				%table.table
+					%thead
+						%th
+						%th
+						%th
+							Yes
+						%th
+							No
+						%th
+							DK
+					%tbody
+						- @activity.questions.where( section: 'context_adaptations' ).order( :seq ).each do |question|
+							%tr
+								%td
+									= question.seq
+								%td
+									= question.content
+								%td
+									= radio_button_tag "question_answers[#{question.id}]", :yes, @current_agency.responses.where( question_id: question.id ).first.try( :content ) == 'yes'
+								%td
+									= radio_button_tag "question_answers[#{question.id}]", :no, @current_agency.responses.where( question_id: question.id ).first.try( :content ) == 'no'
+								%td
+									= radio_button_tag "question_answers[#{question.id}]", :dk, @current_agency.responses.where( question_id: question.id ).first.try( :content ) == 'dk'
+
+				= submit_tag 'Save', class: 'btn btn-primary'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

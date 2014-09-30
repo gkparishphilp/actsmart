@@ -16,6 +16,7 @@ class ResponsesController < ApplicationController
 			end
 			
 		end
+		set_flash 'Saved'
 		redirect_to :back
 	end
 

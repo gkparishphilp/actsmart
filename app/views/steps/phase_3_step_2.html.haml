@@ -1,0 +1,31 @@
+.container
+	.row
+		.col-sm-12
+			%ol.breadcrumb
+				%li
+					= link_to 'Dashboard', dashboard_index_path
+				%li
+					= link_to 'Phase 3', phase_path( 3 )
+				%li
+					Step 2
+	.row
+		.col-sm-12
+			%h1
+				Step 2. Develop the Training Plan
+			%p
+				<u>Goals</u>: To develop a plan for training your staff in the research-based treatment.
+			%h4
+				Introduction
+
+			.well{ style: 'float:right;margin:1em;width:25%;' }
+				<b>Tip</b>
+				%br
+				To assist in developing the training plan, access the Evaluating Training Requirements worksheet completed in phase 2. If any requirements were identified, be sure to incorporate them into the training plan.
+
+			%p
+				Training staff who will be involved in delivering the research-based treatment is a crucial step in the implementation process. The quality of training can greatly impact the subsequent implementation and effectiveness of the treatment being delivered. Additionally, providing training to staff is often a difficult task, as training typically involves multiple staff members with varying schedules. The Training Plan worksheet is designed to assist your agency develop a plan to train your agency staff in the new research-based treatment that has been adopted. This worksheet will guide agencies through systematically planning each component of training.
+
+			%p
+				%a{ href: phase_step_activity_path( @phase, @phase.steps.second, @phase.steps.second.activities.first ) }
+					Activity 1: Training Plan
+			

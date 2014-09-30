@@ -261,8 +261,55 @@ namespace :activities do
 		step1 = p3.steps.create seq: 1
 
 		act = step1.activities.create seq: 1, name: 'gathering_treatment_materials'
+		q = act.questions.create seq: 1, name: 'which_sources_obtained', question_type: 'multi-select'
+		[
+			"Intervention manual", "Resources from other professionals", "Journal Article(s)", "Resources from conference/seminar", "Website/online resources", " Informational videos/media"
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+		q = act.questions.create seq: 2, name: 'which_sources_obtained_other', required: false
+
+
 
 		act = step1.activities.create seq: 2, name: 'evaluating_adaptions'
+		i = 1
+		[
+			"Tailoring/tweaking/refining the intervention (e.g., changing terminology or language, modifying worksheets in minor ways)?",
+			"Integrating components of the intervention into another framework (e.g., selecting elements to use but not using whole protocol)?",
+			"Integrating another treatment into the intervention (e.g., integrating other techniques into the intervention) ",
+			"Removing/skipping core modules or components of the intervention?",
+			"Lengthening/extending session time?",
+			"Shortening/condensing session time?",
+			"Lengthening/extending number of weeks?",
+			"Shortening/condensing number of weeks?",
+			"Adjusting the order of intervention modules, topics, or segments?",
+			"Adding modules or topics to the intervention?",
+			"Not using/departing from the intervention to use something else for part of the session or not using the intervention altogether?",
+			"Loosening the session structure?",
+			"Repeating elements or modules (e.g., repeating a concept or activity covered in a previous session that was not intended for another session)?",
+			"Substituting elements or modules?"
+		].each do |q|
+			q = act.questions.create seq: i, content: q, section: 'content_adaptations'
+			puts q.content
+			i += 1
+		end
+
+		[
+			"Changing the setting (e.g., delivering an intervention in a school rather than clinic)?",
+			"Changing who delivers the intervention (e.g., a peer instead of a clinician)?",
+			"Changing the format by which the treatment is delivered (e.g., offering an individual treatment in a group or telephone format)?",
+			"Changing the target population for the intervention (e.g., an intervention intended to treat children with disruptive behavior will be used to treat children with ASD)."
+		].each do |q|
+			q = act.questions.create seq: i, content: q, section: 'context_adaptations'
+			puts q.content
+			i += 1
+		end
+
+
+
+
+
+
 
 		act = step1.activities.create seq: 3, name: 'treatment_adaptation_plan'
 
