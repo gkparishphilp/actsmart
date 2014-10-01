@@ -6,6 +6,7 @@ class Activity < ActiveRecord::Base
 	belongs_to  :step
 
 	has_many	:questions
+	has_many	:respondings
 	has_many 	:responses
 
 

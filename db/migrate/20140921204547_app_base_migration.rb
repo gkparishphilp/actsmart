@@ -72,6 +72,16 @@ class AppBaseMigration < ActiveRecord::Migration
 		add_index :messages, [ :parent_obj_id, :parent_obj_type ]
 
 
+		create_table :pages do |t|
+			t.string	:title
+			t.string	:slug
+			t.text		:content
+			t.integer	:status, default: 1
+			t.timestamps
+		end
+		add_index :pages, :slug, unique: true
+
+
 		create_table :phases do |t|
 			t.string 			:name
 			t.string			:label
@@ -111,6 +121,16 @@ class AppBaseMigration < ActiveRecord::Migration
 		add_index :questions, :name
 
 
+		create_table :respondings do |t|
+			t.references 	:agency
+			t.references	:activity
+			t.integer		:status
+			t.datetime		:completed_at
+			t.timestamps
+		end
+		add_index :respondings, :agency_id
+
+
 		create_table :responses do |t|
 			t.references 	:user
 			t.references	:agency
@@ -120,8 +140,6 @@ class AppBaseMigration < ActiveRecord::Migration
 			t.references 	:phase
 			t.references 	:prompt
 			t.text			:content     # in the case of free-response
-			t.datetime		:started_at
-			t.datetime		:responded_at
 			t.timestamps
 		end
 		add_index :responses, :user_id
@@ -142,6 +160,19 @@ class AppBaseMigration < ActiveRecord::Migration
 		end
 		add_index :steps, :phase_id
 		add_index :steps, :seq
+
+
+		create_table :tasks do |t|
+			t.references 	:agency
+			t.string		:name
+			t.text			:content
+			t.datetime		:due_at
+			t.datetime		:completed_at
+			t.integer		:status, default: 1
+			t.timestamps
+		end
+		add_index :tasks, :agency_id
+
 
 
 	end

@@ -10,7 +10,10 @@ class Agency < ActiveRecord::Base
 	has_many	:funding_sources
 	
 	has_many	:messages
+	has_many	:respondings
 	has_many	:responses
+
+	has_many	:tasks
 
 	def activity_complete?( activity )
 		self.responses.where( activity_id: activity.id ).count >= activity.questions.where( required: true ).count

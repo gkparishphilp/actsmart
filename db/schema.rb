@@ -107,6 +107,17 @@ ActiveRecord::Schema.define(version: 20140921204547) do
   add_index "messages", ["from_id"], name: "index_messages_on_from_id", using: :btree
   add_index "messages", ["parent_obj_id", "parent_obj_type"], name: "index_messages_on_parent_obj_id_and_parent_obj_type", using: :btree
 
+  create_table "pages", force: true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.text     "content"
+    t.integer  "status",     default: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pages", ["slug"], name: "index_pages_on_slug", unique: true, using: :btree
+
   create_table "phases", force: true do |t|
     t.string   "name"
     t.string   "label"
@@ -148,6 +159,17 @@ ActiveRecord::Schema.define(version: 20140921204547) do
   add_index "questions", ["seq"], name: "index_questions_on_seq", using: :btree
   add_index "questions", ["step_id"], name: "index_questions_on_step_id", using: :btree
 
+  create_table "respondings", force: true do |t|
+    t.integer  "agency_id"
+    t.integer  "activity_id"
+    t.integer  "status"
+    t.datetime "completed_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "respondings", ["agency_id"], name: "index_respondings_on_agency_id", using: :btree
+
   create_table "responses", force: true do |t|
     t.integer  "user_id"
     t.integer  "agency_id"
@@ -157,8 +179,6 @@ ActiveRecord::Schema.define(version: 20140921204547) do
     t.integer  "phase_id"
     t.integer  "prompt_id"
     t.text     "content"
-    t.datetime "started_at"
-    t.datetime "responded_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -182,6 +202,19 @@ ActiveRecord::Schema.define(version: 20140921204547) do
 
   add_index "steps", ["phase_id"], name: "index_steps_on_phase_id", using: :btree
   add_index "steps", ["seq"], name: "index_steps_on_seq", using: :btree
+
+  create_table "tasks", force: true do |t|
+    t.integer  "agency_id"
+    t.string   "name"
+    t.text     "content"
+    t.datetime "due_at"
+    t.datetime "completed_at"
+    t.integer  "status",       default: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tasks", ["agency_id"], name: "index_tasks_on_agency_id", using: :btree
 
   create_table "user_events", force: true do |t|
     t.integer  "user_id"

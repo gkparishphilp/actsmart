@@ -1,0 +1,19 @@
+.container
+	= form_for @page do |f|
+		.row
+			.col-xs-9
+				.form-group
+					= f.label :title
+					= f.text_field :title, class: 'form-control'
+
+				.form-group
+					= f.label :content
+					= f.text_area :content, class: 'form-control editor-full'
+			.col-xs-3
+				.well
+					.form-group
+						= f.label :status
+						= f.collection_select :status, Page.statuses, :first, :first, {}, class: 'form-control'
+
+					.form-group
+						= f.submit 'Save', class: 'btn btn-primary'

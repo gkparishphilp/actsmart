@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
 
-	root to: 'pages#home'
+	root to: 'static#home'
 
 	resources :agencies
 
 	resources :funding_sources
 
 	resources :messages
+
+	resources :pages do
+		get :admin, on: :collection
+	end
 
 	resources :phases do
 		resources :steps do
@@ -40,6 +44,7 @@ Rails.application.routes.draw do
 	get '/progress/:agency_id/:phase' => 'progress#show', as: :agency_phase_progress
 
 	# quick catch-all route for static pages
-	get '/:action', controller: 'pages'
+	get '/:id', controller: 'pages', action: :show
+	# get '/:action', controller: 'static'
 	
 end

@@ -11,6 +11,9 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
-//= require turbolinks
+//=  #require turbolinks
+//= require_tree ./summernote
+//= require_tree ./timepicker
 //= require_tree ./app

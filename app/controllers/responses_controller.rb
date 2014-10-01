@@ -16,6 +16,14 @@ class ResponsesController < ApplicationController
 			end
 			
 		end
+		@responding = @current_agency.respondings.where( activity_id: @activity.id ).first
+		if @current_agency.activity_complete?( @activity )
+			@responding.complete!
+			@responding.update( completed_at: Time.zone.now )
+		else
+			@responding.touch
+		end
+
 		set_flash 'Saved'
 		redirect_to :back
 	end
