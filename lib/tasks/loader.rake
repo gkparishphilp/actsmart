@@ -234,9 +234,34 @@ namespace :activities do
 
 
 		act = step2.activities.create seq: 6
-		q = act.questions.create seq: 1, name: 'todo'
-		q = act.questions.create seq: 2, name: 'todo'
-		q = act.questions.create seq: 3, name: 'todo'
+		q = act.questions.create seq: 1, name: 'improve_outcomes_yes_no'
+		q = act.questions.create seq: 2, name: 'improve_outcomes_importance'
+		q = act.questions.create seq: 3, name: 'what_outcomes', required: false
+
+		q = act.questions.create seq: 4, name: 'improve_satisfaction_yes_no'
+		q = act.questions.create seq: 5, name: 'improve_satisfaction_importance'
+
+		q = act.questions.create seq: 6, name: 'improve_retention_yes_no'
+		q = act.questions.create seq: 7, name: 'improve_retention_importance'
+
+		q = act.questions.create seq: 8, name: 'reach_new_yes_no'
+		q = act.questions.create seq: 9, name: 'reach_new_importance'
+		q = act.questions.create seq: 10, name: 'had_inquiries_yes_no'
+		q = act.questions.create seq: 11, name: 'had_inquiries_importance'
+
+		q = act.questions.create seq: 12, name: 'reimbursement_yes_no'
+		q = act.questions.create seq: 13, name: 'reimbursement_importance'
+		q = act.questions.create seq: 14, name: 'reimbursement_who', required: false
+		q = act.questions.create seq: 15, name: 'reimbursement_rates', required: false
+
+		q = act.questions.create seq: 16, name: 'termination_of_clients_yes_no'
+		q = act.questions.create seq: 17, name: 'termination_of_clients_importance'
+
+		q = act.questions.create seq: 18, name: 'improve_reputation_yes_no'
+		q = act.questions.create seq: 19, name: 'improve_reputation_importance'
+		q = act.questions.create seq: 20, name: 'increase_marketability_yes_no'
+		q = act.questions.create seq: 21, name: 'increase_marketability_importance'
+
 
 
 		step3 = p2.steps.create seq: 3

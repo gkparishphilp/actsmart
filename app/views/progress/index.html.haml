@@ -41,7 +41,7 @@
 					Agency Assessment Outcomes and Recommendations
 
 				%h5 Areas of Strength
-				- @agency.messages.where( parent_obj: @phase, context: 'strength' ).each do |message|
+				- @agency.messages.where( parent_obj: Phase.first, context: 'strength' ).each do |message|
 					%li
 						= message.content
 						%a{ href: message_path( message ), data: { method: :delete, confirm: 'Are you sure?' } }
@@ -59,7 +59,7 @@
 							= f.submit 'Send', class: 'btn btn-primary'
 
 				%h5 Areas for Growth
-				- @agency.messages.where( parent_obj: @phase, context: 'growth' ).each do |message|
+				- @agency.messages.where( parent_obj: Phase.first, context: 'growth' ).each do |message|
 					%li
 						= message.content
 				= form_for Message.new do |f|
@@ -74,7 +74,7 @@
 							= f.submit 'Send', class: 'btn btn-primary'
 
 				%h5 Recommendations
-				- @agency.messages.where( parent_obj: @phase, context: 'recs' ).each do |message|
+				- @agency.messages.where( parent_obj: Phase.first, context: 'recs' ).each do |message|
 					%li
 						= message.content
 				= form_for Message.new do |f|
@@ -90,7 +90,7 @@
 			.well
 				%h4
 					Receptivity to New Treatment
-				- @agency.messages.where( parent_obj: @phase, context: 'receptivity' ).each do |message|
+				- @agency.messages.where( parent_obj: Phase.first, context: 'receptivity' ).each do |message|
 					%li
 						= message.content
 				= form_for Message.new do |f|
@@ -138,19 +138,7 @@
 				%h4
 					What's Next
 
-				- @agency.messages.where( parent_obj: @phase, context: 'next' ).each do |message|
-					%li
-						= message.content
-				= form_for Message.new do |f|
-					= f.hidden_field :agency_id, value: @agency.id
-					= f.hidden_field :parent_obj_id, value: 1
-					= f.hidden_field :parent_obj_type, value: 'Phase'
-					= f.hidden_field :context, value: 'next'
-					.row{ style: 'margin-top: 1em;' }
-						.col-xs-8
-							= f.text_field :content, class: 'form-control'
-						.col-xs-4
-							= f.submit 'Send', class: 'btn btn-primary'
+				
 
 	%a{ href: '#top' }
 		Top

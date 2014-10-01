@@ -4,28 +4,29 @@
 		.col-xs-4
 			%center= image_tag 'logo_sq.png', style: 'margin: 2em 0;', class: 'img img-responsive'
 
-			.well
-				.panel-heading
-					%h3.panel-title
-						Sign In
+			- unless current_user.present?
+				.well
+					.panel-heading
+						%h3.panel-title
+							Sign In
 
-				.panel-body
-					= form_for User.new, as: :user, url: session_path( :user ) do |f|
-						.row
-							.form-group.col-md-12
-								.input-group
-									.input-group-addon
-										%i.fa.fa-user
-									= f.text_field :login, autofocus: true, placeholder: "email", class: 'form-control'
-						.row
-							.form-group.col-md-12
-								.input-group
-									.input-group-addon
-										%i.fa.fa-key
-									= f.password_field :password, placeholder: "password", class: 'form-control'
+					.panel-body
+						= form_for User.new, as: :user, url: session_path( :user ) do |f|
+							.row
+								.form-group.col-md-12
+									.input-group
+										.input-group-addon
+											%i.fa.fa-user
+										= f.text_field :login, autofocus: true, placeholder: "email", class: 'form-control'
+							.row
+								.form-group.col-md-12
+									.input-group
+										.input-group-addon
+											%i.fa.fa-key
+										= f.password_field :password, placeholder: "password", class: 'form-control'
 
-						.input-group.col-md-12
-							.pull-right= f.submit "Sign in", class: 'btn btn-primary'
+							.input-group.col-md-12
+								.pull-right= f.submit "Sign in", class: 'btn btn-primary'
 			%br
 			%h4
 				Contact us!
