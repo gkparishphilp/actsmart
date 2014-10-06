@@ -346,8 +346,25 @@ namespace :activities do
 			q.prompts.create content: prompt
 		end
 
+		q = act.questions.create seq: 3, name: 'what_staff_are_trained', question_type: 'multi_select', section: 'external_training'
+		[
+			"Direct Providers", "Support Staff", "Supervisors", "Agency Leaders"
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+		q = act.questions.create seq: 4, name: 'what_staff_are_trained_other', section: 'external_training', required: false
+
+		q = act.questions.create seq: 5, name: 'how_many_staff_trained', section: 'external_training', required: false
+
+		q = act.questions.create seq: 6, name: 'who_will_train', section: 'external_training', required: false
+
+		q = act.questions.create seq: 7, name: 'outside_prep_required', section: 'external_training', required: false
 
 
+
+
+		# End of Activity 1
+		################################
 
 		step3 = p3.steps.create seq: 3
 		act = step3.activities.create seq: 1, name: 'implementation_plan'

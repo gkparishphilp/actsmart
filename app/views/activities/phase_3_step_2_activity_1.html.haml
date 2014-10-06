@@ -32,13 +32,55 @@
 					%span{ style: 'margin: auto 0.5em;' }
 					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 1 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).first.try( :content ) == 'dk'
 					Don't Know
-					= @activity.questions.find_by( seq: 1 ).name
 				2)	Where is training going to be delivered?
+				-#Add links for training plans
 				%p 
 					- @activity.questions.find_by( seq: 2 ).prompts.each do |prompt|
 						.separator
 							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 2 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 2 ).id ).pluck( :content ).include?( prompt.content )
 							= prompt.content
+				
+				%h4
+					External Training Plan
+				%h5
+					Staff Involved
+				%p
+					1)  What staff will be trained? (Select all that apply)
+					-#Notes request field to fill in names of users if less than 10. Necessary?
+				%p
+					- @activity.questions.find_by( seq: 3 ).prompts.each do |prompt|
+						.separator
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 3 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 3 ).id ).pluck( :content ).include?( prompt.content )
+							= prompt.content
+					.separator
+						Other
+						= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 4 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 4 ).id ).first.try( :content )
+					.separator
+						= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 3 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 3 ).id ).pluck( :content ).include?( 'dk' )
+						No requirements specified
+
+				2)	How many staff will be trained?
+				%p
+					= number_field_tag "question_answers[#{@activity.questions.find_by( seq: 5 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 5 ).id ).first.try( :content )
+
+				3)	Who will be providing the training?
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 6 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 6 ).id ).first.try( :content )		
+				%h5
+					Preparation
+				%p				
+					1) Will staff be required to prepare for training outside of the scheduled training sessions? (i.e., reading materials or practicing with client). If staff will be required to prepare for trainings, please complete question 2. Otherwise, proceed to the Scheduling Training section.
+				%p					
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 7 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 7 ).id ).first.try( :content ) == 'yes'
+					Yes
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 7 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 7 ).id ).first.try( :content ) == 'no'
+					No
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 7 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 7 ).id ).first.try( :content ) == 'dk'
+					Don't Know		
+
+
 
 
 				= submit_tag 'Save', class: 'btn btn-primary'
