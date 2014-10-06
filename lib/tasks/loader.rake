@@ -339,7 +339,24 @@ namespace :activities do
 		act = step1.activities.create seq: 3, name: 'treatment_adaptation_plan'
 
 		step2 = p3.steps.create seq: 2
+
 		act = step2.activities.create seq: 1, name: 'training_plan'
+
+		q = act.questions.create seq: 1, name: 'using_train_the_trainer'
+
+		q = act.questions.create seq: 2, name: 'training_internal_or_external', question_type: 'radio'
+		[
+			"Outside of the agency", "Inside the agency"
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+
+
+
+
+
+
+
 
 		step3 = p3.steps.create seq: 3
 		act = step3.activities.create seq: 1, name: 'implementation_plan'

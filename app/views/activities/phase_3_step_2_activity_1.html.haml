@@ -16,4 +16,29 @@
 				Activity 1: Training Plan
 
 			%p
-				When implementing a new practice, training is a crucial step in ensuring the innovation is implemented correctly.  The purpose of this worksheet is to assist with developing a plan to train staff in the research-based treatment you are implementing. The questions below are designed to take a systematic approach to address training details such as staff involvement, scheduling, travel, maintenance and sustained use of the intervention or practice. Refer to the Evaluating Training Requirements worksheet completed in the previous phase to ensure that any training requirements that may exist are incorporated into the training plan. 
+				When implementing a new practice, training is a crucial step in ensuring the innovation is implemented correctly.  The purpose of this worksheet is to assist with developing a plan to train staff in the research-based treatment you are implementing. The questions below are designed to take a systematic approach to address training details such as staff involvement, scheduling, travel, maintenance and sustained use of the intervention or practice. Refer to the Evaluating Training Requirements worksheet completed in the previous phase to ensure that any training requirements that may exist are incorporated into the training plan.
+			%p
+			= form_tag responses_path do
+				= hidden_field_tag :activity_id, @activity.id
+				%h4
+				1)	Will you be using a train-the-trainer model (e.g., one person or a small group of people receive training from an outside trainer and then they train the rest of the staff in their agency)? If yes, complete the External Training Plan only for staff who will be trained outside of the agency and the Internal Training Plan for staff who will be trained within the agency.
+				-#Add links for training plans
+				%p
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 1 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).first.try( :content ) == 'yes'
+					Yes
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 1 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).first.try( :content ) == 'no'
+					No
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 1 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).first.try( :content ) == 'dk'
+					Don't Know
+
+				2)	Where is training going to be delivered?
+				%p 
+					- @activity.questions.find_by( seq: 1 ).prompts.each do |prompt|
+						.separator
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 2 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 2 ).id ).pluck( :content ).include?( prompt.content )
+							= prompt.content
+
+
+				= submit_tag 'Save', class: 'btn btn-primary'
