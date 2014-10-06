@@ -17,3 +17,5 @@
 //= require_tree ./summernote
 //= require_tree ./timepicker
 //= require_tree ./app
+//= require_self
+

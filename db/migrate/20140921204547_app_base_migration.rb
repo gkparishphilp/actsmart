@@ -4,6 +4,7 @@ class AppBaseMigration < ActiveRecord::Migration
 		create_table :activities do |t|
 			t.references		:phase
 			t.references		:step
+			t.references		:treatment
 			t.string			:name
 			t.string			:label
 			t.integer			:seq
@@ -13,6 +14,7 @@ class AppBaseMigration < ActiveRecord::Migration
 		end
 		add_index :activities, :phase_id
 		add_index :activities, :step_id
+		add_index :activities, :treatment_id
 		add_index :activities, :seq
 		add_index :activities, [ :phase_id, :step_id ]
 
@@ -45,11 +47,25 @@ class AppBaseMigration < ActiveRecord::Migration
 		add_index :agency_users, [ :agency_id, :user_id ]
 
 
+		create_table :budget_items do |t|
+			t.references	:agency
+			t.string		:item_type
+			t.string		:name
+			t.text 			:description
+			t.integer		:unit_cost
+			t.integer		:quantity
+			t.integer		:cost 
+			t.timestamps
+		end
+		add_index :budget_items, :agency_id
+		add_index :budget_items, :item_type
+
+
 		create_table :funding_sources do |t|
 			t.references	:agency
 			t.string		:name
 			t.boolean		:offer_funding
-			t.float			:reimbursement_rate
+			t.integer		:reimbursement_rate
 			t.timestamps
 		end
 		add_index :funding_sources, :agency_id
@@ -134,6 +150,7 @@ class AppBaseMigration < ActiveRecord::Migration
 		create_table :responses do |t|
 			t.references 	:user
 			t.references	:agency
+			t.references	:treatment
 			t.references 	:question
 			t.references	:activity
 			t.references	:step
@@ -144,6 +161,7 @@ class AppBaseMigration < ActiveRecord::Migration
 		end
 		add_index :responses, :user_id
 		add_index :responses, :agency_id
+		add_index :responses, :treatment_id
 		add_index :responses, :activity_id
 		add_index :responses, :step_id
 		add_index :responses, :phase_id
@@ -165,13 +183,49 @@ class AppBaseMigration < ActiveRecord::Migration
 		create_table :tasks do |t|
 			t.references 	:agency
 			t.string		:name
+			t.string		:assigned_to # just free-form text field
 			t.text			:content
+			t.text			:location
+			t.string		:duration
 			t.datetime		:due_at
 			t.datetime		:completed_at
 			t.integer		:status, default: 1
 			t.timestamps
 		end
 		add_index :tasks, :agency_id
+
+		create_table :treatments do |t|
+			t.string 		:name
+			t.timestamps
+		end
+
+		create_table :agency_treatments do |t|
+			t.references	:agency
+			t.references	:treatment
+			t.boolean		:selected
+			t.timestamps
+		end
+		add_index :agency_treatments, :agency_id
+		add_index :agency_treatments, :treatment_id
+
+
+		create_table :treatment_adaptations do |t|
+			t.references 	:treatment
+			t.references	:agency
+			t.string		:name
+			t.integer		:status 	# concerns???
+			t.timestamps
+		end
+
+
+		create_table :treatment_strategies do |t|
+			t.references 	:treatment
+			t.references	:agency
+			t.string		:name
+			t.string		:consideration
+			t.boolean		:selected
+			t.timestamps
+		end
 
 
 

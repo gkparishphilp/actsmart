@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140921204547) do
   create_table "activities", force: true do |t|
     t.integer  "phase_id"
     t.integer  "step_id"
+    t.integer  "treatment_id"
     t.string   "name"
     t.string   "label"
     t.integer  "seq"
@@ -32,6 +33,7 @@ ActiveRecord::Schema.define(version: 20140921204547) do
   add_index "activities", ["phase_id"], name: "index_activities_on_phase_id", using: :btree
   add_index "activities", ["seq"], name: "index_activities_on_seq", using: :btree
   add_index "activities", ["step_id"], name: "index_activities_on_step_id", using: :btree
+  add_index "activities", ["treatment_id"], name: "index_activities_on_treatment_id", using: :btree
 
   create_table "agencies", force: true do |t|
     t.integer  "facilitator_id"
@@ -51,6 +53,17 @@ ActiveRecord::Schema.define(version: 20140921204547) do
 
   add_index "agencies", ["facilitator_id"], name: "index_agencies_on_facilitator_id", using: :btree
 
+  create_table "agency_treatments", force: true do |t|
+    t.integer  "agency_id"
+    t.integer  "treatment_id"
+    t.boolean  "selected"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "agency_treatments", ["agency_id"], name: "index_agency_treatments_on_agency_id", using: :btree
+  add_index "agency_treatments", ["treatment_id"], name: "index_agency_treatments_on_treatment_id", using: :btree
+
   create_table "agency_users", force: true do |t|
     t.integer  "agency_id"
     t.integer  "user_id"
@@ -62,6 +75,21 @@ ActiveRecord::Schema.define(version: 20140921204547) do
   add_index "agency_users", ["agency_id", "user_id"], name: "index_agency_users_on_agency_id_and_user_id", using: :btree
   add_index "agency_users", ["agency_id"], name: "index_agency_users_on_agency_id", using: :btree
   add_index "agency_users", ["user_id"], name: "index_agency_users_on_user_id", using: :btree
+
+  create_table "budget_items", force: true do |t|
+    t.integer  "agency_id"
+    t.string   "item_type"
+    t.string   "name"
+    t.text     "description"
+    t.integer  "unit_cost"
+    t.integer  "quantity"
+    t.integer  "cost"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "budget_items", ["agency_id"], name: "index_budget_items_on_agency_id", using: :btree
+  add_index "budget_items", ["item_type"], name: "index_budget_items_on_item_type", using: :btree
 
   create_table "contacts", force: true do |t|
     t.string   "email"
@@ -81,7 +109,7 @@ ActiveRecord::Schema.define(version: 20140921204547) do
     t.integer  "agency_id"
     t.string   "name"
     t.boolean  "offer_funding"
-    t.float    "reimbursement_rate"
+    t.integer  "reimbursement_rate"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -173,6 +201,7 @@ ActiveRecord::Schema.define(version: 20140921204547) do
   create_table "responses", force: true do |t|
     t.integer  "user_id"
     t.integer  "agency_id"
+    t.integer  "treatment_id"
     t.integer  "question_id"
     t.integer  "activity_id"
     t.integer  "step_id"
@@ -189,6 +218,7 @@ ActiveRecord::Schema.define(version: 20140921204547) do
   add_index "responses", ["prompt_id"], name: "index_responses_on_prompt_id", using: :btree
   add_index "responses", ["question_id"], name: "index_responses_on_question_id", using: :btree
   add_index "responses", ["step_id"], name: "index_responses_on_step_id", using: :btree
+  add_index "responses", ["treatment_id"], name: "index_responses_on_treatment_id", using: :btree
   add_index "responses", ["user_id"], name: "index_responses_on_user_id", using: :btree
 
   create_table "steps", force: true do |t|
@@ -206,7 +236,10 @@ ActiveRecord::Schema.define(version: 20140921204547) do
   create_table "tasks", force: true do |t|
     t.integer  "agency_id"
     t.string   "name"
+    t.string   "assigned_to"
     t.text     "content"
+    t.text     "location"
+    t.string   "duration"
     t.datetime "due_at"
     t.datetime "completed_at"
     t.integer  "status",       default: 1
@@ -215,6 +248,31 @@ ActiveRecord::Schema.define(version: 20140921204547) do
   end
 
   add_index "tasks", ["agency_id"], name: "index_tasks_on_agency_id", using: :btree
+
+  create_table "treatment_adaptations", force: true do |t|
+    t.integer  "treatment_id"
+    t.integer  "agency_id"
+    t.string   "name"
+    t.integer  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "treatment_strategies", force: true do |t|
+    t.integer  "treatment_id"
+    t.integer  "agency_id"
+    t.string   "name"
+    t.string   "consideration"
+    t.boolean  "selected"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "treatments", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "user_events", force: true do |t|
     t.integer  "user_id"

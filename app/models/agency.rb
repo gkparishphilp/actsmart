@@ -7,6 +7,8 @@ class Agency < ActiveRecord::Base
 	has_many 	:agency_users, dependent: :destroy
 	has_many	:users, through: :agency_users
 
+	has_many	:budget_items
+	
 	has_many	:funding_sources
 	
 	has_many	:messages
@@ -14,6 +16,9 @@ class Agency < ActiveRecord::Base
 	has_many	:responses
 
 	has_many	:tasks
+
+	has_many	:treatments
+
 
 	def activity_complete?( activity )
 		self.responses.where( activity_id: activity.id ).count >= activity.questions.where( required: true ).count
