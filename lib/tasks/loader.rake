@@ -331,11 +331,6 @@ namespace :activities do
 		end
 
 
-
-
-
-
-
 		act = step1.activities.create seq: 3, name: 'treatment_adaptation_plan'
 
 		step2 = p3.steps.create seq: 2
@@ -350,10 +345,6 @@ namespace :activities do
 		].each do |prompt|
 			q.prompts.create content: prompt
 		end
-
-
-
-
 
 
 

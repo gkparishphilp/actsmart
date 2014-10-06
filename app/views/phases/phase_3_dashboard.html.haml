@@ -86,7 +86,7 @@
 							%i.fa.fa-check-circle-o{ style: 'color:#3a3;'}
 						- else
 							%i.fa.fa-circle-o
-						%a{ href: phase_step_activity_path( @phase, @phase.steps.second, @phase.steps.first.activities.first ) }
+						%a{ href: phase_step_activity_path( @phase, @phase.steps.second, @phase.steps.second.activities.first ) }
 							Activity 1: Training Plan
 
 				- if @current_agency.step_complete?( @phase.steps.second )
