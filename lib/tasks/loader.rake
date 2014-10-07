@@ -396,6 +396,41 @@ namespace :activities do
 		q = act.questions.create seq: 30, name: 'returning', section: 'external_training', required: false
 		q = act.questions.create seq: 31, name: 'traveling_via', section: 'external_training', required: false
 
+		q = act.questions.create seq: 32, name: 'overseeing_maintenance', question_type: 'multi_select', section: 'maintenance_of_training'
+		[
+			"Direct Providers", "Support Staff", "Supervisors", "Agency Leaders", "Clinical Directors", "Outside Trainer"
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+
+		q = act.questions.create seq: 33, name: 'overseeing_maintenance_other', section: 'maintenance_of_training', required: false
+
+		q = act.questions.create seq: 34, name: 'maintenance_types', question_type: 'multi_select', section: 'maintenance_of_training'
+		[
+			"Ongoing consultation", "Booster sessions", "Supervision upon request", "Submission of videos", "Submission of materials", "Regular supervision"		
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+
+		q = act.questions.create seq: 35, name: 'maintenance_types_other', section: 'maintenance_of_training', required: false
+		q = act.questions.create seq: 36, name: 'maintenance_start_date', section: 'maintenance_of_training'
+
+		q = act.questions.create seq: 37, name: 'maintenance_frequency', question_type: 'multi_select', section: 'maintenance_of_training'
+		[
+			"Upon request", "Intermittently", "Regularly"
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+
+		q = act.questions.create seq: 38, name: 'maintenance_regularity', section: 'maintenance_of_training', required: false
+		q = act.questions.create seq: 39, name: 'training_strategy', section: 'sustained_use'
+		q = act.questions.create seq: 40, name: 'training_changes', section: 'sustained_use'
+		q = act.questions.create seq: 41, name: 'new_staff_training_strategy', section: 'sustained_use'
+
+
+
+
+
 
 		# End of Activity 1
 		################################
