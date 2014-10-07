@@ -529,6 +529,8 @@ namespace :activities do
 		q = act.questions.create seq: 86, name: 'internal_sustained_use', section: 'internal_sustained_training'
 		q = act.questions.create seq: 87, name: 'new_staff_training', section: 'internal_sustained_training', required: false
 		q = act.questions.create seq: 88, name: 'new_staff_training_desc', section: 'internal_sustained_training', required: false
+		q = act.questions.create seq: 89, name: 'staff_trained_list', section: 'training_plan', required: false
+		q = act.questions.create seq: 90, name: 'staff_traveling_list', section: 'training_plan', required: false
 
 
 

@@ -53,7 +53,6 @@
 					Staff Involved
 				%p
 					1)  What staff will be trained? (Select all that apply)
-					-#Notes request field to fill in names of users if less than 10. Necessary?
 				%p
 					- @activity.questions.find_by( seq: 3 ).prompts.each do |prompt|
 						.separator
@@ -66,11 +65,22 @@
 						= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 3 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 3 ).id ).pluck( :content ).include?( 'dk' )
 						No requirements specified
 
-				2)	How many staff will be trained?
+				%p
+					2)  For agencies with less than 10 individuals being trained in each role, please list the name of staff who will be trained below:
+
+				.form-group.col-xs-8
+					= text_area_tag "question_answers[#{@activity.questions.find_by( seq: 89 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 89 ).id ).first.try( :content ), class: 'form-control'
+
+				%br
+				%br
+				%br
+				%br
+
+				3)	How many staff will be trained?
 				%p
 					= number_field_tag "question_answers[#{@activity.questions.find_by( seq: 5 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 5 ).id ).first.try( :content )
 
-				3)	Who will be providing the training?
+				4)	Who will be providing the training?
 				%p
 					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 6 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 6 ).id ).first.try( :content )		
 				%h4
@@ -214,7 +224,6 @@
 					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 24 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 24 ).id ).first.try( :content )	
 
 				4)  What staff will be traveling for training? (Select all that apply)
-				-#Notes request field to fill in names of users if less than 10. Necessary?
 				%p
 					- @activity.questions.find_by( seq: 25 ).prompts.each do |prompt|
 						.separator
@@ -227,15 +236,25 @@
 						= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 25 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 25 ).id ).pluck( :content ).include?( 'dk' )
 						No requirements specified
 
-				5)  How many staff will be traveling?
+				%p
+					5)  For agencies with less than 10 individuals from each staff role who will be traveling, please list the name of staff who will be trained below:
+				.form-group.col-xs-8
+					= text_area_tag "question_answers[#{@activity.questions.find_by( seq: 90 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 90 ).id ).first.try( :content ), class: 'form-control'
+
+				%br
+				%br
+				%br
+				%br
+
+				6)  How many staff will be traveling?
 				%p
 					= number_field_tag "question_answers[#{@activity.questions.find_by( seq: 27 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 27 ).id ).first.try( :content )
 
-				6)  Where will they travel to?
+				7)  Where will they travel to?
 				%p
 					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 28 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 28 ).id ).first.try( :content )					
 
-				7)  What dates will staff be traveling?
+				8)  What dates will staff be traveling?
 
 				Departing:
 				%p
@@ -245,7 +264,7 @@
 				%p
 					= date_field_tag "question_answers[#{@activity.questions.find_by( seq: 30 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 30 ).id ).first.try( :content )		
 
-				8)  How will staff be traveling?
+				9)  How will staff be traveling?
 				%p
 					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 31 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 31 ).id ).first.try( :content )		
 			
