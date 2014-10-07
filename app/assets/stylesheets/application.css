@@ -61,3 +61,15 @@ ul.none {list-style-type: none;}
     width: 100%;
     height: 100%;
 }
+
+.custom-cell-right {
+    width:50%; 
+    display:inline-block;
+    float: right;
+}
+
+.custom-cell-left {
+    width:50%; 
+    display:inline-block;
+    float: left;
+}
