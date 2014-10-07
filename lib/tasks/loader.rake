@@ -360,6 +360,23 @@ namespace :activities do
 
 		q = act.questions.create seq: 7, name: 'outside_prep_required', section: 'external_training', required: false
 
+		q = act.questions.create seq: 8, name: 'outside_training_options', question_type: 'multi_select', section: 'external_training'
+		[
+			"Reading materials", "Practicing with clients", "Watching videos", "Role play with staff", "Online training or modules"
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+
+		q = act.questions.create seq: 9, name: 'outside_training_options_other', section: 'external_training', required: false
+		q = act.questions.create seq: 10, name: 'training_time', section: 'external_training', required: false
+		q = act.questions.create seq: 11, name: 'who_trains', section: 'external_training', required: false
+		q = act.questions.create seq: 12, name: 'training_scheduled', section: 'external_training'
+		q = act.questions.create seq: 13, name: 'training_scheduled_time', section: 'external_training', required: false
+		q = act.questions.create seq: 14, name: 'training_outside_scheduled', section: 'external_training'
+		q = act.questions.create seq: 15, name: 'staff_training_time', section: 'external_training', required: false
+		q = act.questions.create seq: 16, name: 'cost_effective_training_times', section: 'external_training', required: false
+		q = act.questions.create seq: 17, name: 'cover_staff_for_training', section: 'external_training'
+		q = act.questions.create seq: 18, name: 'who_will_cover_staff', section: 'external_training', required: false
 
 
 

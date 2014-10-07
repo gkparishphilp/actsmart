@@ -39,10 +39,11 @@
 						.separator
 							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 2 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 2 ).id ).pluck( :content ).include?( prompt.content )
 							= prompt.content
-				
+				%hr
+					%h4.text-center
+						External Training Plan
+				%hr
 				%h4
-					External Training Plan
-				%h5
 					Staff Involved
 				%p
 					1)  What staff will be trained? (Select all that apply)
@@ -66,10 +67,10 @@
 				3)	Who will be providing the training?
 				%p
 					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 6 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 6 ).id ).first.try( :content )		
-				%h5
+				%h4
 					Preparation
 				%p				
-					1) Will staff be required to prepare for training outside of the scheduled training sessions? (i.e., reading materials or practicing with client). If staff will be required to prepare for trainings, please complete question 2. Otherwise, proceed to the Scheduling Training section.
+					1)  Will staff be required to prepare for training outside of the scheduled training sessions? (i.e., reading materials or practicing with client). If staff will be required to prepare for trainings, please complete question 2. Otherwise, proceed to the Scheduling Training section.
 				%p					
 					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 7 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 7 ).id ).first.try( :content ) == 'yes'
 					Yes
@@ -80,7 +81,82 @@
 					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 7 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 7 ).id ).first.try( :content ) == 'dk'
 					Don't Know		
 
+				%p
+					2)  What type of preparation will staff do outside of the scheduled training sessions? (Select all that apply)
+				%p
+					- @activity.questions.find_by( seq: 8 ).prompts.each do |prompt|
+						.separator
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 8 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 8 ).id ).pluck( :content ).include?( prompt.content )
+							= prompt.content
+					.separator
+						Other
+						= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 9 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 9 ).id ).first.try( :content )
+					.separator
+						= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 8 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 8 ).id ).pluck( :content ).include?( 'dk' )
+						No requirements specified
 
+				3)	If staff will be required to prepare for training outside of the required training sessions, when will the preparation work occur?
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 10 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 10 ).id ).first.try( :content )	
+				%h4
+					Scheduling Training
+				
+				1)  Please list the name and title of the person/people who will be responsible for scheduling training(s). 
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 11 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 11 ).id ).first.try( :content )	
+				
+				2)  Have the training times been predetermined by the external trainer?
+				%p
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 12 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 12 ).id ).first.try( :content ) == 'yes'
+					Yes
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 12 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 12 ).id ).first.try( :content ) == 'no'
+					No
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 12 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 12 ).id ).first.try( :content ) == 'dk'
+					Don't Know	
 
+				-# Asked for field below to only appear if 'yes' is selected
+				-# Also, if yes, should skip 3-7
+
+				3)  If so, when will the trainings occur? Answer below then skip questions 3-7.
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 13 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 13 ).id ).first.try( :content )	
+
+				4)  Will staff be trained outside of regularly scheduled meetings or training sessions?
+				%p
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 14 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 14 ).id ).first.try( :content ) == 'yes'
+					Yes
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 14 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 14 ).id ).first.try( :content ) == 'no'
+					No
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 14 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 14 ).id ).first.try( :content ) == 'dk'
+					Don't Know	
+
+				5)  When are most staff available to be trained? (i.e., mornings, evenings, weekends)
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 15 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 15 ).id ).first.try( :content )	
+				
+				6)  When will it be most cost-effective to hold trainings? (i.e., when staff will miss the least amount of client sessions)
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 16 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 16 ).id ).first.try( :content )	
+				
+				7)  Will staff need to have their client sessions covered in order to attend training?
+				%p
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 17 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 17 ).id ).first.try( :content ) == 'yes'
+					Yes
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 17 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 17 ).id ).first.try( :content ) == 'no'
+					No
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 17 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 17 ).id ).first.try( :content ) == 'dk'
+					Don't Know	
+				
+				-# Requested below to disappear if answered no
+				
+				8)  If so, who will cover client sessions for the staff being trained?
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 18 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 18 ).id ).first.try( :content )	
 
 				= submit_tag 'Save', class: 'btn btn-primary'
