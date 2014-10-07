@@ -19,3 +19,21 @@
 //= require_tree ./app
 //= require_self
 
+$( document ).ready(function() {
+
+	// $('#question_answers_106__Outside_of_the_agency').hover(function(){
+	// 	$(this).attr("title", "Fill out External Training Section, skip Internal")
+	// });
+
+	// $('#question_answers_106__Inside_the_agency').hover(function(){
+	// 	$(this).attr("title", "Fill out Internal Training Section, skip External")
+	// });
+
+	// $('#question_answers_106__Inside_the_agency').tooltip({
+	// });
+
+	// $('#question_answers_106__Outside_of_the_agency').tooltip({
+	// });
+
+
+});

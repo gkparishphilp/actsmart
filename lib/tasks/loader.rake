@@ -427,8 +427,27 @@ namespace :activities do
 		q = act.questions.create seq: 40, name: 'training_changes', section: 'sustained_use'
 		q = act.questions.create seq: 41, name: 'new_staff_training_strategy', section: 'sustained_use'
 
+		q = act.questions.create seq: 42, name: 'internal_training_staff', question_type: 'multi_select', section: 'internal_training'
+		[
+			"Direct Providers", "Support Staff", "Supervisors", "Agency Leaders"
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+
+		q = act.questions.create seq: 43, name: 'internal_training_staff_other', section: 'internal_training', required: false
+		q = act.questions.create seq: 44, name: 'internal_training_staff_listed', section: 'internal_training', required: false
+		q = act.questions.create seq: 45, name: 'internal_training_staff_count', section: 'internal_training'
+		i = 46
+		[
+			"Direct Providers", "Support Staff", "Supervisors", "Agency Leaders", "Outside Trainer"
+		].each do |q|
+			q = act.questions.create seq: i, content: q, section: 'internal_trainers'
+			puts q.content
+			i += 1
+		end
 
 
+		q = act.questions.create seq: 54, name: 'internal_trainers_other', section: 'internal_training', required: false
 
 
 

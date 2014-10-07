@@ -22,9 +22,11 @@
 				= hidden_field_tag :activity_id, @activity.id
 
 				%h4
-				1)	Will you be using a train-the-trainer model (e.g., one person or a small group of people receive training from an outside trainer and then they train the rest of the staff in their agency)? If yes, complete the External Training Plan only for staff who will be trained outside of the agency and the Internal Training Plan for staff who will be trained within the agency.
-
-				-#Add links for training plans
+				1)	Will you be using a train-the-trainer model (e.g., one person or a small group of people receive training from an outside trainer and then they train the rest of the staff in their agency)? If yes, complete the 
+				=link_to('External Training Plan','#external-training')
+				only for staff who will be trained outside of the agency and the
+				=link_to('Internal Training Plan','#internal-training')
+				for staff who will be trained within the agency.
 
 				%p
 					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 1 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).first.try( :content ) == 'yes'
@@ -37,14 +39,14 @@
 					Don't Know
 
 				2)	Where is training going to be delivered?
-				-#Add links for training plans
+				-#Add tooltips/popovers for training plans
 				%p 
 					- @activity.questions.find_by( seq: 2 ).prompts.each do |prompt|
 						.separator
-							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 2 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 2 ).id ).pluck( :content ).include?( prompt.content )
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 2 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 2 ).id ).pluck( :content ).include?( prompt.content ), 'data-toggle' => "popover"
 							= prompt.content
 				%hr
-					%h4.text-center
+					%h4.text-center#external-training
 						External Training Plan
 				%hr
 				%h4
@@ -327,9 +329,58 @@
 				%br
 
 				%hr
-					%h4.text-center
+					%h4.text-center#internal-training
 						Internal Training Plan
 				%hr
+				%h4
+					Staff Involved
+				%p
+					1)  What staff will be trained? (Select all that apply) 	 
+				%p
+					- @activity.questions.find_by( seq: 42 ).prompts.each do |prompt|
+						.separator
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 42 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 42 ).id ).pluck( :content ).include?( prompt.content )
+							= prompt.content
+					.separator
+						Other
+						= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 43 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 43 ).id ).first.try( :content )
+					.separator
+						= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 42 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 42 ).id ).pluck( :content ).include?( 'dk' )
+						No requirements specified
+
+				%p
+					2)  For agencies with less than 10 individuals being trained in each role, please list the name of staff who will be trained below:
+				.form-group.col-xs-8
+					= text_area_tag "question_answers[#{@activity.questions.find_by( seq: 44 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 44 ).id ).first.try( :content ), class: 'form-control'
+
+				%br
+				%br
+				%br
+				%br
+
+				3)	How many staff will be trained?
+				%p
+					= number_field_tag "question_answers[#{@activity.questions.find_by( seq: 45 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 45 ).id ).first.try( :content )
+
+				4)  Who will deliver training? List the name of each relevant trainer:
+				%p
+					- @activity.questions.where( section: 'internal_trainers').each do |q|
+						= q.content
+						.separator
+							= text_field_tag "question_answers[#{q.id}][]", @current_agency.responses.where( question_id: q.id ).last.content
+
+
+
+
+
+
+
+				%br
+				%br
+				%br
+				%br
+				%br
+				%br
 
 				= submit_tag 'Save', class: 'btn btn-primary'
 
