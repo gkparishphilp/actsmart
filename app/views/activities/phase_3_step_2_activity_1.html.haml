@@ -465,7 +465,7 @@
 
 				2)  Will staff be trained outside of regularly scheduled meetings or training sessions?
 				%p
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 61 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 66 ).id ).first.try( :content ) == 'yes'
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 66 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 66 ).id ).first.try( :content ) == 'yes'
 					Yes
 					%span{ style: 'margin: auto 0.5em;' }
 					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 66 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 66 ).id ).first.try( :content ) == 'no'
@@ -474,29 +474,120 @@
 					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 66 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 66 ).id ).first.try( :content ) == 'dk'
 					Don't Know
 
+				3)  When are most staff available to be trained? (i.e., mornings, evenings, weekends)
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 67 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 67 ).id ).first.try( :content )	
+
+				4)  When will it be most cost-effective to hold trainings? (i.e., when staff would miss the least amount of client sessions)
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 68 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 68 ).id ).first.try( :content )	
+				
+				5)  Will staff need to have their client sessions covered in order to attend training?
+				%p
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 69 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 69 ).id ).first.try( :content ) == 'yes'
+					Yes
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 69 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 69 ).id ).first.try( :content ) == 'no'
+					No
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 69 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 69 ).id ).first.try( :content ) == 'dk'
+					Don't Know
+				
+				6)  If so, who will cover client sessions for the staff being trained?
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 70 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 70 ).id ).first.try( :content )	
 
 
+				-# Fill in training session scheduling table here after guidance from Gk
 
+				-# 7) Please complete the following table.
+				
+				8)  Will make-up training sessions be offered for staff who aren’t able to attend the scheduled sessions?
+				%p
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 71 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 71 ).id ).first.try( :content ) == 'yes'
+					Yes
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 71 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 71 ).id ).first.try( :content ) == 'no'
+					No
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 71 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 71 ).id ).first.try( :content ) == 'dk'
+					Don't Know
+	
+				9)  When will make-up sessions be offered?
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 72 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 72 ).id ).first.try( :content )	
 
+				10)  Where will make-up sessions be offered?
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 73 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 73 ).id ).first.try( :content )	
+		
+				%h4
+					Maintenance of Training
+				%p
+					1)  Who will oversee the maintenance efforts? List the name of each person involved for relevant fields:
+				%p
+					- @activity.questions.where( section: 'internal_maintenance_efforts').order('name DESC').each do |q|
+						= q.content
+						.separator
+							= text_field_tag "question_answers[#{q.id}][]", @current_agency.responses.where( question_id: q.id ).last.try( :content )
+	
+				2)  What type of maintenance efforts will occur? (Select all that apply)
+				%p
+					- @activity.questions.find_by( seq: 81 ).prompts.each do |prompt|
+						.separator
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 81 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 81 ).id ).pluck( :content ).include?( prompt.content )
+							= prompt.content
+					.separator
+						Other
+						= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 82 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 82 ).id ).first.try( :content )
+					.separator
+						= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 81 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 81 ).id ).pluck( :content ).include?( 'dk' )
+						No requirements specified	
+	
+				3)  When will maintenance efforts begin?
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 83 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 83 ).id ).first.try( :content )	
+				
+				4)  How frequently will maintenance efforts occur? (Select all that apply)
+				%p 
+					- @activity.questions.find_by( seq: 84 ).prompts.each do |prompt|
+						.separator
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 84 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 84 ).id ).pluck( :content ).include?( prompt.content )
+							= prompt.content
+				5)  If regularly, please list frequency of maintenance efforts:
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 85 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 85 ).id ).first.try( :content )
 
+				%h4
+					Sustained Use
+				%p
+					1)  Will training in this new strategy/intervention be offered for new employees after the initial training?
+				%p
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 86 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 86 ).id ).first.try( :content ) == 'yes'
+					Yes
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 86 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 86 ).id ).first.try( :content ) == 'no'
+					No
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 86 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 86 ).id ).first.try( :content ) == 'dk'
+					Don't Know
 
+				2)  Will training of new staff differ from the initial training plan for current staff?
+				%p
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 87 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 87 ).id ).first.try( :content ) == 'yes'
+					Yes
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 87 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 87 ).id ).first.try( :content ) == 'no'
+					No
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 87 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 87 ).id ).first.try( :content ) == 'dk'
+					Don't Know
+				
+				%p
+					3)  If so, please describe the training plan for new staff.
+				.form-group.col-xs-8
+					= text_area_tag "question_answers[#{@activity.questions.find_by( seq: 88 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 88 ).id ).first.try( :content ), class: 'form-control'
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				%br
-				%br
 				%br
 				%br
 				%br

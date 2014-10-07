@@ -489,10 +489,46 @@ namespace :activities do
 
 		q = act.questions.create seq: 63, name: 'outside_prep_type_other', section: 'internal_training_prep', required: false
 		q = act.questions.create seq: 64, name: 'outside_prep_time', section: 'internal_training_prep', required: false
-		q = act.questions.create seq: 65, name: 'training_scheduler', section: 'internal_training_scheduling', required: false
-		q = act.questions.create seq: 66, name: 'training_outside', section: 'internal_training_scheduling', required: false
+		q = act.questions.create seq: 65, name: 'training_scheduler', section: 'internal_training_scheduling'
+		q = act.questions.create seq: 66, name: 'training_outside', section: 'internal_training_scheduling'
+		q = act.questions.create seq: 67, name: 'staff_availability', section: 'internal_training_scheduling'
+		q = act.questions.create seq: 68, name: 'internal_cost_effective_training_times', section: 'internal_training_scheduling'
+		q = act.questions.create seq: 69, name: 'internal_staff_clients_covered', section: 'internal_training_scheduling'
+		q = act.questions.create seq: 70, name: 'who_covers_staff', section: 'internal_training_scheduling', required: false
+		q = act.questions.create seq: 71, name: 'makeup_trainings', section: 'internal_training_scheduling'
+		q = act.questions.create seq: 72, name: 'makeup_training_times', section: 'internal_training_scheduling', required: false
+		q = act.questions.create seq: 73, name: 'makeup_training_locations', section: 'internal_training_scheduling', required: false
 
+		i = 74
+		[
+			"Direct Providers", "Support Staff", "Supervisors", "Agency Leaders", "Outside Trainer", "Clinical Directors", "Other"
+		].each do |q|
+			q = act.questions.create seq: i, content: q, section: 'internal_maintenance_efforts', required: false
+			puts q.content
+			i += 1
+		end
 
+		q = act.questions.create seq: 81, name: 'internal_maintenance_frequency', question_type: 'multi_select', section: 'internal_maintenance'
+		[
+			"Ongoing consultation", "Booster sessions", "Supervision upon request", "Submission of videos", "Submission of materials", "Regular supervision"	
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+
+		q = act.questions.create seq: 82, name: 'internal_maintenance_frequency_other', section: 'internal_maintenance', required: false
+		q = act.questions.create seq: 83, name: 'internal_maintenance_start', section: 'internal_maintenance'
+
+		q = act.questions.create seq: 84, name: 'internal_maintenance_frequency', question_type: 'multi_select', section: 'internal_maintenance'
+		[
+			"Upon request", "Intermittently", "Regularly"
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+
+		q = act.questions.create seq: 85, name: 'internal_maintenance_regularity', section: 'maintenance_of_training', required: false
+		q = act.questions.create seq: 86, name: 'internal_sustained_use', section: 'internal_sustained_training'
+		q = act.questions.create seq: 87, name: 'new_staff_training', section: 'internal_sustained_training', required: false
+		q = act.questions.create seq: 88, name: 'new_staff_training_desc', section: 'internal_sustained_training', required: false
 
 
 
