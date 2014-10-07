@@ -446,8 +446,54 @@ namespace :activities do
 			i += 1
 		end
 
+		q = act.questions.create seq: 51, name: 'internal_trainers_other', section: 'internal_training', required: false
 
-		q = act.questions.create seq: 54, name: 'internal_trainers_other', section: 'internal_training', required: false
+		q = act.questions.create seq: 52, name: 'internal_training_model', question_type: 'multi_select', section: 'internal_training_model'
+		[
+			"Didactics", "On-the-Job Training", "Workshop/Seminars", "Educational Brochure/Handout", "Online Training",		
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+
+		q = act.questions.create seq: 53, name: 'internal_training_model_other', section: 'internal_training_model', required: false
+
+		q = act.questions.create seq: 54, name: 'internal_training_strategy', question_type: 'multi_select', section: 'internal_training_model'
+		[
+			"Behavior rehearsal", "PowerPoint presentations", "Modeling", "Active participation", " Role playing", " Reading materials",
+			"Group practice activities", "Watching videos", "Individual practice activities", "Supervision", "Shadowing"			
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+
+		q = act.questions.create seq: 55, name: 'internal_training_strategy_other', section: 'internal_training_model', required: false
+
+		q = act.questions.create seq: 56, name: 'internal_training_materials', question_type: 'multi_select', section: 'internal_training_model'
+		[
+			"Manuals", "Toolkits", "Handouts/Brochures", "Guidelines", "Videos"			
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+
+		q = act.questions.create seq: 57, name: 'internal_training_materials_tech', section: 'internal_training_model', required: false
+		q = act.questions.create seq: 58, name: 'internal_training_materials_other', section: 'internal_training_model', required: false
+		q = act.questions.create seq: 59, name: 'obtaining_training_materials', section: 'internal_training_model'
+		q = act.questions.create seq: 60, name: 'developing_training', section: 'internal_training_model'
+		q = act.questions.create seq: 61, name: 'outside_preparation', section: 'internal_training_prep'
+
+		q = act.questions.create seq: 62, name: 'outside_prep_type', question_type: 'multi_select', section: 'internal_training_prep'
+		[
+			"Reading materials", "Practicing with clients", "Watching videos", "Online training or modules"			
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+
+		q = act.questions.create seq: 63, name: 'outside_prep_type_other', section: 'internal_training_prep', required: false
+		q = act.questions.create seq: 64, name: 'outside_prep_time', section: 'internal_training_prep', required: false
+		q = act.questions.create seq: 65, name: 'training_scheduler', section: 'internal_training_scheduling', required: false
+		q = act.questions.create seq: 66, name: 'training_outside', section: 'internal_training_scheduling', required: false
+
+
+
 
 
 

@@ -367,7 +367,127 @@
 					- @activity.questions.where( section: 'internal_trainers').each do |q|
 						= q.content
 						.separator
-							= text_field_tag "question_answers[#{q.id}][]", @current_agency.responses.where( question_id: q.id ).last.content
+							= text_field_tag "question_answers[#{q.id}][]", @current_agency.responses.where( question_id: q.id ).last.try( :content )
+					Other
+					.separator						
+						= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 51 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 51 ).id ).first.try( :content )
+
+				%h4
+					Training Model
+				%p
+					1)  What training model will be used? (Select all that apply)
+				%p
+					- @activity.questions.find_by( seq: 52 ).prompts.each do |prompt|
+						.separator
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 52 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 52 ).id ).pluck( :content ).include?( prompt.content )
+							= prompt.content
+					.separator
+						Other
+						= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 53 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 53 ).id ).first.try( :content )
+					.separator
+						= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 52 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 52 ).id ).pluck( :content ).include?( 'dk' )
+						No requirements specified
+
+				2)  What training strategies will be used during trainings? (Select all that apply)
+				%p
+					- @activity.questions.find_by( seq: 54 ).prompts.each do |prompt|
+						.separator
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 54 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 54 ).id ).pluck( :content ).include?( prompt.content )
+							= prompt.content
+					.separator
+						Other
+						= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 55 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 55 ).id ).first.try( :content )
+					.separator
+						= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 54 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 54 ).id ).pluck( :content ).include?( 'dk' )
+						No requirements specified
+
+				3)  What materials will be provided for staff during the training? (Select all that apply)
+				%p
+					- @activity.questions.find_by( seq: 56 ).prompts.each do |prompt|
+						.separator
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 56 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 56 ).id ).pluck( :content ).include?( prompt.content )
+							= prompt.content
+					.separator
+						Technology Devices
+						= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 57 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 57 ).id ).first.try( :content )
+					.separator
+						Other
+						= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 58 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 58 ).id ).first.try( :content )
+					.separator
+						= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 56 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 56 ).id ).pluck( :content ).include?( 'dk' )
+						No requirements specified		
+
+				4)  Who will be responsible for developing and/or obtaining training materials?
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 59 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 59 ).id ).first.try( :content )	
+
+				5)  When will materials be developed and/or obtained?
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 60 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 60 ).id ).first.try( :content )	
+				
+				%h4
+					Preparation
+				%p
+					1)  Will staff be required to prepare for training outside of the scheduled training sessions?  (i.e., reading materials or practicing with clients)
+				%p
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 61 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 61 ).id ).first.try( :content ) == 'yes'
+					Yes
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 61 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 61 ).id ).first.try( :content ) == 'no'
+					No
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 61 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 61 ).id ).first.try( :content ) == 'dk'
+					Don't Know
+				
+				2)  What type of preparation will staff do outside of the scheduled training sessions? (Select all that apply)
+				%p
+					- @activity.questions.find_by( seq: 62 ).prompts.each do |prompt|
+						.separator
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 62 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 62 ).id ).pluck( :content ).include?( prompt.content )
+							= prompt.content
+					.separator
+						Other
+						= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 63 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 63 ).id ).first.try( :content )
+					.separator
+						= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 62 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 62 ).id ).pluck( :content ).include?( 'dk' )
+						No requirements specified		
+				
+				3)  If staff will be required to prepare for training outside of the required training sessions, when will the preparation work occur?
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 64 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 64 ).id ).first.try( :content )	
+
+				%h4
+					Scheduling Training
+				%p
+					1)  Please list the name and title of the person/people who will be responsible for scheduling training(s). 
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 65 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 65 ).id ).first.try( :content )	
+
+				2)  Will staff be trained outside of regularly scheduled meetings or training sessions?
+				%p
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 61 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 66 ).id ).first.try( :content ) == 'yes'
+					Yes
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 66 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 66 ).id ).first.try( :content ) == 'no'
+					No
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 66 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 66 ).id ).first.try( :content ) == 'dk'
+					Don't Know
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
