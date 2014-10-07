@@ -159,4 +159,91 @@
 				%p
 					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 18 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 18 ).id ).first.try( :content )	
 
+				-# Fill in training session scheduling table here after guidance from Gk
+
+				-# 9) Please complete the following details for each training session that will occur. Use the information from question 4-6 to help schedule trainings. 
+
+				10)  Will make-up training sessions be offered for staff who aren’t able to attend the scheduled sessions?
+				%p
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 19 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 19 ).id ).first.try( :content ) == 'yes'
+					Yes
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 19 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 19 ).id ).first.try( :content ) == 'no'
+					No
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 19 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 19 ).id ).first.try( :content ) == 'dk'
+					Don't Know	
+
+				11)  If so, when will make-up sessions be offered?
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 20 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 20 ).id ).first.try( :content )	
+
+				12)  Where will make-up sessions be offered?
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 21 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 21 ).id ).first.try( :content )	
+			
+				%h4
+					Travel
+				%p
+					1)  Will staff be traveling for training? If not, please proceed to Maintenance of Training section.
+				
+				-# Requested if yes, display questions 2-8
+
+				%p
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 22 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 22 ).id ).first.try( :content ) == 'yes'
+					Yes
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 22 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 22 ).id ).first.try( :content ) == 'no'
+					No
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 22 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 22 ).id ).first.try( :content ) == 'dk'
+					Don't Know	
+
+				2)  Who will organize the travel plans?
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 23 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 23 ).id ).first.try( :content )	
+
+				3)  When will travel arrangements be made?
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 24 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 24 ).id ).first.try( :content )	
+
+				4)  What staff will be traveling for training? (Select all that apply)
+				-#Notes request field to fill in names of users if less than 10. Necessary?
+				%p
+					- @activity.questions.find_by( seq: 25 ).prompts.each do |prompt|
+						.separator
+							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 25 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 25 ).id ).pluck( :content ).include?( prompt.content )
+							= prompt.content
+					.separator
+						Other
+						= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 26 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 26 ).id ).first.try( :content )
+					.separator
+						= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 25 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 25 ).id ).pluck( :content ).include?( 'dk' )
+						No requirements specified
+				5)  How many staff will be traveling?
+				%p
+					= number_field_tag "question_answers[#{@activity.questions.find_by( seq: 27 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 27 ).id ).first.try( :content )
+
+				6)  Where will they travel to?
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 28 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 28 ).id ).first.try( :content )					
+
+				7)  What dates will staff be traveling?
+
+				Departing:
+				%p
+					= date_field_tag "question_answers[#{@activity.questions.find_by( seq: 29 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 29 ).id ).first.try( :content )		
+
+				Returing:
+				%p
+					= date_field_tag "question_answers[#{@activity.questions.find_by( seq: 30 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 30 ).id ).first.try( :content )		
+
+				8)  How will staff be traveling?
+				%p
+					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 31 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 31 ).id ).first.try( :content )		
+
+
+
+
 				= submit_tag 'Save', class: 'btn btn-primary'
+

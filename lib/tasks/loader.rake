@@ -352,13 +352,11 @@ namespace :activities do
 		].each do |prompt|
 			q.prompts.create content: prompt
 		end
+
 		q = act.questions.create seq: 4, name: 'what_staff_are_trained_other', section: 'external_training', required: false
-
-		q = act.questions.create seq: 5, name: 'how_many_staff_trained', section: 'external_training', required: false
-
-		q = act.questions.create seq: 6, name: 'who_will_train', section: 'external_training', required: false
-
-		q = act.questions.create seq: 7, name: 'outside_prep_required', section: 'external_training', required: false
+		q = act.questions.create seq: 5, name: 'how_many_staff_trained', section: 'external_training'
+		q = act.questions.create seq: 6, name: 'who_will_train', section: 'external_training'
+		q = act.questions.create seq: 7, name: 'outside_prep_required', section: 'external_training'
 
 		q = act.questions.create seq: 8, name: 'outside_training_options', question_type: 'multi_select', section: 'external_training'
 		[
@@ -367,17 +365,36 @@ namespace :activities do
 			q.prompts.create content: prompt
 		end
 
-		q = act.questions.create seq: 9, name: 'outside_training_options_other', section: 'external_training', required: false
-		q = act.questions.create seq: 10, name: 'training_time', section: 'external_training', required: false
-		q = act.questions.create seq: 11, name: 'who_trains', section: 'external_training', required: false
+		q = act.questions.create seq: 9, name: 'outside_training_options_other', section: 'external_training'
+		q = act.questions.create seq: 10, name: 'training_time', section: 'external_training'
+		q = act.questions.create seq: 11, name: 'who_trains', section: 'external_training'
 		q = act.questions.create seq: 12, name: 'training_scheduled', section: 'external_training'
-		q = act.questions.create seq: 13, name: 'training_scheduled_time', section: 'external_training', required: false
+		q = act.questions.create seq: 13, name: 'training_scheduled_time', section: 'external_training'
 		q = act.questions.create seq: 14, name: 'training_outside_scheduled', section: 'external_training'
-		q = act.questions.create seq: 15, name: 'staff_training_time', section: 'external_training', required: false
-		q = act.questions.create seq: 16, name: 'cost_effective_training_times', section: 'external_training', required: false
+		q = act.questions.create seq: 15, name: 'staff_training_time', section: 'external_training'
+		q = act.questions.create seq: 16, name: 'cost_effective_training_times', section: 'external_training'
 		q = act.questions.create seq: 17, name: 'cover_staff_for_training', section: 'external_training'
-		q = act.questions.create seq: 18, name: 'who_will_cover_staff', section: 'external_training', required: false
+		q = act.questions.create seq: 18, name: 'who_will_cover_staff', section: 'external_training'
+		q = act.questions.create seq: 19, name: 'makeup_sessions', section: 'external_training'
+		q = act.questions.create seq: 20, name: 'makeup_session_times', section: 'external_training'
+		q = act.questions.create seq: 21, name: 'makeup_session_location', section: 'external_training'
+		q = act.questions.create seq: 22, name: 'travel_for_training', section: 'external_training'
+		q = act.questions.create seq: 23, name: 'travel_organizer', section: 'external_training'
+		q = act.questions.create seq: 24, name: 'travel_arrangements', section: 'external_training'
 
+		q = act.questions.create seq: 25, name: 'what_staff_are_trained', question_type: 'multi_select', section: 'external_training'
+		[
+			"Direct Providers", "Support Staff", "Supervisors", "Agency Leaders"
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+
+		q = act.questions.create seq: 26, name: 'what_staff_are_traveling_other', section: 'external_training', required: false
+		q = act.questions.create seq: 27, name: 'how_many_traveling', section: 'external_training', required: false
+		q = act.questions.create seq: 28, name: 'traveling_to', section: 'external_training', required: false
+		q = act.questions.create seq: 29, name: 'departing', section: 'external_training', required: false
+		q = act.questions.create seq: 30, name: 'returning', section: 'external_training', required: false
+		q = act.questions.create seq: 31, name: 'traveling_via', section: 'external_training', required: false
 
 
 		# End of Activity 1
