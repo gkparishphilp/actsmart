@@ -35,11 +35,57 @@
 				= form_tag responses_path do
 					= hidden_field_tag :activity_id, @activity.id
 					- @activity.questions.find_by( seq: 1 ).prompts.each do |prompt|
-						.separator
-							%tr
-								%td
-									= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 1 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).pluck( :content ).include?( prompt.content )
-									= prompt.content
+						%tr
+							%td
+								= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 1 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).pluck( :content ).include?( prompt.content )
+								= prompt.content
+
+							- if prompt.id == 71
+								%td{:rowspan => "5"}									
+									- @activity.questions.find_by( seq: 3 ).prompts.each do |prompt|
+										= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 3 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 3 ).id ).pluck( :content ).include?( prompt.content )
+										= prompt.content
+										%br
+									%br
+									List concerns:
+									= text_area_tag "question_answers[#{@activity.questions.find_by( seq: 4 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 4 ).id ).first.try( :content )
+
+								%td{:rowspan => "5"}							
+									- @activity.questions.find_by( seq: 5 ).prompts.each do |prompt|
+
+										= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 5 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 5 ).id ).pluck( :content ).include?( prompt.content )
+										= prompt.content
+										%br
+									%br
+									If "Address concern" chosen, please list how:
+									= text_area_tag "question_answers[#{@activity.questions.find_by( seq: 6 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 6 ).id ).first.try( :content )
+
+								%td{:rowspan => "5"}							
+									= text_area_tag "question_answers[#{@activity.questions.find_by( seq: 7 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 7 ).id ).first.try( :content ), :rows => "10"
+
+								%td{:rowspan => "5"}							
+									- @activity.questions.find_by( seq: 8 ).prompts.each do |prompt|
+
+										= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 8 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 8 ).id ).pluck( :content ).include?( prompt.content )
+										= prompt.content
+										%br
+									%br
+									Other:
+									= text_area_tag "question_answers[#{@activity.questions.find_by( seq: 9 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 9 ).id ).first.try( :content )
+
+
+					%tr
+						%td
+							Other factors: 
+							%br
+							= text_area_tag "question_answers[#{@activity.questions.find_by( seq: 2 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 2 ).id ).first.try( :content )
+
+
+
+
+
+
+
 
 
 					= submit_tag 'Submit', class: 'btn btn-primary'

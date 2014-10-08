@@ -345,6 +345,47 @@ namespace :activities do
 
 		q = act.questions.create seq: 2, name: 'specified_reasons_for_adaptation_other', section: 'treatment_adaptation_plan', required: false
 
+		q = act.questions.create seq: 3, name: 'concerns_for_adaptation', question_type: 'multi_select', section: 'treatment_adaptation_plan'
+		[
+			"No concerns",
+			"Specific concerns"
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+
+		q = act.questions.create seq: 4, name: 'concerns_for_adaptation_other', section: 'treatment_adaptation_plan', required: false
+
+		q = act.questions.create seq: 5, name: 'addressing_concerns', question_type: 'multi_select', section: 'treatment_adaptation_plan'
+		[
+			"No concerns",
+			"Proceed with adaptation plan",
+			"Seek further consultation",
+			"Address concern"
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+
+		q = act.questions.create seq: 6, name: 'addressing_concerns_how', section: 'treatment_adaptation_plan', required: false
+		q = act.questions.create seq: 7, name: 'adaptation_specifics', section: 'treatment_adaptation_plan'
+
+		q = act.questions.create seq: 8, name: 'adaptation_implementer', question_type: 'multi_select', section: 'treatment_adaptation_plan'
+		[
+			"Treatment Developer",
+			"Researcher",
+			"Agency Leader",
+			"Supervisor",
+			"Direct Provider",
+			"Implementation Team"
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+
+		q = act.questions.create seq: 9, name: 'adaptation_implementer_other', section: 'treatment_adaptation_plan', required: false
+
+
+
+
+
 
 
 
