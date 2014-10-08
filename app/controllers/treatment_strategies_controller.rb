@@ -36,7 +36,7 @@ class TreatmentStrategiesController < ApplicationController
 	private
 
 		def treatment_strategies_params
-			params.require( :treatment_strategy ).permit( :name, :consideration, :selected, :specifics, :implementer )
+			params.require( :treatment_strategy ).permit( :name, :use_currently, :feasible, :previous_success, :recommended, :selected, :specifics, :implementer )
 		end
 
 end
