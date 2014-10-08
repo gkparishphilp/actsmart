@@ -32,25 +32,30 @@
 					%tr
 						%th{:colspan => "5"}
 							Build Agency Leader Characteristics to Support Innovation Acceptance and Use
+
 				= form_tag update_individual_treatment_strategies_path, :method => "put" do |f|	
 					= for treatment_strategies in @current_agency.treatment_strategies.order('created_at DESC')
 						=fields_for "treatment_strategies[]", treatment_strategies do |f|
 							%tr
 								%td
-									= f.text_field :name
+									= f.label treatment_strategies.name
 								%td
-									Use Currently
-									= f.check_box :use_currently
-									Feasible
-									= f.check_box :feasible
-									Previous success
-									= f.check_box :previous_success	
-									Recommended
-									= f.check_box :recommended
+									.custom-cell-left
+										= f.check_box :use_currently
+										Use Currently
+										%br
+										= f.check_box :previous_success	
+										Previous success
+									.custom-cell-right
+										= f.check_box :feasible
+										Feasible
+										%br
+										= f.check_box :recommended
+										Recommended
 								%td.text-center
 									= f.check_box :selected
 								%td
-									= f.text_field :specifics
+									= f.text_area :specifics
 								%td
 									= f.text_field :implementer
 

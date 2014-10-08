@@ -23,10 +23,17 @@ class Agency < ActiveRecord::Base
   	after_create :create_treatment_strategies
 
   	def create_treatment_strategies
-  		treatment_strategy = self.treatment_strategies.build(name: "test strategy")
-  		treatment_strategy.save
-  		treatment_strategy = self.treatment_strategies.build(name: "test strategy2")
-  		treatment_strategy.save
+  		[
+			"Develop agency leader characteristics supporting innovation and implementation", 
+			"Recruit, designate, and train leaders for the change effort", 
+			"Leaders mandate the use of the intervention strategies and packages", 
+			"Conduct local consensus discussions", 
+			"Involve existing governing structures in the implementation effort", 
+			"Identify and prepare agency champions"	
+		].each do |t|
+			treatment_strategy = self.treatment_strategies.build name: t
+			treatment_strategy.save
+		end
   	end
 
 	def activity_complete?( activity )
