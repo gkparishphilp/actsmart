@@ -1,24 +1,12 @@
 class TreatmentStrategiesController < ApplicationController
 
 	def create
-		@strategies = @current_agency.treatment_strategies
-		@strategy = @current_agency.treatment_strategies.create( treatment_strategies_params )
-		if @strategy.save
-			set_flash "Strategies updated"
-		else
-			set_flash "Strategies could not be updated", :error, @strategy
-		end
-		redirect_to :back
 	end
 
 	def destroy
-		@strategy = @current_agency.treatment_strategies.find( params[:id] )
-		@strategy.destroy
-		redirect_to :back
 	end
 
 	def edit_individual
-
 	end
 
 	def update_individual

@@ -73,3 +73,15 @@ ul.none {list-style-type: none;}
     display:inline-block;
     float: left;
 }
+
+.custom-width-header {
+    width: 354px;
+}
+
+.custom-width-header-1 {
+    width: 50px;
+}
+
+.custom-width-header-2 {
+    width: 200px;
+}

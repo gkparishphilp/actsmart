@@ -18,13 +18,13 @@
 				The focus of relationship-based strategies is to develop agency leader characteristics, staff buy-in, and partnerships that encourage and support the use of the selected practice or strategy. ADD LINK TO PHASE 3 STEP 3 ACT 1 DETAILED INSTRUCTIONS.
 			%table.table.table-bordered	
 				%thead
-					%th
+					%th.custom-width-header
 						Specific strategies
 					%th
 						Strategy considerations	
-					%th
+					%th.custom-width-header-1
 						Selected for use
-					%th
+					%th.custom-width-header-2
 						Specify how this strategy would be done?
 					%th
 						Who will carry out this plan?
@@ -33,8 +33,8 @@
 						%th{:colspan => "5"}
 							Build Agency Leader Characteristics to Support Innovation Acceptance and Use
 
-				= form_tag update_individual_treatment_strategies_path, :method => "put" do |f|	
-					= for treatment_strategies in @current_agency.treatment_strategies.order('created_at ASC')
+				= form_tag update_individual_treatment_strategies_path, :method => "put", :id => "myForm" do |f|	
+					- for treatment_strategies in @current_agency.treatment_strategies.order('created_at ASC')
 						=fields_for "treatment_strategies[]", treatment_strategies do |f|
 							- if treatment_strategies.id == 4
 								%tr
@@ -116,4 +116,9 @@
 								%td
 									= f.text_field :implementer
 
-					= submit_tag 'Save', class: 'btn btn-primary'
+					= submit_tag 'Save', class: 'btn btn-primary', style: "display:none;"
+
+			%p
+				.btn.btn-primary#myBtn
+					Save
+				-# Had to implement separately positioned button that triggers for submit via jquery because submit_tag was displaying at top of page
