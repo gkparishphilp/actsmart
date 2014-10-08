@@ -32,7 +32,7 @@
 				%th
 					Who will carry out the adaptation?
 			%tbody
-				= form_tag responses_path do
+				= form_tag responses_path, :id => "adaptationsForm" do
 					= hidden_field_tag :activity_id, @activity.id
 					- @activity.questions.find_by( seq: 1 ).prompts.each do |prompt|
 						%tr
@@ -80,12 +80,15 @@
 							%br
 							= text_area_tag "question_answers[#{@activity.questions.find_by( seq: 2 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 2 ).id ).first.try( :content )
 
+					= submit_tag 'Submit', class: 'btn btn-primary', style: "display:none;"
+
+		%p
+			.btn.btn-primary#adaptationsButton
+				Save
+			-# Had to implement separately positioned button that triggers for submit via jquery because submit_tag was displaying at top of page
 
 
 
 
 
 
-
-
-					= submit_tag 'Submit', class: 'btn btn-primary'

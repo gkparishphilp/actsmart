@@ -22,5 +22,6 @@
 $( document ).ready(function() {
 
   $('#myBtn').on('click', function() { $('#myForm').submit(); });
+  $('#adaptationsButton').on('click', function() { $('#adaptationsForm').submit(); });
 
 });
