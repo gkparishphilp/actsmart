@@ -28,6 +28,10 @@ Rails.application.routes.draw do
 		get :manage, on: :collection
 	end
 
+	resources :treatment_adaptations
+
+	resources :treatment_strategies
+	
 	resources :users
 
 	resources :user_events
