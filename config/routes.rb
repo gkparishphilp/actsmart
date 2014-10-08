@@ -51,6 +51,6 @@ Rails.application.routes.draw do
 
 	# quick catch-all route for static pages
 	get '/:id', controller: 'pages', action: :show
-	# get '/:action', controller: 'static'
-	
+	# get '/:action', controller: 'static'	
+
 end
