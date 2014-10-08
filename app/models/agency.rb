@@ -11,7 +11,8 @@ class Agency < ActiveRecord::Base
 	
 	has_many	:funding_sources
 	has_many	:treatment_strategies
-	
+	has_many	:treatment_adaptations
+
 	has_many	:messages
 	has_many	:respondings
 	has_many	:responses
@@ -21,6 +22,7 @@ class Agency < ActiveRecord::Base
 	has_many	:treatments
 
   	after_create :create_treatment_strategies
+  	after_create :create_treatment_adaptations
 
   	def create_treatment_strategies
   		[
@@ -77,6 +79,11 @@ class Agency < ActiveRecord::Base
 			treatment_strategy = self.treatment_strategies.build name: t
 			treatment_strategy.save
 		end
+  	end
+
+  	def create_treatment_adaptations
+		treatment_adaptation = self.treatment_adaptations.build name: 'First adaptation'
+		treatment_adaptation.save
   	end
 
 	def activity_complete?( activity )

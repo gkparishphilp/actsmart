@@ -333,6 +333,21 @@ namespace :activities do
 
 		act = step1.activities.create seq: 3, name: 'treatment_adaptation_plan'
 
+		q = act.questions.create seq: 1, name: 'specified_reasons_for_adaptation', question_type: 'multi_select', section: 'treatment_adaptation_plan'
+		[
+			"System-level factors (e.g., funding/resources, internal or contracted services, politics, policies)",
+			"Organization-level factors (e.g., training space and resources, session time, treatment duration, agency philosophy/fit)",
+			"Provider factors (e.g., education level, discipline, experience, receptivity to innovation, attitudes towards innovation)",
+			"Client characteristics (e.g., age, developmental age, ASD diagnosis, severity, culture, language, comorbid problems)"
+		].each do |prompt|
+			q.prompts.create content: prompt
+		end
+
+		q = act.questions.create seq: 2, name: 'specified_reasons_for_adaptation_other', section: 'treatment_adaptation_plan', required: false
+
+
+
+
 		step2 = p3.steps.create seq: 2
 
 		act = step2.activities.create seq: 1, name: 'training_plan'

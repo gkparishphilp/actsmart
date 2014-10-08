@@ -1,0 +1,2 @@
+module TreatmentAdaptationsHelper
+end

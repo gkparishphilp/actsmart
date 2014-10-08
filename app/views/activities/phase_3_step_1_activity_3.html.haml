@@ -9,12 +9,37 @@
 				%li
 					= link_to 'Step 1', phase_step_path( @phase, @step )
 				%li
-					Activity 3
+					Activity 3: Treatment Adaptations Table
 	.row
 		.col-sm-12
 			%h1
-				Activity 3:
+				Activity 3: Treatment Adaptations Table
 
 
 			%p
-				Todo
+				To review instructions, see
+				= link_to 'Phase 3 Step 1 guide', phase_step_path( @phase, @step )
+		%table.table.table-bordered	
+			%thead
+				%th
+					Specify reason(s) for the adaptation
+				%th
+					Identify any specific concerns about the adaptation
+				%th
+					How will concerns be addressed?
+				%th
+					Specify how the adaptation will be made
+				%th
+					Who will carry out the adaptation?
+			%tbody
+				= form_tag responses_path do
+					= hidden_field_tag :activity_id, @activity.id
+					- @activity.questions.find_by( seq: 1 ).prompts.each do |prompt|
+						.separator
+							%tr
+								%td
+									= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 1 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).pluck( :content ).include?( prompt.content )
+									= prompt.content
+
+
+					= submit_tag 'Submit', class: 'btn btn-primary'

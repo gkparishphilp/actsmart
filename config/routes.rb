@@ -10,6 +10,10 @@ Rails.application.routes.draw do
 		put :update_individual, on: :collection
 	end
 
+	resources :treatment_adaptations do
+		put :update_individual, on: :collection
+	end
+
 	resources :messages
 
 	resources :pages do
