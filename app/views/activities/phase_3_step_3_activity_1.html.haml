@@ -15,7 +15,7 @@
 			%h1
 				Activity 1: Relationship Based Strategies
 			%p
-				The focus of relationship-based strategies is to develop agency leader characteristics, staff buy-in, and partnerships that encourage and support the use of the selected practice or strategy. 
+				The focus of relationship-based strategies is to develop agency leader characteristics, staff buy-in, and partnerships that encourage and support the use of the selected practice or strategy. ADD LINK TO PHASE 3 STEP 3 ACT 1 DETAILED INSTRUCTIONS.
 			%table.table.table-bordered	
 				%thead
 					%th
@@ -34,11 +34,68 @@
 							Build Agency Leader Characteristics to Support Innovation Acceptance and Use
 
 				= form_tag update_individual_treatment_strategies_path, :method => "put" do |f|	
-					= for treatment_strategies in @current_agency.treatment_strategies.order('created_at DESC')
+					= for treatment_strategies in @current_agency.treatment_strategies.order('created_at ASC')
 						=fields_for "treatment_strategies[]", treatment_strategies do |f|
+							- if treatment_strategies.id == 4
+								%tr
+									%th{:colspan => "5"}
+										Build Buy-In Among Agency Staff and Clients	
+							- elsif treatment_strategies.id == 9
+								%tr
+									%th{:colspan => "5"}
+										Develop Relationships to Support the Implementation Process						
+							- elsif treatment_strategies.id == 13
+								%tr
+									%th.well{:colspan => "5"}
+										FINANCIAL STRATEGIES: These are financial strategies that help to incentivize the use of new practices or strategies and provide resources for training and ongoing support for clinical staff.	
+								%tr
+									%th{:colspan => "5"}
+										Modify Incentives
+							- elsif treatment_strategies.id == 17
+								%tr
+									%th{:colspan => "5"}
+										Facilitate Financial Support	
+							- elsif treatment_strategies.id == 21
+								%tr
+									%th.well{:colspan => "5"}
+										RESTRUCTURING STRATEGIES: These strategies include altering staffing, professional roles, the physical structure of the agency or service setting, intervention equipment, materials and resources, and data systems.
+								%tr
+									%th{:colspan => "5"}
+										Change Staffing or Professional Roles	
+							- elsif treatment_strategies.id == 23
+								%tr
+									%th{:colspan => "5"}
+										Change Physical Structure or Service Setting
+							- elsif treatment_strategies.id == 25
+								%tr
+									%th{:colspan => "5"}
+										Change or Update Data and Reminder Systems
+							- elsif treatment_strategies.id == 28
+								%tr
+									%th.well{:colspan => "5"}
+										IMPLEMENTATION TESTING STRATEGIES: These strategies focus on systems that rollout or scale up interventions within an agency.	
+							- elsif treatment_strategies.id == 31
+								%tr
+									%th.well{:colspan => "5"}
+										QUALITY MANAGEMENT STRATEGIES: These strategies involve developing support networks or data systems that act to continually evaluate and enhance client’s quality of care. These systems also ensure that new practices or strategies are delivered with fidelity. 	
+								%tr
+									%th{:colspan => "5"}
+										Performance and Fidelity Monitoring of Intervention (These strategies are considered to be both implementation strategies as well as sustainment strategies)
+							- elsif treatment_strategies.id == 38
+								%tr
+									%th{:colspan => "5"}
+										Evaluate the Implementation Effort
+							- elsif treatment_strategies.id == 38
+								%tr
+									%th{:colspan => "5"}
+										Evaluate the Implementation Effort	
+							- elsif treatment_strategies.id == 42
+								%tr
+									%th.well{:colspan => "5"}
+										SUSTAINMENT STRATEGIES: The focus of these strategies is facilitating the continued use of new practices or strategies. These are strategies that are distinctly different from implementation strategies. 	
 							%tr
 								%td
-									= f.label treatment_strategies.name
+									= treatment_strategies.name
 								%td
 									.custom-cell-left
 										= f.check_box :use_currently
