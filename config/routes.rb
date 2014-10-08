@@ -29,8 +29,6 @@ Rails.application.routes.draw do
 	end
 
 	resources :treatment_adaptations
-
-	resources :treatment_strategies
 	
 	resources :users
 
