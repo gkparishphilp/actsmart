@@ -10,6 +10,7 @@ class Agency < ActiveRecord::Base
 	has_many	:budget_items
 	
 	has_many	:funding_sources
+	has_many	:treatment_strategies
 	
 	has_many	:messages
 	has_many	:respondings
@@ -19,6 +20,14 @@ class Agency < ActiveRecord::Base
 
 	has_many	:treatments
 
+  	after_create :create_treatment_strategies
+
+  	def create_treatment_strategies
+  		treatment_strategy = self.treatment_strategies.build(name: "test strategy")
+  		treatment_strategy.save
+  		treatment_strategy = self.treatment_strategies.build(name: "test strategy2")
+  		treatment_strategy.save
+  	end
 
 	def activity_complete?( activity )
 		self.responses.where( activity_id: activity.id ).count >= activity.questions.where( required: true ).count

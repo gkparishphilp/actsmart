@@ -1,26 +1,42 @@
 class TreatmentStrategiesController < ApplicationController
 
 	def create
-		@strategy = @current_agency.treatment_strategies.new( treatment_strategies_params )
+		@strategies = @current_agency.treatment_strategies
+		@strategy = @current_agency.treatment_strategies.create( treatment_strategies_params )
 		if @strategy.save
-			set_flash "Strategy Added"
+			set_flash "Strategies updated"
 		else
-			set_flash "Strategy Could not be added", :error, @strategy
+			set_flash "Strategies could not be updated", :error, @strategy
 		end
 		redirect_to :back
 	end
 
 	def destroy
-		@strategy = @current_agency.treatment_strategiess.find( params[:id] )
+		@strategy = @current_agency.treatment_strategies.find( params[:id] )
 		@strategy.destroy
 		redirect_to :back
+	end
+
+	def edit_individual
+
+	end
+
+	def update_individual
+		@treatment_strategies = TreatmentStrategy.update(params[:treatment_strategies].keys, params[:treatment_strategies].values).reject { |p| p.errors.empty? }
+		if @treatment_strategies.empty?
+			set_flash "Strategies updated"
+			redirect_to :back
+		else
+			set_flash "Strategies could not be updated", :error
+			redirect_to :back
+		end
 	end
 
 	
 	private
 
 		def treatment_strategies_params
-			params.require( :treatment_strategies ).permit( :name, :consideration, :selected, :specifics, :implementer )
+			params.require( :treatment_strategy ).permit( :name, :consideration, :selected, :specifics, :implementer )
 		end
 
 end

@@ -31,9 +31,17 @@
 				%tbody
 					%tr
 						%th{:colspan => "5"}
-							Build Agency Leader Characteristics to Support Innovation Acceptance and Use	
+							Build Agency Leader Characteristics to Support Innovation Acceptance and Use
+				= form_tag update_individual_treatment_strategies_path, :method => "put" do |f|	
 					%tr
 						%td
+							= for treatment_strategies in @current_agency.treatment_strategies.order('created_at DESC')
+								=fields_for "treatment_strategies[]", treatment_strategies do |f|
+									%h2
+										= f.text_field :name
+							= submit_tag 'Save', class: 'btn btn-primary'	
+
+
 							Develop agency leader characteristics supporting innovation and implementation
 						%td
 							%p.custom-cell-left
@@ -47,3 +55,6 @@
 						%td
 						%td
 						%td
+					%tr
+						%td
+					

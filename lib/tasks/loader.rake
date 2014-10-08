@@ -558,12 +558,6 @@ namespace :activities do
 		act = step3.activities.create seq: 1, name: 'action_evaluation_3'
 
 
-
-
-
-
-
-
 		puts 'Pages'
 
 		p = Page.create title: 'about', content: <<-END

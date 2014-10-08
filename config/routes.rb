@@ -6,6 +6,10 @@ Rails.application.routes.draw do
 
 	resources :funding_sources
 
+	resources :treatment_strategies do
+		put :update_individual, on: :collection
+	end
+
 	resources :messages
 
 	resources :pages do
