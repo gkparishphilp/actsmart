@@ -35,8 +35,8 @@ $( document ).ready(function() {
 	$('form#myTreatmentsForm').trigger('submit.rails'); 
 	$('form#myTreatmentsForm').submit(function() { 
 		//window.scrollTo(0,0);
-		$('#flash').show().delay(2000).fadeOut('slow', function() { 
-            $("#flash").hide()
+		$('#customFlash').show().delay(2000).fadeOut('slow', function() { 
+            $("#customFlash").hide()
         }); 
 	});
 	$('[data-dismiss="alert"]').on('click', function() { $('#flash').hide(); });
