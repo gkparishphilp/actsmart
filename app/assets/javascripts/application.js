@@ -32,5 +32,15 @@ $( document ).ready(function() {
 		}
 	});
 
+	$('form#myTreatmentsForm').trigger('submit.rails'); 
+	$('form#myTreatmentsForm').submit(function() { 
+		//window.scrollTo(0,0);
+		$('#flash').show().delay(2000).fadeOut('slow', function() { 
+            $("#flash").hide()
+        }); 
+	});
+	$('[data-dismiss="alert"]').on('click', function() { $('#flash').hide(); });
+
+	$('.treatmentCheckbox').on('click', function() { $('#myTreatmentsForm').submit(); });
 	$('#noTrainingRequired').on('click', function() { $('.trainingReqForm').hide(); });
 });

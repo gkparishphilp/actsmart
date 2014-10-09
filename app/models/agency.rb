@@ -12,6 +12,7 @@ class Agency < ActiveRecord::Base
 	has_many	:funding_sources
 	has_many	:treatment_strategies
 	has_many	:treatment_adaptations
+	has_many	:agency_treatments
 
 	has_many	:messages
 	has_many	:respondings
@@ -23,6 +24,7 @@ class Agency < ActiveRecord::Base
 
   	after_create :create_treatment_strategies
   	after_create :create_treatment_adaptations
+  	after_create :create_agency_treatments
 
   	def create_treatment_strategies
   		[
@@ -85,6 +87,22 @@ class Agency < ActiveRecord::Base
 		treatment_adaptation = self.treatment_adaptations.build name: 'First adaptation'
 		treatment_adaptation.save
   	end
+
+  	def create_agency_treatments
+  		[
+  			"Behavioral",
+			"Mental health",
+			"Psychosocial",
+			"Substance abuse",
+			"Educational",
+			"Physical health",
+			"ASD Treatment"
+		].each do |t|
+			agency_treatment = self.agency_treatments.build name: t
+			agency_treatment.save
+		end
+  	end
+
 
 	def activity_complete?( activity )
 		self.responses.where( activity_id: activity.id ).count >= activity.questions.where( required: true ).count

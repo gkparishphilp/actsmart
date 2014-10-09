@@ -1,6 +1,11 @@
 .container
 	.row
 		.col-sm-12
+			.alert.alert-success#flash{:style => 'display:none'}
+				%span
+					%btn.close{"data-dismiss" => 'alert'}
+						&times;
+					Treatments updated
 			%ol.breadcrumb
 				%li
 					= link_to 'Dashboard', dashboard_index_path
@@ -102,10 +107,22 @@
 				Step 3:
 				%a{ href: phase_step_path( @phase, @phase.steps.third ) }
 					Make an adoption decision
-
-
 	.row
 		.col-sm-12
 			.well
-				%h5
-					Treatments Being Considered
+				%table.table.table-bordered
+					%thead
+						%th.custom-width-header-1
+							Treatment Being Considered
+						%th.custom-width-header-1
+							Selected for Adoption
+					%tbody
+						= form_tag update_individual_agency_treatments_path, :method => "put", :id => "myTreatmentsForm", :remote => true do |f|	
+							- for agency_treatments in @current_agency.agency_treatments.order('created_at ASC')
+								=fields_for "agency_treatments[]", agency_treatments do |f|
+									%tr
+										%td
+											= agency_treatments.name
+										%td
+											= f.check_box :selected, :class => "treatmentCheckbox"
+							= submit_tag 'Save', class: 'btn btn-primary', style: "display:none;"
