@@ -21,7 +21,16 @@
 
 $( document ).ready(function() {
 
-  $('#myBtn').on('click', function() { $('#myForm').submit(); });
-  $('#adaptationsButton').on('click', function() { $('#adaptationsForm').submit(); });
+	$('#myBtn').on('click', function() { $('#myForm').submit(); });
+	$('#adaptationsButton').on('click', function() { $('#adaptationsForm').submit(); });
+
+	$('[data-toggle="tooltip"]').tooltip({
+		tooltipClass:"ui-tooltip1",
+		position: {
+		    my: "center bottom-0",
+		    at: "center top"
+		}
+	});
+
 
 });
