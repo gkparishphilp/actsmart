@@ -26,276 +26,277 @@
 					Necessity for Training:
 				1)	Are there training requirements that must be met in order to deliver the treatment? 
 				%p
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 1 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).first.try( :content ) == 'yes'
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 1 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).first.try( :content ) == 'yes', :id => "trainingRequired"
 					Yes
 					%span{ style: 'margin: auto 0.5em;' }
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 1 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).first.try( :content ) == 'no'
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 1 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).first.try( :content ) == 'no', :id => "noTrainingRequired"
 					No
 					%span{ style: 'margin: auto 0.5em;' }
 					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 1 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).first.try( :content ) == 'dk'
 					Don't Know
+					-# jQuery hides rest of form if 'No' is selected
+				- if @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).first.try( :content ) != 'no'
+					.trainingReqForm
+						%h4
+							Staff Involved:
+						1)	What staff are required to receive training? (Select all that apply)
+						%p
+							- @activity.questions.find_by( seq: 2 ).prompts.each do |prompt|
+								.separator
+									= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 2 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 2 ).id ).pluck( :content ).include?( prompt.content )
+									= prompt.content
+							.separator
+								Other
+								= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 3 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 3 ).id ).first.try( :content )
+							.separator
+								= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 2 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 2 ).id ).pluck( :content ).include?( 'dk' )
+								No requirements specified
+
+						2)	Who is required to deliver training? (Select all that apply)
+						%p
+							- @activity.questions.find_by( seq: 4 ).prompts.each do |prompt|
+								.separator
+									= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 4 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 4 ).id ).pluck( :content ).include?( prompt.content )
+									= prompt.content
+							.separator
+								Other
+								= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 5 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 5 ).id ).first.try( :content )
+							.separator
+								= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 4 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 4 ).id ).pluck( :content ).include?( 'dk' )
+								No requirements specified
+
+						%h4
+							Training Model:
+						1)	Is there a specific training model required? (Select all that apply)
+						%p
+							- @activity.questions.find_by( seq: 6 ).prompts.each do |prompt|
+								.separator
+									= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 6 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 6 ).id ).pluck( :content ).include?( prompt.content )
+									= prompt.content
+							.separator
+								Other
+								= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 7 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 7 ).id ).first.try( :content )
+							.separator
+								= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 6 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 6 ).id ).pluck( :content ).include?( 'dk' )
+								No requirements specified
+
+						2)	Are there training strategies that are required to be used during trainings? (Select all that apply)
+						%p
+							- @activity.questions.find_by( seq: 8 ).prompts.each do |prompt|
+								.separator
+									= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 8 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 8 ).id ).pluck( :content ).include?( prompt.content )
+									= prompt.content
+							.separator
+								Other
+								= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 9 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 9 ).id ).first.try( :content )
+							.separator
+								= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 8 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 8 ).id ).pluck( :content ).include?( 'dk' )
+								No requirements specified
+
+						3)	Are there specific materials that are required for training? (Select all that apply)
+						%p
+							- @activity.questions.find_by( seq: 10 ).prompts.each do |prompt|
+								.separator
+									= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 10 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 10 ).id ).pluck( :content ).include?( prompt.content )
+									= prompt.content
+							.separator
+								Other
+								= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 11 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 11 ).id ).first.try( :content )
+							.separator
+								= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 10 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 10 ).id ).pluck( :content ).include?( 'dk' )
+								No requirements specified
+
+						%h4
+							Outside Training:
+						1)	Are staff who will be trained required to receive training outside of the agency?
+						%p
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 12 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 12 ).id ).first.try( :content ) == 'yes'
+							Yes
+							%span{ style: 'margin: auto 0.5em;' }
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 12 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 12 ).id ).first.try( :content ) == 'no'
+							No
+							%span{ style: 'margin: auto 0.5em;' }
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 12 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 12 ).id ).first.try( :content ) == 'dk'
+							Don't Know
+
+						2)	Which staff are required to receive training outside of the agency? (Select all that apply)
+						%p
+							- @activity.questions.find_by( seq: 13 ).prompts.each do |prompt|
+								.separator
+									= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 13 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 13 ).id ).pluck( :content ).include?( prompt.content )
+									= prompt.content
+							.separator
+								Other
+								= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 14 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 14 ).id ).first.try( :content )
+							.separator
+								= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 13 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 13 ).id ).pluck( :content ).include?( 'dk' )
+								No requirements specified
+
+						%h4
+							Duration of Training
+						1)	Is there a certain number of training hours required?
+						%p
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 15 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 15 ).id ).first.try( :content ) == 'yes'
+							Yes
+							%span{ style: 'margin: auto 0.5em;' }
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 15 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 15 ).id ).first.try( :content ) == 'no'
+							No
+							%span{ style: 'margin: auto 0.5em;' }
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 15 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 15 ).id ).first.try( :content ) == 'dk'
+							Don't Know
+
+						2)	If so, please list the number of training hours required.
+						%p
+							= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 16 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 16 ).id ).first.try( :content )
 
 
-				%h4
-					Staff Involved:
-				1)	What staff are required to receive training? (Select all that apply)
-				%p
-					- @activity.questions.find_by( seq: 2 ).prompts.each do |prompt|
-						.separator
-							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 2 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 2 ).id ).pluck( :content ).include?( prompt.content )
-							= prompt.content
-					.separator
-						Other
-						= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 3 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 3 ).id ).first.try( :content )
-					.separator
-						= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 2 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 2 ).id ).pluck( :content ).include?( 'dk' )
-						No requirements specified
+						%h4
+							Travel
+						1)	Is travel required for training?
+						%p
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 17 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 17 ).id ).first.try( :content ) == 'yes'
+							Yes
+							%span{ style: 'margin: auto 0.5em;' }
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 17 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 17 ).id ).first.try( :content ) == 'no'
+							No
+							%span{ style: 'margin: auto 0.5em;' }
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 17 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 17 ).id ).first.try( :content ) == 'dk'
+							Don't Know
+						2)	Which staff are required to travel for training?
+						%p
+							- @activity.questions.find_by( seq: 18 ).prompts.each do |prompt|
+								.separator
+									= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 18 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 18 ).id ).pluck( :content ).include?( prompt.content )
+									= prompt.content
+							.separator
+								Other
+								= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 19 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 19 ).id ).first.try( :content )
+							.separator
+								= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 18 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 18 ).id ).pluck( :content ).include?( 'dk' )
+								No requirements specified
+						3)	Where are staff required to travel to, if known?
+						%p
+							= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 20 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 20 ).id ).first.try( :content )
 
-				2)	Who is required to deliver training? (Select all that apply)
-				%p
-					- @activity.questions.find_by( seq: 4 ).prompts.each do |prompt|
-						.separator
-							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 4 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 4 ).id ).pluck( :content ).include?( prompt.content )
-							= prompt.content
-					.separator
-						Other
-						= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 5 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 5 ).id ).first.try( :content )
-					.separator
-						= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 4 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 4 ).id ).pluck( :content ).include?( 'dk' )
-						No requirements specified
+						%h4
+							Maintenance
+						1)	Are efforts required to maintain the skills learned in training?
+						%p
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 21 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 21 ).id ).first.try( :content ) == 'yes'
+							Yes
+							%span{ style: 'margin: auto 0.5em;' }
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 21 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 21 ).id ).first.try( :content ) == 'no'
+							No
+							%span{ style: 'margin: auto 0.5em;' }
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 21 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 21 ).id ).first.try( :content ) == 'dk'
+							Don't Know
+						2)	Who is required to oversee maintenance efforts? (Select all that apply)
+						%p
+							- @activity.questions.find_by( seq: 22 ).prompts.each do |prompt|
+								.separator
+									= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 22 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 22 ).id ).pluck( :content ).include?( prompt.content )
+									= prompt.content
+							.separator
+								Other
+								= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 23 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 23 ).id ).first.try( :content )
+							.separator
+								= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 22 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 22 ).id ).pluck( :content ).include?( 'dk' )
+								No requirements specified
+						3)	Are any of the following ongoing training components required? (Select all that apply)
+						%p
+							- @activity.questions.find_by( seq: 24 ).prompts.each do |prompt|
+								.separator
+									= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 24 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 24 ).id ).pluck( :content ).include?( prompt.content )
+									= prompt.content
+							.separator
+								Other
+								= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 25 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 25 ).id ).first.try( :content )
+							.separator
+								= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 24 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 24 ).id ).pluck( :content ).include?( 'dk' )
+								No requirements specified
 
-				%h4
-					Training Model:
-				1)	Is there a specific training model required? (Select all that apply)
-				%p
-					- @activity.questions.find_by( seq: 6 ).prompts.each do |prompt|
-						.separator
-							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 6 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 6 ).id ).pluck( :content ).include?( prompt.content )
-							= prompt.content
-					.separator
-						Other
-						= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 7 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 7 ).id ).first.try( :content )
-					.separator
-						= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 6 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 6 ).id ).pluck( :content ).include?( 'dk' )
-						No requirements specified
+						%h4
+							Provider Credentials
+						1)	Is there a certificate that is specific to this treatment that is required to deliver the treatment?
+						%p
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 26 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 26 ).id ).first.try( :content ) == 'yes'
+							Yes
+							%span{ style: 'margin: auto 0.5em;' }
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 26 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 26 ).id ).first.try( :content ) == 'no'
+							No
+							%span{ style: 'margin: auto 0.5em;' }
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 26 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 26 ).id ).first.try( :content ) == 'dk'
+							Don't Know
+						2)	If so, what treatment-specific certificate is required?
+						%p
+							= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 27 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 27 ).id ).first.try( :content )
+						3)	Is there a general certification (i.e., BCBA) that staff are required to have to deliver this treatment?
+						%p
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 28 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 28 ).id ).first.try( :content ) == 'yes'
+							Yes
+							%span{ style: 'margin: auto 0.5em;' }
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 28 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 28 ).id ).first.try( :content ) == 'no'
+							No
+							%span{ style: 'margin: auto 0.5em;' }
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 28 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 28 ).id ).first.try( :content ) == 'dk'
+							Don't Know
+						4)	If so, what certificate is required?
+						%p
+							= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 29 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 29 ).id ).first.try( :content )
 
-				2)	Are there training strategies that are required to be used during trainings? (Select all that apply)
-				%p
-					- @activity.questions.find_by( seq: 8 ).prompts.each do |prompt|
-						.separator
-							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 8 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 8 ).id ).pluck( :content ).include?( prompt.content )
-							= prompt.content
-					.separator
-						Other
-						= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 9 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 9 ).id ).first.try( :content )
-					.separator
-						= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 8 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 8 ).id ).pluck( :content ).include?( 'dk' )
-						No requirements specified
+						5)	What degree are staff required to have to receive training or certification in this treatment?
+						%p
+							- @activity.questions.find_by( seq: 30 ).prompts.each do |prompt|
+								.separator
+									= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 30 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 30 ).id ).pluck( :content ).include?( prompt.content )
+									= prompt.content
+							.separator
+								Other
+								= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 31 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 31 ).id ).first.try( :content )
+							.separator
+								= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 30 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 30 ).id ).pluck( :content ).include?( 'dk' )
+								No requirements specified
+						6)	What discipline/educational background are required of staff to deliver this treatment?
+						%p
+							- @activity.questions.find_by( seq: 32 ).prompts.each do |prompt|
+								.separator
+									= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 32 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 32 ).id ).pluck( :content ).include?( prompt.content )
+									= prompt.content
+							.separator
+								Other
+								= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 33 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 33 ).id ).first.try( :content )
+							.separator
+								= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 32 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 32 ).id ).pluck( :content ).include?( 'dk' )
+								No requirements specified
+						7)	Are staff required to have a specific number of years of experience in the field?
+						%p
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 34 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 34 ).id ).first.try( :content ) == 'yes'
+							Yes
+							%span{ style: 'margin: auto 0.5em;' }
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 34 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 34 ).id ).first.try( :content ) == 'no'
+							No
+							%span{ style: 'margin: auto 0.5em;' }
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 34 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 34 ).id ).first.try( :content ) == 'dk'
+							Don't Know
+						8)	If so, please list the number of years of experience required.
+						%p
+							= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 35 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 35 ).id ).first.try( :content )
 
-				3)	Are there specific materials that are required for training? (Select all that apply)
-				%p
-					- @activity.questions.find_by( seq: 10 ).prompts.each do |prompt|
-						.separator
-							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 10 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 10 ).id ).pluck( :content ).include?( prompt.content )
-							= prompt.content
-					.separator
-						Other
-						= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 11 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 11 ).id ).first.try( :content )
-					.separator
-						= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 10 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 10 ).id ).pluck( :content ).include?( 'dk' )
-						No requirements specified
-
-				%h4
-					Outside Training:
-				1)	Are staff who will be trained required to receive training outside of the agency?
-				%p
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 12 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 12 ).id ).first.try( :content ) == 'yes'
-					Yes
-					%span{ style: 'margin: auto 0.5em;' }
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 12 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 12 ).id ).first.try( :content ) == 'no'
-					No
-					%span{ style: 'margin: auto 0.5em;' }
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 12 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 12 ).id ).first.try( :content ) == 'dk'
-					Don't Know
-
-				2)	Which staff are required to receive training outside of the agency? (Select all that apply)
-				%p
-					- @activity.questions.find_by( seq: 13 ).prompts.each do |prompt|
-						.separator
-							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 13 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 13 ).id ).pluck( :content ).include?( prompt.content )
-							= prompt.content
-					.separator
-						Other
-						= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 14 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 14 ).id ).first.try( :content )
-					.separator
-						= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 13 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 13 ).id ).pluck( :content ).include?( 'dk' )
-						No requirements specified
-
-				%h4
-					Duration of Training
-				1)	Is there a certain number of training hours required?
-				%p
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 15 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 15 ).id ).first.try( :content ) == 'yes'
-					Yes
-					%span{ style: 'margin: auto 0.5em;' }
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 15 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 15 ).id ).first.try( :content ) == 'no'
-					No
-					%span{ style: 'margin: auto 0.5em;' }
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 15 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 15 ).id ).first.try( :content ) == 'dk'
-					Don't Know
-
-				2)	If so, please list the number of training hours required.
-				%p
-					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 16 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 16 ).id ).first.try( :content )
-
-
-				%h4
-					Travel
-				1)	Is travel required for training?
-				%p
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 17 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 17 ).id ).first.try( :content ) == 'yes'
-					Yes
-					%span{ style: 'margin: auto 0.5em;' }
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 17 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 17 ).id ).first.try( :content ) == 'no'
-					No
-					%span{ style: 'margin: auto 0.5em;' }
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 17 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 17 ).id ).first.try( :content ) == 'dk'
-					Don't Know
-				2)	Which staff are required to travel for training?
-				%p
-					- @activity.questions.find_by( seq: 18 ).prompts.each do |prompt|
-						.separator
-							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 18 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 18 ).id ).pluck( :content ).include?( prompt.content )
-							= prompt.content
-					.separator
-						Other
-						= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 19 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 19 ).id ).first.try( :content )
-					.separator
-						= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 18 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 18 ).id ).pluck( :content ).include?( 'dk' )
-						No requirements specified
-				3)	Where are staff required to travel to, if known?
-				%p
-					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 20 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 20 ).id ).first.try( :content )
-
-				%h4
-					Maintenance
-				1)	Are efforts required to maintain the skills learned in training?
-				%p
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 21 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 21 ).id ).first.try( :content ) == 'yes'
-					Yes
-					%span{ style: 'margin: auto 0.5em;' }
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 21 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 21 ).id ).first.try( :content ) == 'no'
-					No
-					%span{ style: 'margin: auto 0.5em;' }
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 21 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 21 ).id ).first.try( :content ) == 'dk'
-					Don't Know
-				2)	Who is required to oversee maintenance efforts? (Select all that apply)
-				%p
-					- @activity.questions.find_by( seq: 22 ).prompts.each do |prompt|
-						.separator
-							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 22 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 22 ).id ).pluck( :content ).include?( prompt.content )
-							= prompt.content
-					.separator
-						Other
-						= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 23 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 23 ).id ).first.try( :content )
-					.separator
-						= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 22 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 22 ).id ).pluck( :content ).include?( 'dk' )
-						No requirements specified
-				3)	Are any of the following ongoing training components required? (Select all that apply)
-				%p
-					- @activity.questions.find_by( seq: 24 ).prompts.each do |prompt|
-						.separator
-							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 24 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 24 ).id ).pluck( :content ).include?( prompt.content )
-							= prompt.content
-					.separator
-						Other
-						= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 25 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 25 ).id ).first.try( :content )
-					.separator
-						= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 24 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 24 ).id ).pluck( :content ).include?( 'dk' )
-						No requirements specified
-
-				%h4
-					Provider Credentials
-				1)	Is there a certificate that is specific to this treatment that is required to deliver the treatment?
-				%p
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 26 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 26 ).id ).first.try( :content ) == 'yes'
-					Yes
-					%span{ style: 'margin: auto 0.5em;' }
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 26 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 26 ).id ).first.try( :content ) == 'no'
-					No
-					%span{ style: 'margin: auto 0.5em;' }
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 26 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 26 ).id ).first.try( :content ) == 'dk'
-					Don't Know
-				2)	If so, what treatment-specific certificate is required?
-				%p
-					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 27 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 27 ).id ).first.try( :content )
-				3)	Is there a general certification (i.e., BCBA) that staff are required to have to deliver this treatment?
-				%p
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 28 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 28 ).id ).first.try( :content ) == 'yes'
-					Yes
-					%span{ style: 'margin: auto 0.5em;' }
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 28 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 28 ).id ).first.try( :content ) == 'no'
-					No
-					%span{ style: 'margin: auto 0.5em;' }
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 28 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 28 ).id ).first.try( :content ) == 'dk'
-					Don't Know
-				4)	If so, what certificate is required?
-				%p
-					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 29 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 29 ).id ).first.try( :content )
-
-				5)	What degree are staff required to have to receive training or certification in this treatment?
-				%p
-					- @activity.questions.find_by( seq: 30 ).prompts.each do |prompt|
-						.separator
-							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 30 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 30 ).id ).pluck( :content ).include?( prompt.content )
-							= prompt.content
-					.separator
-						Other
-						= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 31 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 31 ).id ).first.try( :content )
-					.separator
-						= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 30 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 30 ).id ).pluck( :content ).include?( 'dk' )
-						No requirements specified
-				6)	What discipline/educational background are required of staff to deliver this treatment?
-				%p
-					- @activity.questions.find_by( seq: 32 ).prompts.each do |prompt|
-						.separator
-							= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 32 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 32 ).id ).pluck( :content ).include?( prompt.content )
-							= prompt.content
-					.separator
-						Other
-						= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 33 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 33 ).id ).first.try( :content )
-					.separator
-						= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 32 ).id}][]", 'dk', @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 32 ).id ).pluck( :content ).include?( 'dk' )
-						No requirements specified
-				7)	Are staff required to have a specific number of years of experience in the field?
-				%p
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 34 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 34 ).id ).first.try( :content ) == 'yes'
-					Yes
-					%span{ style: 'margin: auto 0.5em;' }
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 34 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 34 ).id ).first.try( :content ) == 'no'
-					No
-					%span{ style: 'margin: auto 0.5em;' }
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 34 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 34 ).id ).first.try( :content ) == 'dk'
-					Don't Know
-				8)	If so, please list the number of years of experience required.
-				%p
-					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 35 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 35 ).id ).first.try( :content )
-
-				%h4
-					Additional Requirements
-				1)	Are there additional training requirements for the treatment that were not listed here?
-				%p
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 36 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 36 ).id ).first.try( :content ) == 'yes'
-					Yes
-					%span{ style: 'margin: auto 0.5em;' }
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 36 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 36 ).id ).first.try( :content ) == 'no'
-					No
-					%span{ style: 'margin: auto 0.5em;' }
-					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 36 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 36 ).id ).first.try( :content ) == 'dk'
-					Don't Know
-				2)	If so, list the additional training requirements.
-				%p
-					= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 37 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 37 ).id ).first.try( :content )
+						%h4
+							Additional Requirements
+						1)	Are there additional training requirements for the treatment that were not listed here?
+						%p
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 36 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 36 ).id ).first.try( :content ) == 'yes'
+							Yes
+							%span{ style: 'margin: auto 0.5em;' }
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 36 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 36 ).id ).first.try( :content ) == 'no'
+							No
+							%span{ style: 'margin: auto 0.5em;' }
+							= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 36 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 36 ).id ).first.try( :content ) == 'dk'
+							Don't Know
+						2)	If so, list the additional training requirements.
+						%p
+							= text_field_tag "question_answers[#{@activity.questions.find_by( seq: 37 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 37 ).id ).first.try( :content )
 
 
 				= submit_tag 'Submit', class: 'btn btn-primary'

@@ -32,5 +32,5 @@ $( document ).ready(function() {
 		}
 	});
 
-
+	$('#noTrainingRequired').on('click', function() { $('.trainingReqForm').hide(); });
 });
