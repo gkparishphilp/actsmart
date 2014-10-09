@@ -80,7 +80,15 @@
 							%br
 							= text_area_tag "question_answers[#{@activity.questions.find_by( seq: 2 ).id}]", @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 2 ).id ).first.try( :content )
 
+					%tr
+						%td{ :colspan => '5' }
+							- @activity.questions.find_by( seq: 10 ).prompts.each do |prompt|
+
+								= check_box_tag "question_answers[#{@activity.questions.find_by( seq: 10 ).id}][]", prompt.content, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 10 ).id ).pluck( :content ).include?( prompt.content )
+								= prompt.content
+
 					= submit_tag 'Submit', class: 'btn btn-primary', style: "display:none;"
+
 
 		%p
 			.btn.btn-primary#adaptationsButton

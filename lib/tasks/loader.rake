@@ -381,7 +381,8 @@ namespace :activities do
 		end
 
 		q = act.questions.create seq: 9, name: 'adaptation_implementer_other', section: 'treatment_adaptation_plan', required: false
-
+		q = act.questions.create seq: 10, name: 'no_longer_implementing', section: 'treatment_adaptation_plan', required: false
+		q.prompts.create content: 'No longer planning to conduct this adaptation'
 
 
 
