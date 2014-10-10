@@ -103,3 +103,7 @@ ul.none {list-style-type: none;}
     -moz-box-shadow:0 0 10px #000;
     -webkit-box-shadow:0 0 10px #000;
 }
+
+.navbar-brand.brand {
+    padding-top: 11px;
+}
