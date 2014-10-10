@@ -31,6 +31,12 @@ gem 'pry-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 
+# Adding bootstrap via gems to get modals working
+
+gem 'less-rails-bootstrap'
+gem 'therubyracer'
+gem 'twitter-bootstrap-rails'
+
 # for Heroku?
 gem 'rails_12factor', group: :production
 
