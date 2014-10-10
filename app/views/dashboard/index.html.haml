@@ -3,7 +3,7 @@
 		.col-sm-12
 			%h1
 				Welcome
-				= current_user.try( :name )
+				= current_user.try( :name ).titleize
 	.row
 		.col-sm-3.col-sm-offset-3
 			.well{ style: 'text-align:center;' }

@@ -43,4 +43,11 @@ $( document ).ready(function() {
 
 	$('.treatmentCheckbox').on('click', function() { $('#myTreatmentsForm').submit(); });
 	$('#noTrainingRequired').on('click', function() { $('.trainingReqForm').hide(); });
+
+	$('#addUserBtn').on('click', function() {
+		console.log('test');
+		$('#new_user').modal('toggle');
+    }); 
+
+
 });
