@@ -3,9 +3,9 @@
 		.col-sm-12
 			.alert.alert-success#customFlash{:style => 'display:none'}
 				%span
-					%btn.close{"data-dismiss" => 'alert'}
-						&times;
 					Treatments updated
+					%btn.close#closeFlash
+						&times;
 			%ol.breadcrumb
 				%li
 					= link_to 'Dashboard', dashboard_index_path
