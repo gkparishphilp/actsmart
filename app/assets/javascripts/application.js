@@ -39,7 +39,7 @@ $( document ).ready(function() {
             $("#customFlash").hide()
         }); 
 	});
-	$('[data-dismiss="alert"]').on('click', function() { $('#flash').hide(); });
+	$('[data-dismiss="alert"]').on('click', function() { $('#customFlash').hide(); });
 
 	$('.treatmentCheckbox').on('click', function() { $('#myTreatmentsForm').submit(); });
 	$('#noTrainingRequired').on('click', function() { $('.trainingReqForm').hide(); });

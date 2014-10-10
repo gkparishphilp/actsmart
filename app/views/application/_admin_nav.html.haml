@@ -24,7 +24,7 @@
 						%li
 							%a{ href: dashboard_index_path, style: 'text-decoration:none;' }
 								Hi
-								= current_user
+								= current_user.name.titleize
 						%li
 							%a{ href: '/logout' }
 								Logout

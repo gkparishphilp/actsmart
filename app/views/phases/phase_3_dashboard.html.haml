@@ -110,4 +110,6 @@
 		.col-sm-12
 			.well
 				%h5
-					TODO
+					Chosen Treatment:
+					= @current_agency.agency_treatments.where(:selected => true).pluck(:name).join(', ')
+							
