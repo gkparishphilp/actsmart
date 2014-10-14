@@ -52,7 +52,8 @@
 						%td
 							= agency.facilitator.name.titleize
 						%td
-							= agency.lead.name.titleize
+							- if agency.users.exists?
+								= agency.lead.name.titleize
 						%td
 							= agency.users.count
 						%td
