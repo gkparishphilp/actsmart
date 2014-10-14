@@ -34,7 +34,6 @@
 				- @current_agency.messages.where( parent_obj: @phase, context: 'strength' ).each do |message|
 					%li
 						= message.content
-				
 
 				%h5 Areas for Growth
 				- @current_agency.messages.where( parent_obj: @phase, context: 'growth' ).each do |message|
@@ -46,15 +45,6 @@
 				- @current_agency.messages.where( parent_obj: @phase, context: 'recs' ).each do |message|
 					%li
 						= message.content
-				
-			.well
-				%h4
-					Receptivity to New Treatment
-				- @current_agency.messages.where( parent_obj: @phase, context: 'receptivity' ).each do |message|
-					%li
-						= message.content
-				
-
 
 		.col-sm-5
 			.well
@@ -85,6 +75,13 @@
 				%a{ href: phase_step_path( @phase, @phase.steps.second ) }
 					Receptivity to new Treatment
 
+				
+			.well
+				%h4
+					Receptivity to New Treatment
+				- @current_agency.messages.where( parent_obj: @phase, context: 'receptivity' ).each do |message|
+					%li
+						= message.content
 			
 			.well
 				%h4
@@ -95,5 +92,3 @@
 					Step 2: Receptivity to New Treatment
 				- else
 					Step 1: Agency Assessment
-
-

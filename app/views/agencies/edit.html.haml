@@ -55,7 +55,7 @@
 								%a.btn.btn-sm.btn-success{ data: { toggle: :modal, target: '#new_user' } }
 									Add
 							Lead
-						= select_tag :lead_id, options_from_collection_for_select( @agency.users, :id, :name, @agency.lead ), class: 'form-control'
+						= select_tag :lead_id, options_from_collection_for_select( @agency.users, :id, :name, @agency.lead.id ), class: 'form-control'
 					%hr
 						.form-group
 							= check_box_tag :assessment_complete, 'yes', @agency.responses.where( question_id: 1 ).last.try( :content ) == 'yes'

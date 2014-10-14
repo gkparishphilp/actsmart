@@ -4,7 +4,7 @@
 		.col-sm-12
 			%h1
 				Hi
-				= current_user
+				= current_user.name.titleize
 	.row
 		.col-sm-10
 			= form_tag admin_index_path, method: :get, class: 'form-inline' do
@@ -50,9 +50,9 @@
 							= time_ago_in_words agency.created_at
 							ago
 						%td
-							= agency.facilitator
+							= agency.facilitator.name.titleize
 						%td
-							= agency.lead
+							= agency.lead.name.titleize
 						%td
 							= agency.users.count
 						%td

@@ -120,7 +120,7 @@ class Agency < ActiveRecord::Base
 	end
 
 	def lead
-		self.users.where( role: 'lead' ).last
+		self.agency_users.find_by(role: "lead").user
 	end
 
 	def to_s

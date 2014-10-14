@@ -2,9 +2,6 @@
 	.row
 		.col-sm-12
 			%h1 Manage Team
-			.pull-right
-				%a.btn.btn-success#addUserBtn{ data: { toggle: :modal, target: '#new_user' } }
-					Add
 
 	.row
 		.col-sm-12
@@ -51,9 +48,11 @@
 											%li
 												%a{ href: user_path( user ), data: { method: 'delete', confirm: 'Are you sure?' } }
 													%i.fa.fa-trash-o
-													Delete!
+													Delete
 
-
+			.pull-left
+				%a.btn.btn-success#addUserBtn{ data: { toggle: :modal, target: '#new_user' } }
+					Add
 
 
 = render 'users/new_modal', args: { agency_id: @current_agency.id }

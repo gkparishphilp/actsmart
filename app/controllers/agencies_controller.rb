@@ -23,10 +23,10 @@ class AgenciesController < ApplicationController
 	def update
 		@agency = Agency.find( params[:id] )
 		if @agency.update( agency_params )
-			if membership = AgencyUser.where( agency_id: @agency.id, user_id: params[:lead_id] ).last
-				membership.update( role: 'lead' )
-			end
 
+			AgencyUser.where( agency_id: @agency.id, role: 'lead').last.update( role: 'member' )
+			AgencyUser.where( agency_id: @agency.id, user_id: params[:lead_id] ).last.update( role: 'lead' )
+			
 			if params[:assessment_complete].present?
 				res = @agency.responses.where( question_id: 1 ).first_or_initialize
 				res.update( content: 'yes' )
@@ -55,7 +55,7 @@ class AgenciesController < ApplicationController
 
 
 		def agency_params
-			params.require( :agency ).permit( :facilitator_id, :name, :description, :notes, :address1, :address2, :city, :state, :zip, :phone, :status )
+			params.require( :agency ).permit( :facilitator_id, :name, :description, :notes, :address1, :address2, :city, :state, :zip, :phone, :status, :lead_id )
 		end
 
 
