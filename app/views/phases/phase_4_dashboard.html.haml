@@ -39,48 +39,27 @@
 
 		.col-sm-5
 			.well
+				%a.btn.btn-success.pull-right#addTaskBtn{ data: { toggle: :modal, target: '#new_task' } }
+					Add
 				%h5 Phase 4 Progress
-				- if @current_agency.step_complete?( @phase.steps.first )
-					%i.fa.fa-check-circle-o{ style: 'color:#3a3;'}
+				- if @current_agency.tasks.active.empty?
+					No Tasks
 				- else
-					%i.fa.fa-circle-o
-				Step 1: Treatment Adaptation
-				%ul.none
-					%li
-						- if @current_agency.activity_complete?( @phase.steps.first.activities.find_by_seq( 1 ) )
-							%i.fa.fa-check-circle-o{ style: 'color:#3a3;'}
-						- else
-							%i.fa.fa-circle-o
-						%a{ href: phase_step_activity_path( @phase, @phase.steps.first, @phase.steps.first.activities.first ) }
-							Activity 1: Action Step Evaluation
+					%table.table
+						%thead
+							%th
+							%th
+							%th
+						%tbody
+							- @current_agency.tasks.active.each do |task|
+								%tr[task]
+									%td
+										= check_box_tag :complete
+									%td
+										= task.name
+									%td
+										= task.due_at.to_date.strftime( "%m-%d-%Y" )
 
-				- if @current_agency.step_complete?( @phase.steps.second )
-					%i.fa.fa-check-circle-o{ style: 'color:#3a3;'}
-				- else
-					%i.fa.fa-circle-o
-				Step 2: Staff Training
-				%ul.none
-					%li
-						- if @current_agency.activity_complete?( @phase.steps.second.activities.find_by_seq( 1 ) )
-							%i.fa.fa-check-circle-o{ style: 'color:#3a3;'}
-						- else
-							%i.fa.fa-circle-o
-						%a{ href: phase_step_activity_path( @phase, @phase.steps.second, @phase.steps.second.activities.first ) }
-							Activity 1: Action Step Evaluation
-
-				- if @current_agency.step_complete?( @phase.steps.third )
-					%i.fa.fa-check-circle-o{ style: 'color:#3a3;'}
-				- else
-					%i.fa.fa-circle-o
-				Step 3: Treatment Implementation and Sustainment
-				%ul.none
-					%li
-						- if @current_agency.activity_complete?( @phase.steps.third.activities.find_by_seq( 1 ) )
-							%i.fa.fa-check-circle-o{ style: 'color:#3a3;'}
-						- else
-							%i.fa.fa-circle-o
-						%a{ href: phase_step_activity_path( @phase, @phase.steps.third, @phase.steps.third.activities.first ) }
-							Activity 1: Action Step Evaluation
 				
 
 
@@ -90,4 +69,8 @@
 				%h5
 					Chosen Treatment:
 					= @current_agency.agency_treatments.where(:selected => true).pluck(:name).join(', ')
-							
+						
+
+
+
+= render 'tasks/new_modal'

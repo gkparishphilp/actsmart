@@ -32,6 +32,8 @@ Rails.application.routes.draw do
 
 	resources :responses
 
+	resources :tasks
+	
 	resources :team do
 		get :manage, on: :collection
 	end
