@@ -50,6 +50,8 @@ $( document ).ready(function() {
 		$('#new_user').modal('toggle');
     }); 
 
+	$('.radioButtonList').on('click', function() { $('form').submit(); });
+	//For submit tasks on checkbox click
 	//$('.taskCheckbox').on('change', function() { $('form.edit_task').submit(); });
 
 });

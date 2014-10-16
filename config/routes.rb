@@ -16,7 +16,9 @@ Rails.application.routes.draw do
 		put :update_individual, on: :collection
 	end
 
-	resources :agency_treatments
+	resources :agency_treatments do
+		put :update_individual, on: :collection
+	end
 
 	resources :messages
 

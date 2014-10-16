@@ -53,6 +53,11 @@
 						%i.fa.fa-circle-o
 						%a{ href: phase_step_activity_path( @phase, @phase.steps.first, @phase.steps.first.activities.first ) }
 							Resource 1: Guide to Identify Research-Based Treatments
+				%ul.none
+					%li
+						%i.fa.fa-circle-o
+						%a{ href: phase_step_activity_path( @phase, @phase.steps.first, @phase.steps.first.activities.second ) }
+							Resource 2: Treatment Selection
 				
 
 				- if @current_agency.step_complete?( @phase.steps.second )
@@ -109,22 +114,3 @@
 				Step 3:
 				%a{ href: phase_step_path( @phase, @phase.steps.third ) }
 					Make an adoption decision
-	.row
-		.col-sm-12
-			.well
-				%table.table.table-bordered
-					%thead
-						%th.custom-width-header-1
-							Treatment Being Considered
-						%th.custom-width-header-1
-							Selected for Adoption
-					%tbody
-						= form_tag update_individual_agency_treatments_path, :method => "put", :id => "myTreatmentsForm", :remote => true do |f|
-							- for agency_treatments in @current_agency.agency_treatments.order('created_at ASC')
-								=fields_for "agency_treatments[]", agency_treatments do |f|
-									%tr
-										%td
-											= agency_treatments.name
-										%td
-											= f.check_box :selected, :class => "treatmentCheckbox"
-							= submit_tag 'Save', class: 'btn btn-primary', style: "display:none;"

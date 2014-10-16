@@ -45,6 +45,7 @@ namespace :activities do
 		puts p2.label
 			step1 = p2.steps.create seq: 1
 			step1.activities.create seq: 1 # the resource
+			step1.activities.create seq: 2 # treatment selection
 
 		step2 = p2.steps.create seq: 2
 

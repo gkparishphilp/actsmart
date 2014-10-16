@@ -111,5 +111,5 @@
 			.well
 				%h5
 					Chosen Treatment:
-					= @current_agency.agency_treatments.where(:selected => true).pluck(:name).join(', ')
+					= @current_agency.agency_treatments.first.chosen_treatment
 							

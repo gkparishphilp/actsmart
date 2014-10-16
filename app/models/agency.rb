@@ -89,18 +89,8 @@ class Agency < ActiveRecord::Base
   	end
 
   	def create_agency_treatments
-  		[
-  			"Behavioral",
-			"Mental health",
-			"Psychosocial",
-			"Substance abuse",
-			"Educational",
-			"Physical health",
-			"ASD Treatment"
-		].each do |t|
-			agency_treatment = self.agency_treatments.build name: t
-			agency_treatment.save
-		end
+		agency_treatment = self.agency_treatments.build
+		agency_treatment.save
   	end
 
 
