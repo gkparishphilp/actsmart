@@ -17,7 +17,7 @@ namespace :activities do
 			},
 			{
 				content: 'DK',
-				value: nil,
+				value: 0,
 				seq: 3
 			}
 		]
