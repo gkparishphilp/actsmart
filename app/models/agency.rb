@@ -84,8 +84,29 @@ class Agency < ActiveRecord::Base
   	end
 
   	def create_treatment_adaptations
-		treatment_adaptation = self.treatment_adaptations.build name: 'First adaptation'
-		treatment_adaptation.save
+  		[
+  			"Tailoring/tweaking/refining the intervention",
+			"Integrating components of the intervention into another framework",
+			"Integrating another treatment into the intervention",
+			"Removing/skipping core modules or components of the intervention",
+			"Lengthening/extending session time",
+			"Shortening/condensing session time",
+			"Lengthening/extending number of weeks",
+			"Shortening/condensing number of weeks",
+			"Adjusting the order of intervention modules, topics, or segments",
+			"Adding modules or topics to the intervention",
+			"Not using/departing from the intervention",
+			"Loosening the session structure",
+			"Repeating elements or modules",
+			"Substituting elements or modules",
+			"Changing the setting",
+			"Changing who delivers the intervention",
+			"Changing the format by which the treatment is delivered",
+			"Changing the target population for the intervention"
+		].each do |t|
+			treatment_adaptation = self.treatment_adaptations.build name: t
+			treatment_adaptation.save
+		end
   	end
 
   	def create_agency_treatments
