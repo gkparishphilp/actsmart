@@ -39,60 +39,43 @@
 			%p{ style: 'font-weight:bold;' }
 				Do you anticipate making the following content adaptations to the intervention you are considering at your agency: 
 
-			= form_tag responses_path do
-				= hidden_field_tag :activity_id, @activity.id
 
-				%table.table
-					%thead
-						%th
-						%th
-						%th
-							Yes
-						%th
-							No
-						%th
-							DK
-					%tbody
-						- @activity.questions.where( section: 'content_adaptations' ).order( :seq ).each do |question|
+			%table.table
+				%thead
+					%th
+					%th
+					%th
+						Yes
+					%th
+						No
+					%th
+						DK
+				%tbody
+				-i = 0
+				= form_tag update_individual_treatment_adaptations_path, :method => "put", :id => "myAdaptationsList" do |f|	
+					- for treatment_adaptations in @current_agency.treatment_adaptations.order('created_at ASC')
+						=fields_for "treatment_adaptations[]", treatment_adaptations do |f|
+							- i +=1
 							%tr
 								%td
-									= question.seq
+									= i
+								%td{ :class=> "col-md-11" }
+									= treatment_adaptations.name + '?'
 								%td
-									= question.content
-								%td
-									= radio_button_tag "question_answers[#{question.id}]", :yes, @current_agency.responses.where( question_id: question.id ).first.try( :content ) == 'yes'
-								%td
-									= radio_button_tag "question_answers[#{question.id}]", :no, @current_agency.responses.where( question_id: question.id ).first.try( :content ) == 'no'
-								%td
-									= radio_button_tag "question_answers[#{question.id}]", :dk, @current_agency.responses.where( question_id: question.id ).first.try( :content ) == 'dk'
-
-				%p{ style: 'font-weight:bold;' }
-					Do you anticipate making the following context adaptations to the intervention you are considering at your agency: 
-				%table.table
-					%thead
-						%th
-						%th
-						%th
-							Yes
-						%th
-							No
-						%th
-							DK
-					%tbody
-						- @activity.questions.where( section: 'context_adaptations' ).order( :seq ).each do |question|
-							%tr
-								%td
-									= question.seq
-								%td
-									= question.content
-								%td
-									= radio_button_tag "question_answers[#{question.id}]", :yes, @current_agency.responses.where( question_id: question.id ).first.try( :content ) == 'yes'
-								%td
-									= radio_button_tag "question_answers[#{question.id}]", :no, @current_agency.responses.where( question_id: question.id ).first.try( :content ) == 'no'
-								%td
-									= radio_button_tag "question_answers[#{question.id}]", :dk, @current_agency.responses.where( question_id: question.id ).first.try( :content ) == 'dk'
-
-				= submit_tag 'Save', class: 'btn btn-primary'
+									= f.radio_button :not_doing_adaptation, 'false'
+								%td 
+									= f.radio_button :not_doing_adaptation, 'true'
+								%td 
+									= f.radio_button :not_doing_adaptation, 'dk'
+							- if i == 14
+								%tr
+									%td{ :colspan => 5}
+										%h5
+											Do you anticipate making the following context adaptations to the intervention you are considering at your agency:
+					= submit_tag 'Save', class: 'btn btn-primary', :style => "display:none;"
+					
+			%btn.btn.btn-primary#adaptationsList
+				Save
 
 
 

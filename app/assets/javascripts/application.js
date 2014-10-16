@@ -49,9 +49,9 @@ $( document ).ready(function() {
 		console.log('test');
 		$('#new_user').modal('toggle');
     }); 
-
+	$('#adaptationsList').on('click', function() { $('form').submit(); });
 	$('.radioButtonList').on('click', function() { $('form').submit(); });
 	//For submit tasks on checkbox click
-	//$('.taskCheckbox').on('change', function() { $('form.edit_task').submit(); });
+	$('.taskCheckbox').on('change', function() { $(this.form).submit() });
 
 });
