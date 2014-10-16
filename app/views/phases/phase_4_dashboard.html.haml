@@ -52,14 +52,16 @@
 							%th
 						%tbody
 							- @current_agency.tasks.active.each do |task|
-								%tr[task]
-									%td
-										= check_box_tag :complete
-									%td
-										= task.name
-									%td
-										= task.due_at.to_date.strftime( "%m-%d-%Y" )
-
+								= form_for task do |f|
+									%tr
+										%td
+											= f.check_box :completed, :class => "taskCheckbox"
+										%td
+											= task.name
+										%td
+											= task.due_at.to_date.strftime( "%m-%d-%Y" )
+										%td
+											= submit_tag 'Save', class: 'btn btn-sm btn-primary'
 				
 
 

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
 	resources :funding_sources
 
+	resources :tasks
+
 	resources :treatment_strategies do
 		put :update_individual, on: :collection
 	end
@@ -14,9 +16,7 @@ Rails.application.routes.draw do
 		put :update_individual, on: :collection
 	end
 
-	resources :agency_treatments do
-		put :update_individual, on: :collection
-	end
+	resources :agency_treatments
 
 	resources :messages
 
@@ -31,8 +31,6 @@ Rails.application.routes.draw do
 	end
 
 	resources :responses
-
-	resources :tasks
 	
 	resources :team do
 		get :manage, on: :collection

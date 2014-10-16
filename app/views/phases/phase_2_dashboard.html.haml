@@ -119,7 +119,7 @@
 						%th.custom-width-header-1
 							Selected for Adoption
 					%tbody
-						= form_tag update_individual_agency_treatments_path, :method => "put", :id => "myTreatmentsForm", :remote => true do |f|	
+						= form_tag update_individual_agency_treatments_path, :method => "put", :id => "myTreatmentsForm", :remote => true do |f|
 							- for agency_treatments in @current_agency.agency_treatments.order('created_at ASC')
 								=fields_for "agency_treatments[]", agency_treatments do |f|
 									%tr

@@ -50,5 +50,6 @@ $( document ).ready(function() {
 		$('#new_user').modal('toggle');
     }); 
 
+	//$('.taskCheckbox').on('change', function() { $('form.edit_task').submit(); });
 
 });
