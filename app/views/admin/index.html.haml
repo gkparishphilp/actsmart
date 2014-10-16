@@ -50,10 +50,12 @@
 							= time_ago_in_words agency.created_at
 							ago
 						%td
-							= agency.facilitator.name.titleize
+							- if agency.facilitator != nil
+								= agency.facilitator.name.titleize
 						%td
-							- if agency.users.exists?
-								= agency.lead.name.titleize
+							- if agency.users.present?
+								- if agency.lead.present?
+									= agency.lead.name.titleize
 						%td
 							= agency.users.count
 						%td
