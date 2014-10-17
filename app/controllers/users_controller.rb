@@ -16,6 +16,21 @@ class UsersController < ApplicationController
 
 	end
 
+	def update
+		@user = User.find( params[:id] )
+		if @user.update( user_params )
+			set_flash "Updated user details", :success
+			redirect_to manage_team_index_path
+		else
+			set_flash "Couldn't update user", :danger
+			redirect_to :back
+		end
+	end
+
+	def edit
+		@user = User.find( params[:id] )
+	end
+
 	def destroy
 		@user = User.find( params[:id] )
 		@user.destroy

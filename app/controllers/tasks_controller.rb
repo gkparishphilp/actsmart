@@ -19,6 +19,10 @@ class TasksController < ApplicationController
 		redirect_to :back
 	end
 
+	def show
+		Task.create(@current_agency.treatment_adaptations.first.attributes.slice(Task.attribute_names))
+	end
+
 	def edit
 		
 	end

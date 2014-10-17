@@ -1,0 +1,20 @@
+.container
+	.row
+		.col-sm-12
+			%h1 Edit Team
+
+	.row
+		.col-sm-6
+			= form_for @user do |f|
+				.modal-body
+					.form-group
+						= f.label :name
+						= f.text_field :name, class: 'form-control'
+					.form-group
+						= f.label :email
+						= f.text_field :email, class: 'form-control'
+					.form-group
+						= f.label :password
+						= f.text_field :password, class: 'form-control'
+
+					= f.submit 'Save', class: 'btn btn-primary'
