@@ -28,6 +28,10 @@
 					for 
 					= @current_agency.agency_treatments.first.chosen_treatment
 					treatment.
+				%p
+					To erase all current responses for Step 2 and being evaluation for a new treatment, click below.
+				= link_to 'Reset Step 2', '/phases/2/reset', :method => 'delete', :class => "btn btn-md btn-danger", :confirm => 'Are you sure?'
+
 			-else
 				%h4
 					Please fill out the 

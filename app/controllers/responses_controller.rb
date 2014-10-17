@@ -28,6 +28,12 @@ class ResponsesController < ApplicationController
 		redirect_to :back
 	end
 
+	def reset_phase
+		@current_agency.responses.where(phase_id: params[:id]).delete_all
+		set_flash 'Reset current phase responses'
+		redirect_to :back
+	end
+
 	private
 
 		def response_params

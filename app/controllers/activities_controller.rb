@@ -1,6 +1,5 @@
 class ActivitiesController < ApplicationController
 
-
 	def show
 		@phase = Phase.find( params[:phase_id] )
 		@step = Step.find( params[:step_id] )

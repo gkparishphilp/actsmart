@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
 	root to: 'static#home'
 
+	delete 'phases/:id/reset' => 'responses#reset_phase'
+
 	resources :agencies
 
 	resources :funding_sources
