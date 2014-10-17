@@ -16,7 +16,7 @@ class TasksController < ApplicationController
 	def destroy
 		@task.destroy
 		set_flash 'Deleted'
-		redirect_to :back
+		redirect_to phase_path( 4 )
 	end
 
 	def show
@@ -30,7 +30,7 @@ class TasksController < ApplicationController
 	def update
 		if @task.update( task_params )
 			set_flash 'Saved'
-			redirect_to :back
+			redirect_to phase_path( 4 )
 		else
 			set_flash 'There was a problem', :warning, @task
 			redirect_to :back
@@ -40,7 +40,7 @@ class TasksController < ApplicationController
 	private
 
 		def get_task
-			@task = @current_agency.tasks.find( params[:id] )
+			@task = @current_agency.tasks.find_by(:id => params[:id] )
 		end
 
 		def task_params
