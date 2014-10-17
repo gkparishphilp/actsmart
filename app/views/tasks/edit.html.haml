@@ -1,6 +1,9 @@
 .container
 	.row
-		.col-sm-8.centered
+		.col-sm-6
+			%h3{:style => 'margin-left:10px;'}
+				Edit Task
+			%br
 			= form_for @task do |f|
 				.form-group.col-xs-12
 					= f.label :name

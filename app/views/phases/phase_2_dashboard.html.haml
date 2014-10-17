@@ -53,9 +53,11 @@
 						%i.fa.fa-circle-o
 						%a{ href: phase_step_activity_path( @phase, @phase.steps.first, @phase.steps.first.activities.first ) }
 							Resource 1: Guide to Identify Research-Based Treatments
-				%ul.none
 					%li
-						%i.fa.fa-circle-o
+						- if @current_agency.agency_treatments.first.chosen_treatment.present?
+							%i.fa.fa-check-circle-o{ style: 'color:#3a3;'}
+						- else
+							%i.fa.fa-circle-o
 						%a{ href: phase_step_activity_path( @phase, @phase.steps.first, @phase.steps.first.activities.second ) }
 							Resource 2: Treatment Selection
 				
