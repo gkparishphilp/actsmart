@@ -18,3 +18,18 @@
 				Introduction
 			%p
 				When deciding whether or not to adopt a treatment for agency-wide use, it is important to organize all of the information relevant to your decision making process in one place. By doing so, a systematic decision will be made based on a comprehensive set of data.
+			- if @current_agency.agency_treatments.first.chosen_treatment.present?
+				- feasability_score = @current_agency.responses.where(phase_id: 2).where(content: 'yes').count
+				%h4
+					Feasability Score
+				%p
+					Based on your current submissions in Step 2, you have been given a feasability score of
+					= feasability_score
+					for 
+					= @current_agency.agency_treatments.first.chosen_treatment
+					treatment.
+			-else
+				%h4
+					Please fill out the 
+					= link_to 'Treatment Selection sheet', '3/activities/4'
+					to be given your Feasability Score.
