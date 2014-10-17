@@ -8,16 +8,19 @@
 					Add Task
 			= form_for Task.new do |f|
 				.modal-body
-					.form-group
+					.form-group.col-xs-12
 						= f.label :name
 						= f.text_field :name, class: 'form-control'
 					.form-group.col-xs-6
-						= f.label :due_at
+						= f.label :due
 						= f.text_field :due_at, class: 'form-control datepicker'
-					.clearfix
-					.form-group
+					.form-group.col-xs-6
+						= f.label :assigned_to, :value => "Assigned To"
+						= f.text_field :assigned_to, class: 'form-control'
+					.form-group.col-xs-12
+						= f.label :details
 						= f.text_area :content, class: 'form-control'
-
+					.clearfix
 				.modal-footer
 					%button.btn.btn-default{ type: :button, 'data-dismiss' => 'modal' }
 						Close

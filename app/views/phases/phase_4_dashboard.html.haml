@@ -38,18 +38,22 @@
 
 
 		.col-sm-5
-			.well
-				%a.btn.btn-success.pull-right#addTaskBtn{ data: { toggle: :modal, target: '#new_task' } }
-					Add
-				%h5 Phase 4 Progress
+			.well#wellPadding
+				%h4 Phase 4 Progress
 				- if @current_agency.tasks.active.empty?
 					No Tasks
+					%br
+					%br
 				- else
 					%table.table
 						%thead
 							%th
 							%th
+								Task
 							%th
+								Due
+							%th
+								Assigned To
 						%tbody
 							- @current_agency.tasks.active.each do |task|
 								= form_for task do |f|
@@ -61,8 +65,12 @@
 										%td
 											= task.due_at.to_date.strftime( "%m-%d-%Y" )
 										%td
-											= submit_tag 'Save', class: 'pull-right btn btn-sm btn-primary', :style => 'display:none;'				
+											= task.assigned_to
 
+											= submit_tag 'Save', class: 'pull-right btn btn-sm btn-primary', :style => 'display:none;'	
+
+				%a.btn.btn-success.pull-left#addTaskBtn{ data: { toggle: :modal, target: '#new_task' } }
+					Add
 
 	.row
 		.col-sm-12
