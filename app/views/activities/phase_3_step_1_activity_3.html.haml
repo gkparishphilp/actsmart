@@ -19,7 +19,7 @@
 				To review instructions, see
 				= link_to 'Phase 3 Step 1 guide', phase_step_path( @phase, @step )
 
-			- if @current_agency.treatment_adaptations.where( not_doing_adaptation: 'false').count == 0
+			- if @current_agency.treatment_adaptations.where( not_doing_adaptation: 'false').count == 0 && @current_agency.treatment_adaptations.where( not_doing_adaptation: 'dk').count == 0
 				Please complete 
 				= link_to 'Activity 3.1.2', '/phases/3/steps/6/activities/12'
 				to populate required forms below.
