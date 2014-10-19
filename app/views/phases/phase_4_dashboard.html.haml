@@ -63,9 +63,9 @@
 										%td
 											= link_to task.name, '/tasks/'+task.id.to_s+'/edit'
 										%td
-											= task.due_at.to_date.strftime( "%m-%d-%Y" )
+											= task.due_at.to_date.strftime( "%m-%d-%Y" ) if task.due_at.present?
 										%td
-											= task.assigned_to
+											= task.assigned_to if task.assigned_to.present?
 
 											= submit_tag 'Save', class: 'pull-right btn btn-sm btn-primary', :style => 'display:none;'	
 
