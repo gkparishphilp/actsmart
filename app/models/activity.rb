@@ -15,6 +15,15 @@ class Activity < ActiveRecord::Base
 		self.name
 	end
 
+	def to_csv(current_agency)
+		CSV.generate do |csv|
+			csv << ['Responses']
+			self.responses.where(agency_id: current_agency.id).order("id ASC").each do |response|
+				csv << [response.content]
+			end
+		end
+	end
+
 	private
 		def set_parents
 			self.phase_id ||= self.step.phase.id

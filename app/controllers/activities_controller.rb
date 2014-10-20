@@ -13,7 +13,11 @@ class ActivitiesController < ApplicationController
 		
 		respond_to do |format|
 			format.html { render "activities/phase_#{@phase.seq}_step_#{@step.seq}_activity_#{@activity.seq}" }
-			format.csv { render text: @agency_treatment.to_csv }
+			if @activity.id == 4
+				format.csv { send_data @agency_treatment.to_csv}				
+			else
+				format.csv { send_data @activity.to_csv(@current_agency) }
+			end
 		end
 	end
 
