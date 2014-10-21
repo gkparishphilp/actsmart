@@ -13,7 +13,7 @@ class AgenciesController < ApplicationController
 	end
 
 	def edit
-		@agency = Agency.find( params[:id] )		
+		@agency = Agency.find( params[:id] )	
 	end
 
 	def show
@@ -50,8 +50,6 @@ class AgenciesController < ApplicationController
 			render :edit
 		end
 	end
-
-
 
 	private
 

@@ -26,6 +26,33 @@ class Agency < ActiveRecord::Base
   	after_create :create_treatment_adaptations
   	after_create :create_agency_treatments
 
+
+  	def to_csv(agency)
+  		CSV.generate do |csv|
+			csv << ['Phase', 'Step', 'Activity', 'Question Number', 'Response']
+			agency.responses.order("phase_id ASC", "question_id ASC").each do |response|
+				csv << [response.phase_id, response.step_id, response.activity_id, response.question_id, response.content]
+			end
+
+			csv << ['Funding Source', 'Offer Funding?', 'Reimbursement Rate']
+			agency.funding_sources.order("id ASC").each do |funding_source|
+				csv << [funding_source.name, funding_source.offer_funding, funding_source.reimbursement_rate]
+			end
+
+			csv << ['Treatment Adaptation', 'Reasons for Adaptation', 'Specific Concerns', 'Addressing Concerns', 'Details', 'Implementer', 'No longer doing adaptation']
+			agency.treatment_adaptations.order("id ASC").each do |ta|
+				csv << [
+					ta.name,[ta.org_level, ta.provider_factors, ta.client_chars,
+					ta.system_level, ta.other_reasons], [ ta.concerns, ta.other_concerns],
+					[ta.proceed_with_plan, ta.seek_further_consultation, ta.address_concern, ta.address_concern_text],
+					ta.adaptation_details, [ta.treatment_developer, ta.researcher, ta.agency_leader, ta.supervisor, ta.direct_provider, ta.implementation_team, ta.other_implementer],
+					ta.not_doing_adaptation
+				]
+			end	
+
+		end
+  	end
+
   	def create_treatment_strategies
   		[
 			"Develop agency leader characteristics supporting innovation and implementation", 
@@ -113,7 +140,6 @@ class Agency < ActiveRecord::Base
 		agency_treatment = self.agency_treatments.build
 		agency_treatment.save
   	end
-
 
 	def activity_complete?( activity )
 		self.responses.where( activity_id: activity.id ).count >= activity.questions.where( required: true ).count
