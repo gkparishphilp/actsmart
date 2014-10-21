@@ -48,6 +48,9 @@ class User < ActiveRecord::Base #SwellUsers::User
 		self.agencies.last
 	end
 
+	def admin?
+		self.role == "admin"
+	end
 
 	def avatar_tag( opts={} )
 		return self.gravatar_tag( opts ) if self.avatar.blank?

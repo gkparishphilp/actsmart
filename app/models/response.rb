@@ -17,4 +17,11 @@ class Response < ActiveRecord::Base
 		self.phase_id ||= self.step.phase.id
 	end
 
+
+	def to_csv
+		CSV.generate do |csv|
+			csv << ['Responses']
+			csv << [self.response]
+		end
+	end
 end

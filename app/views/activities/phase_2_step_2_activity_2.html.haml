@@ -14,6 +14,7 @@
 		.col-sm-12
 			%h1
 				Activity 2: Treatment Feasibility
+				= link_to image_tag("csv.png", :height => 25), {:format => :csv }
 			%p
 				<u>Goal</u>: Assess whether the potential research-based treatment is easy for your providers to deliver.
 
@@ -22,7 +23,7 @@
 
 			%h3
 				Evaluating the Feasibility of the Treatment
-
+				
 			= form_tag responses_path do
 				= hidden_field_tag :activity_id, @activity.id
 				%table.table

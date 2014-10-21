@@ -1,0 +1,22 @@
+.container
+	.row
+		.col-sm-6
+			%h3{:style => 'margin-left:10px;'}
+				Edit Task
+			%br
+			= form_for @task do |f|
+				.form-group.col-xs-12
+					= f.label :name
+					= f.text_field :name, class: 'form-control'
+				.form-group.col-xs-6
+					= f.label :due
+					= f.text_field :due_at, class: 'form-control datepicker'
+				.form-group.col-xs-6
+					= f.label :assigned_to, :value => "Assigned To"
+					= f.text_field :assigned_to, class: 'form-control'
+				.form-group.col-xs-12
+					= f.label :details
+					= f.text_area :content, class: 'form-control'
+					%br
+					= link_to "Delete", '/tasks/'+@task.id.to_s, class: 'btn btn-md btn-danger', :method => 'delete'
+					= f.submit 'Update', class: 'btn btn-primary'

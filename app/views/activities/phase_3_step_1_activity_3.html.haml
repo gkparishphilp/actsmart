@@ -14,12 +14,12 @@
 		.col-sm-12
 			%h1
 				Activity 3: Treatment Adaptations Table
-
+				= link_to image_tag("csv.png", :height => 25), {:format => :csv }
 			%p
 				To review instructions, see
 				= link_to 'Phase 3 Step 1 guide', phase_step_path( @phase, @step )
 
-			- if @current_agency.treatment_adaptations.where( not_doing_adaptation: 'false').count == 0
+			- if @current_agency.treatment_adaptations.where( not_doing_adaptation: 'false').count == 0 && @current_agency.treatment_adaptations.where( not_doing_adaptation: 'dk').count == 0
 				Please complete 
 				= link_to 'Activity 3.1.2', '/phases/3/steps/6/activities/12'
 				to populate required forms below.
@@ -99,10 +99,10 @@
 												Supervisor
 												%br	
 												= f.check_box :direct_provider
-												Direct Supervisor
+												Direct Provider
 												%br	
 												= f.check_box :implementation_team
-												Direct Supervisor
+												Implementation Team
 												%br	
 												%br
 												Other:
