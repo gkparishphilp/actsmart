@@ -29,6 +29,7 @@ class Agency < ActiveRecord::Base
 
   	def to_csv(agency)
   		CSV.generate do |csv|
+  			csv << [agency.name]
 			csv << ['Phase', 'Step', 'Activity', 'Question Number', 'Response']
 			agency.responses.order("phase_id ASC", "question_id ASC").each do |response|
 				csv << [response.phase_id, response.step_id, response.activity_id, response.question_id, response.content]
@@ -47,9 +48,17 @@ class Agency < ActiveRecord::Base
 					[ta.proceed_with_plan, ta.seek_further_consultation, ta.address_concern, ta.address_concern_text],
 					ta.adaptation_details, [ta.treatment_developer, ta.researcher, ta.agency_leader, ta.supervisor, ta.direct_provider, ta.implementation_team, ta.other_implementer],
 					ta.not_doing_adaptation
-				]
+					]
 			end	
 
+			csv << ['Specific strategy', 'Considerations', 'Selected for use', 'Details', 'Implementer']
+			agency.treatment_strategies.order("id ASC").each do |ts|
+				csv << [ts.name, [ts.use_currently, ts.feasible, ts.previous_success, ts.recommended],
+						ts.selected, ts.specifics, ts.implementer
+						]
+			end	
+			csv << ['Chosen Treatment']
+			csv << [agency.agency_treatments.first.chosen_treatment] if agency.agency_treatments.first.chosen_treatment.present?
 		end
   	end
 
