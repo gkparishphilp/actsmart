@@ -46,14 +46,10 @@
 								ago
 							%td
 								.btn-group
-									%button.btn.btn-mini.btn-default.dropdown-toggle{ data: { toggle: :dropdown } }
-										%i.fa.fa-cog
-										%b.caret
-									%ul.dropdown-menu
-										%li
-											%a{ href: user_event_path( event ), data: { method: 'delete', confirm: 'Are you sure?' } }
-												%i.fa.fa-trash-o
-												Delete
+									%button.btn.btn-mini.btn-default
+										%a{ href: user_event_path( event ), data: { method: 'delete', confirm: 'Are you sure?' } }
+											%i.fa.fa-trash-o
+											Delete
 
 
 
