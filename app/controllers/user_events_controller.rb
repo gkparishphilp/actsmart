@@ -19,4 +19,10 @@ class UserEventsController < ApplicationController
 		@events = @events.page( params[:page] )
 
 	end
+
+	def destroy
+		@event = UserEvent.find_by(id: params[:id])
+		@event.destroy
+		redirect_to user_events_path
+	end
 end
