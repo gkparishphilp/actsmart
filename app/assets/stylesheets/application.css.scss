@@ -23,11 +23,11 @@ html, body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin: 0 auto -140px; /* the bottom margin is the negative value of the footer's height */
+    margin: 0 auto -180px; /* the bottom margin is the negative value of the footer's height */
 }
 
 .footer, .push {
-    height: 140px; /* .push must be the same height as .footer */
+    height: 180px; /* .push must be the same height as .footer */
 }
 
 .footer{

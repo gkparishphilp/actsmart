@@ -2,16 +2,30 @@
 %footer.footer
 	.container
 		.row
-			.col-sm-8
-				Funded by the 
-				%a{ href: 'http://www.nimh.nih.gov/index.shtml' }
-					National Institutes of Mental Health 
-				(K01 MH093477; PI: A. Drahota)
-				%br
-				%a{ href: 'http://www.nimh.nih.gov/index.shtml' }
-					= image_tag 'nimh_logo.gif'
+			.col-sm-10
+				.row
+					.col-xs-3
+						= image_tag 'casrc_logo.jpg', class: 'img img-responsive'
+					.col-xs-9
+						%p
+							
+							© 2014 San Diego State University Research Foundation, Drahota, Martinez, and Meza. 
+							%br
+							All Rights Reserved.
+				.row{ style: 'margin-top:1.5em;'}
+					.col-xs-3
+						%a{ href: 'http://www.nimh.nih.gov/index.shtml' }
+							= image_tag 'nimh_logo.gif', class: 'img img-responsive'
+					.col-xs-9
+						%p
+							Funded by the 
+							%a{ href: 'http://www.nimh.nih.gov/index.shtml' }
+								National Institutes of Mental Health 
+							(K01 MH093477; PI: A. Drahota)
+					%br
+					%br
+					
 			.col-sm-2
 				%a{ href: '/about' }
 					About
-			.col-sm-2
-				= @current_agency.try( :name )
+

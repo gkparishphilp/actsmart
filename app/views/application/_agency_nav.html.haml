@@ -32,10 +32,10 @@
 							%a{ href: '/glossary' }
 								Glossary
 
-					- if @current_agency.lead == current_user
-						%li
-							%a{ href: manage_team_index_path }
-								My Team
+						- if @current_agency.lead == current_user
+							%li
+								%a{ href: manage_team_index_path }
+									My Team
 
 				%ul.nav.navbar-nav.navbar-right{ style: 'margin-right:1em;' }				
 					- if current_user
