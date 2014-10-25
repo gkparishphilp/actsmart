@@ -6,25 +6,23 @@
 				.row
 					.col-xs-3
 						= image_tag 'casrc_logo.jpg', class: 'img img-responsive'
-					.col-xs-9
-						%p
-							
+						%br
+						%a{ href: 'http://www.nimh.nih.gov/index.shtml' }
+							= image_tag 'nimh_logo.gif', class: 'img img-responsive'
+					.col-xs-3
+						%a{ href: 'http://www.sdsu.edu/' }
+							= image_tag 'SDSU_2Color.jpg', class: 'img img-responsive', style: "max-height:130px;"
+					.col-xs-6
+						%p							
 							© 2014 San Diego State University Research Foundation, Drahota, Martinez, and Meza. 
 							%br
 							All Rights Reserved.
-				.row{ style: 'margin-top:1.5em;'}
-					.col-xs-3
-						%a{ href: 'http://www.nimh.nih.gov/index.shtml' }
-							= image_tag 'nimh_logo.gif', class: 'img img-responsive'
-					.col-xs-9
-						%p
+							%br
+							%br
 							Funded by the 
 							%a{ href: 'http://www.nimh.nih.gov/index.shtml' }
 								National Institutes of Mental Health 
-							(K01 MH093477; PI: A. Drahota)
-					%br
-					%br
-					
+							(K01 MH093477; PI: A. Drahota)					
 			.col-sm-2
 				%a{ href: '/about' }
 					About
