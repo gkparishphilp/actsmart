@@ -1,8 +1,8 @@
 %nav.navbar.navbar-fixed-top{ role: 'navigation', style: 'background: #eee;' }
-	.navbar-inner
-		.container{ style: 'border-bottom:1px #ddd solid;' }
+	.navbar-inner{ style: 'border-bottom:1px #ddd solid;' }
+		.container
 			.navbar-header
-				%a.navbar-brand.brand{ href: '/' }
+				%a.navbar-brand.brand.nav-header{ href: '/' }
 					= image_tag 'logo_sq.png', width: 30
 					Act SMART
 				%button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
@@ -13,21 +13,21 @@
 			#top-navigation.nav-collapse.subnav-collapse.navbar-collapse.collapse
 				%ul.nav.navbar-nav.navbar-left
 					%li
-						%a{ href: '/about' }
+						%a.nav-header{ href: '/about' }
 							About
 					%li
-						%a{ href: '/project_team' }
+						%a.nav-header{ href: '/project_team' }
 							Research Team
 					%li
-						%a{ href: '/faqs' }
+						%a.nav-header{ href: '/faqs' }
 							FAQs
 
 				%ul.nav.navbar-nav.navbar-right{ style: 'margin-right:1em;' }				
 					- if current_user
 						%li
-							%a{ href: dashboard_index_path, style: 'text-decoration:none;' }
+							%a.nav-header{ href: dashboard_index_path, style: 'text-decoration:none;' }
 								Hi
 								= current_user.name.titleize
 						%li
-							%a{ href: '/logout' }
+							%a.nav-header{ href: '/logout' }
 								Logout
