@@ -37,11 +37,6 @@
 											%a{ href: edit_page_path( page.id ) }
 												%i.fa.fa-pencil
 												Edit
-										%li.divider
-										%li
-											%a{ href: page_path( page ), data: { method: 'delete', confirm: 'Are you sure?' } }
-												%i.fa.fa-trash-o
-												Delete!
 
 
 = render 'new_modal'
