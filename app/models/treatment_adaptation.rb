@@ -19,7 +19,7 @@ class TreatmentAdaptation < ActiveRecord::Base
 	end
 
 	def create_task
-		if self.changed?
+		if self.changed? && @assigned_to.present?
 			Task.create name: self.name, content: self.adaptation_details, agency_id: self.agency_id,
 			assigned_to: @assigned_to
 		end
