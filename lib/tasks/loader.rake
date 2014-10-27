@@ -267,10 +267,7 @@ namespace :activities do
 
 		step3 = p2.steps.create seq: 3
 
-
-
-
-
+		act = step3.activities.create seq: 1
 
 
 

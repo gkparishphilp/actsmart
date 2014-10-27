@@ -116,3 +116,11 @@
 				Step 3:
 				%a{ href: phase_step_path( @phase, @phase.steps.third ) }
 					Make an adoption decision
+				%ul.none
+					%li
+						- if @current_agency.activity_complete?( @phase.steps.third.activities.find_by_seq( 1 ) )
+							%i.fa.fa-check-circle-o{ style: 'color:#3a3;'}
+						- else
+							%i.fa.fa-circle-o
+						%a{ href: phase_step_activity_path( @phase, @phase.steps.third, @phase.steps.third.activities.find_by_seq( 1 ) ) }
+							Activity 1: Feasibility Score

@@ -1,0 +1,38 @@
+.container
+	.row
+		.col-sm-12
+			%ol.breadcrumb
+				%li
+					= link_to 'Dashboard', dashboard_index_path
+				%li
+					= link_to 'Phase 2', phase_path( 2 )
+				%li
+					Step 3
+				%li
+					Activity 1: Feasibility Score
+	.row
+		.col-sm-12
+			%h1
+				Activity 1:  Feasibility Score
+			%p
+				<u>Goal</u>: To review your results from Phase 2 activities and understand it's implications on your adoption decision.  
+
+			- if @current_agency.agency_treatments.first.chosen_treatment.present?
+				- feasability_score = @current_agency.responses.where(phase_id: 2).where(content: 'yes').count
+				%h4
+					Feasability Score
+				%p
+					Based on your current submissions in Step 2, you have been given a feasability score of
+					= feasability_score
+					for 
+					= @current_agency.agency_treatments.first.chosen_treatment
+					treatment.
+				%p
+					To erase all current responses for Step 2 and begin evaluation for a new treatment, click below.
+				= link_to 'Reset Phase 2', '/phases/2/reset', :method => 'delete', :class => "btn btn-md btn-danger", :confirm => 'Are you sure?'
+
+			-else
+				%h4
+					Please fill out the 
+					= link_to 'Treatment Selection sheet', '/phases/2/steps/3/activities/4'
+					to be given your Feasability Score.
