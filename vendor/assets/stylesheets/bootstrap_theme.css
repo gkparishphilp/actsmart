@@ -56,11 +56,11 @@ h1,h2, h3, h4, h5, h6 {
 
 
 .row,.row-fluid {
-  margin-bottom:30px;
+  margin-bottom:0px;
 }
 
 .row .row,.row-fluid .row-fluid{
-  margin-bottom:30px;
+  margin-bottom:0px;
 }
 
 .row.nomargin,.row-fluid.nomargin {
