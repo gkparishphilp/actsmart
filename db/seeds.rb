@@ -8,7 +8,7 @@
 
 u = User.create name: 'Gk', email: 'gk@gk.com', password: '1234', role: 'admin'
 amy = User.create name: 'Amy', email: 'amy@amy.com', password: '1234', role: 'admin'
-jon = User.create name: 'Amy', email: 'jon@jon.com', password: '1234', role: 'admin'
+jon = User.create name: 'Jon', email: 'jon@jon.com', password: '1234', role: 'admin'
 
 
 
