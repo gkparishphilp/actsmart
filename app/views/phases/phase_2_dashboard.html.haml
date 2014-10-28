@@ -54,10 +54,7 @@
 						%a{ href: phase_step_activity_path( @phase, @phase.steps.first, @phase.steps.first.activities.first ) }
 							Resource 1: Guide to Identify Research-Based Treatments
 					%li
-						- if @current_agency.agency_treatments.first.chosen_treatment.present?
-							%i.fa.fa-check-circle-o{ style: 'color:#3a3;'}
-						- else
-							%i.fa.fa-circle-o
+						%i.fa.fa-circle-o
 						%a{ href: phase_step_activity_path( @phase, @phase.steps.first, @phase.steps.first.activities.second ) }
 							Resource 2: Instructions for Identifying and Selecting ASD Treatments
 					%li

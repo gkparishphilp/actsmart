@@ -636,7 +636,7 @@ namespace :activities do
               Description of the ACT SMART Model
             </h2>
             <p>
-              The Autism-Community Toolkit: Systems toMeasure and Adopt Research-based Treatments (ACT SMART) is a comprehensive toolkit developed for agencies that provide services to individuals with autism spectrum disorder (ASD). ACT SMART assists agencies successfully implement new research-based treatments.
+              The ACT SMART toolkit is a comprehensive toolkit developed for agencies that provide services to individuals with autism spectrum disorder (ASD). ACT SMART assists agencies successfully implement new research-based treatments.
             </p>
             <p>
               Specifically, ACT SMART:
@@ -668,7 +668,7 @@ namespace :activities do
               </ul>
             </p>
             <p>
-              ACT SMART was developed from the Autism Model of Implementation (AMI), a framework guiding the implementation and sustainment of research-based treatments within ASD community services (refer to Figure 1).
+              ACT SMART was developed from the Autism Model of Implementation (AMI), a framework guiding the implementation and sustainment of research-based treatments within ASD community services.
             </p>
           </div>
           <div class='col-xs-4'>
@@ -1333,18 +1333,14 @@ namespace :activities do
               Instructions
             </h4>
             <p>
-              1)	<b>Review treatment resources and assessment materials.</b> Use the treatment resources you have already gathered in phase 2 or see the
-              <a href='TODO'>
-                Instructions for Identifying and Selecting ASD Treatments
-              </a>
-              for guidance on how to access treatment resources. Review the treatment resources to determine if the treatment developer or others have suggested specific implementation and sustainment strategies.  Additionally, review the
+              1)	<b>Review treatment resources and assessment materials</b> to determine if the treatment developer or others have suggested specific implementation and sustainment strategies. You might also want to review the 
               <a href='/phases/1'>
                 Agency Assessment Feedback
               </a>
-              for information about implementation supports currently being used by your agency. Additionally, look over recommendations of implementation and sustainment strategies that were provided as they may fit well with your agency’s climate and culture. Even if your agency is not currently using some of these strategies, they may match really well with your agency so that they are easier and more effective for your implementation plan.
+              for implementation supports successfully used at your agency and for implementation strategy suggestions.
             </p>
             <p>
-              2)	<b>Select potential implementation and sustainment strategies from the Implementation and Sustainment strategies menu.</b> Place a check mark next to each specific strategy that will be considered for use at your agency. Again, these strategies will facilitate the implementation and sustainment of the research-based treatment.
+              2)	<b>Select potential implementation and sustainment strategies from the Implementation and Sustainment strategies menu.</b>
             </p>
             <p>
               At this time in the planning process, it may be helpful to select all that that will be considered for use. Step 3 includes considerations that will assist with narrowing down the selection of implementation and sustainment strategies.
@@ -1360,15 +1356,18 @@ namespace :activities do
               <ul class='none'>
                 <li>a.	<b>Use currently:</b> This strategy is currently being used within your agency with success.</li>
                 <li>b.	<b>Previous success:</b> This strategy has been used in the past to successfully implement and/or sustain new treatments.</li>
-                <li>c.	<b>Feasible:</b> This strategy will be feasible (compatible, practical) for use within your agency.</li>
-                <li>d.	<b>Recommended by Agency Assessment:</b> This strategy was recommended by the ACT SMART team.</li>
+                <li>c.	<b>Feasible:</b> This strategy will be feasible (e.g., compatible, practical) for use within your agency.</li>
+                <li>d.	<b>Recommended by Agency Assessment:</b> This strategy was recommended by the ACT SMART team in the Agency Assessment feedback.</li>
               </ul>
             </p>
             <p>
-              4) <b>Identify the most supported strategy or set of strategies.</b> Use the information gathered as you considered each strategy to determine which strategy or set of strategies will be most successful to support the initial implementation and sustained use of the research-based treatment.
+              4) <b>Identify the most supported strategy or set of strategies.</b> Determine which strategy or set of strategies will be most successful to support the initial implementation and sustained use of the research-based treatment.
             </p>
             <p>
-              5)	<b>Plan for strategy use.</b> Once the specific strategy or set of strategies has been identified, detail how the strategy will be carried out. For instance, if you select Conduct local consensus discussions, this may be carried out by holding discussions at staff meetings to reach consensus on implementation decisions. Finally, specify who will carry out this plan.
+              5)	<b>Plan for strategy use.</b> Once the specific strategy or set of strategies has been identified, detail how the strategy will be carried out. For instance, if you select Conduct local consensus discussions, this may be carried out by holding discussions at staff meetings to reach consensus on how to use the research-based treatment. 
+            </p>
+            <p>
+              6)	<b>Specify who will carry out this plan.</b>
             </p>
           </div>
         </div>
