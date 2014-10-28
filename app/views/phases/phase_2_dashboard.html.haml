@@ -59,7 +59,14 @@
 						- else
 							%i.fa.fa-circle-o
 						%a{ href: phase_step_activity_path( @phase, @phase.steps.first, @phase.steps.first.activities.second ) }
-							Resource 2: Treatment Selection
+							Resource 2: Instructions for Identifying and Selecting ASD Treatments
+					%li
+						- if @current_agency.agency_treatments.first.chosen_treatment.present?
+							%i.fa.fa-check-circle-o{ style: 'color:#3a3;'}
+						- else
+							%i.fa.fa-circle-o
+						%a{ href: phase_step_activity_path( @phase, @phase.steps.first, @phase.steps.first.activities.third ) }
+							Activity 1: Treatment Selection
 				
 
 				- if @current_agency.step_complete?( @phase.steps.second )

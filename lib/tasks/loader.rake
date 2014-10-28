@@ -45,7 +45,8 @@ namespace :activities do
 		puts p2.label
 			step1 = p2.steps.create seq: 1
 			step1.activities.create seq: 1 # the resource
-			step1.activities.create seq: 2 # treatment selection
+			step1.activities.create seq: 2 # treatment selection resource guide
+			step1.activities.create seq: 3 # treatment selection
 
 		step2 = p2.steps.create seq: 2
 
@@ -993,23 +994,22 @@ namespace :activities do
               Who should be a part of the ACT SMART team at my agency?
             </p>
             <p>
-              ACT SMART was developed to be flexible and fit with many different types of agency structures. We recommend identifying a specific person or team of people to complete the ACT SMART activities. This will help to ensure consistency and completion of materials.
+              ACT SMART is flexible and can fit many different types of agency structures. Identifying a specific person or team of people to complete the ACT SMART activities will help to ensure consistency and completion of materials.
             </p>
             <p>
-              There are different options for who can complete ACT SMART materials: 1) an agency leader or 2) an implementation team.
+              Different options for who can complete ACT SMART materials are:
             </p>
             <ul>
               <li style='margin-bottom:1em;'>
                 <u>
                   Agency leader.
                 </u>
-                Identify an agency leader who will be responsible for completing ACT SMART materials. This person should be the decision-maker in the agency. That is, this person should have the opportunity and independence to decide the specific treatments to implement within an agency. It is important that the person identified completes all ACT SMART materials for consistency in reporting. However, we suggest that the agency leader not work in total isolation from agency staff. Communicating with agency staff increases buy-in for the treatment that is identified and implemented throughout the agency.
-              </li>
+				Identify an agency leader who will be responsible for completing ACT SMART materials. This person should be a lead decision-maker in the agency and have the opportunity and independence to decide the specific treatments to implement within an agency. While the agency leader will be completing the ACT SMART materials, communicating with agency staff is important to increase buy-in for the treatment that is adopted and implemented throughout the agency.              </li>
               <li>
                 <u>
                   Implementation Team.
                 </u>
-                Alternatively, an implementation team comprised of agency staff can be formed to complete ACT SMART materials. For this team format, it is recommended to have regularly-scheduled team meetings to discuss and complete materials. If this team format option is chosen, please see our “Tips to promote collaborative and successful implementation teams.”
+                An implementation team can be formed to complete the ACT SMART materials. Implementation teams should be comprised of an agency leader and additional agency staff. For this team format, it is recommended to have regularly-scheduled team meetings to discuss and complete materials. If this team format option is chosen, please see our “Tips to promote collaborative and successful implementation teams.”
               </li>
             </ul>
             <h3>
@@ -1017,16 +1017,16 @@ namespace :activities do
             </h3>
             <ul>
               <li style='margin-bottom:1em;'>
-                It is highly recommended to set aside a regularly scheduled day and time to complete and review ACT SMART materials. It is recommended that at least two hours per month be devoted to reading and completing ACT SMART materials.
+                Set aside a regularly scheduled day and time (at least 2 hours per month) to complete and review ACT SMART materials.
               </li>
               <li style='margin-bottom:1em;'>
-                Some of the ACT SMART materials are very brief whereas others are more time-consuming to complete. We are confident that the more time you put in to completing ACT SMART materials fully, the more information and feedback you will receive to make well-informed adoption decisions of research-based treatments.
+                The more time you put in to completing ACT SMART materials fully, the more information and feedback ACT SMART facilitators are able to provide. This will lead to more well informed adoption decisions of research-based treatments.
               </li>
               <li style='margin-bottom:1em;'>
-                It is important to identify key stakeholders at your agency (e.g., opinion leaders, innovators, etc.). These staff members have a lot of influence on staff perceptions, attitudes, and acceptance of new research-based treatments. Additionally, these staff members are the individuals who will be able to let you know the general consensus of your staff and barriers to be problem-solved during the implementation process.
+                Identify key stakeholders at your agency (e.g., opinion leaders, support staff, etc.). These staff members are important to help develop staff perceptions, attitudes, and acceptance of new research-based treatments. Additionally, these staff members are the individuals who will be able to let you know the general consensus of your staff and barriers to be problem- solved during the implementation process.
               </li>
               <li style='margin-bottom:1em;'>
-                Strategic planning in engaging agency staff at all levels in the ACT SMART process will promote staff buy-in of research-based treatments and promote a positive culture.
+                Be certain to engage agency staff at all levels in the ACT SMART process. This will promote staff buy-in of research-based treatments and promote a positive culture.
               </li>
             </ul>
             <h3>
@@ -1034,7 +1034,7 @@ namespace :activities do
             </h3>
             <ul>
               <li>
-                The implementation of any new treatment is as much a social process as it is a technical one. The services your agency providers are embedded in a social context that includes the direct provider, supervisor, agency leader, agency, and community. Successful implementation of a new treatment is a function of how well the social context complements and supports the objectives of the treatment (Glisson & Schoenwald, 2005).
+                The implementation of any new treatment is as much a social process as it is a technical one. The services your agency provides are embedded in a social context that includes the direct providers, supervisors, agency leaders, agency, and community. Successful implementation of a new treatment is a function of how well the social context complements and supports the objectives of the treatment (Glisson & Schoenwald, 2005).
               </li>
               <li>
                 Specific factors have been found to facilitate collaboration among groups and include (Drahota et al., 2014):
@@ -1099,7 +1099,7 @@ namespace :activities do
                     Foster relationships with key staff at their agency to build relationships among providers, supervisors, agency leaders, clinical champions, and other important agency members.
                   </li>
                   <li>
-                    Provide opportunities to receive input from staff at various  to promote a shared decision-making process.
+                    Provide opportunities to receive input from staff at various to promote a shared decision-making process.
                   </li>
                 </ul>
               </li>
