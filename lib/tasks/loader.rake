@@ -672,7 +672,7 @@ namespace :activities do
             </p>
           </div>
           <div class='col-xs-4'>
-            <div class='well'>
+            <div class='well highlight'>
               <center>
                 <h3>
                   ACT SMART Model
@@ -807,7 +807,7 @@ namespace :activities do
           </div>
           <div class='col-xs-9'>
             <h3 style='margin-top: 0;'>
-              <a href="mailto:adrahota@mail.sdsu.edu" style="color: #000; ">Dr. Amy Drahota, Ph.D.</a>
+              <a href="mailto:adrahota@mail.sdsu.edu">Dr. Amy Drahota, Ph.D.</a>
             </h3>
             <div class='subtitle'>
               Principal Investigator
@@ -859,7 +859,7 @@ namespace :activities do
           </div>
           <div class='col-xs-9'>
             <h3 style='margin-top: 0;'>
-              <a href="mailto:jonathan.martinez@mail.sdsu.edu" style="color: #000; ">Dr. Jonathan Martinez, Ph.D.</a>
+              <a href="mailto:jonathan.martinez@mail.sdsu.edu">Dr. Jonathan Martinez, Ph.D.</a>
             </h3>
             <div class='subtitle'>
               Postdoctoral Research Fellow
@@ -968,7 +968,7 @@ namespace :activities do
             <p>
               This section provides guidance on how to prepare for the next phases (2-4) of the ACT SMART toolkit. There are a few decisions to make before you get started with the next phases. Making these decisions now will be helpful so that you can efficiently and most effectively use your time.
             </p>
-            <div class='well' style='float:right;width:25%;'>
+            <div class='well highlight' style='float:right;width:25%;'>
               <strong style='text-align: center;'>
                 Getting Ready Checklist
               </strong>

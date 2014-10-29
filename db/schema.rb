@@ -240,14 +240,14 @@ ActiveRecord::Schema.define(version: 20141029173051) do
     t.text     "content"
     t.text     "location"
     t.string   "duration"
-    t.datetime "due_at",             default: '2014-11-05 01:55:08'
+    t.datetime "due_at",             default: '2014-11-05 22:05:19'
     t.datetime "completed_at"
     t.integer  "status",             default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "completed",          default: false
     t.string   "concerns"
-    t.string   "satsifaction_level"
+    t.string   "satisfaction_level"
   end
 
   add_index "tasks", ["agency_id"], name: "index_tasks_on_agency_id", using: :btree
