@@ -1,0 +1,27 @@
+#task_eval.modal.fade
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%button.close{ type: :button, 'data-dismiss' => 'modal', 'aria-hidden' => 'true' }
+					&times;
+				%h4.modal-title
+					Task Evaluation
+			= form_for task do |f|
+				.modal-body
+					.form-group.col-xs-12
+						= f.label :name
+						= f.text_field :name, class: 'form-control'
+					.form-group.col-xs-6
+						= f.label :due
+						= f.text_field :due_at, class: 'form-control datepicker'
+					.form-group.col-xs-6
+						= f.label :assigned_to, :value => "Assigned To"
+						= f.text_field :assigned_to, class: 'form-control'
+					.form-group.col-xs-12
+						= f.label :details
+						= f.text_area :content, class: 'form-control'
+					.clearfix
+				.modal-footer
+					%button.btn.btn-default{ type: :button, 'data-dismiss' => 'modal' }
+						Close
+					= f.submit 'Create', class: 'btn btn-primary'

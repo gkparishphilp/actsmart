@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029014922) do
+ActiveRecord::Schema.define(version: 20141029173051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -240,12 +240,14 @@ ActiveRecord::Schema.define(version: 20141029014922) do
     t.text     "content"
     t.text     "location"
     t.string   "duration"
-    t.datetime "due_at",       default: '2014-11-05 01:55:08'
+    t.datetime "due_at",             default: '2014-11-05 01:55:08'
     t.datetime "completed_at"
-    t.integer  "status",       default: 1
+    t.integer  "status",             default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "completed",    default: false
+    t.boolean  "completed",          default: false
+    t.string   "concerns"
+    t.string   "satsifaction_level"
   end
 
   add_index "tasks", ["agency_id"], name: "index_tasks_on_agency_id", using: :btree

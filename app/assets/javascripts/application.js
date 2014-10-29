@@ -54,4 +54,9 @@ $( document ).ready(function() {
 	//For submit tasks on checkbox click
 	$('.taskCheckbox').on('change', function() { $(this.form).submit() });
 
+	$('.openTaskCheckbox').on('click', function(){ 		
+			$('#new_modal').modal('show'); 
+			console.log('test'); 	
+	});
+
 });
