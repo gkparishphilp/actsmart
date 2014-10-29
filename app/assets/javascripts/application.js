@@ -59,4 +59,9 @@ $( document ).ready(function() {
 			console.log('test'); 	
 	});
 
+	$('form.edit_task').on('ajax:success',function(event, data, status, xhr){
+		$('#customFlash').show().delay(2000).fadeOut('slow', function() { 
+            $("#customFlash").hide()
+        }); 
+	});
 });
