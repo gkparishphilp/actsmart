@@ -14,55 +14,40 @@
 				%li
 					= link_to 'Step 1', phase_step_path( @phase, @step )
 				%li
-					Resource 2: Treatment Selection
+					Activity 1: Treatment Under Consideration
 	.row
 		.col-sm-12
 			%h1
-				Resource 1: Treatment Selection
+				Activity 1: Treatment Under Consideration
+			%p
+				<u>Goal:</u> To identify which of the following specific research-based treatments your agency is considering for adoption. 
+			%p
+				Please select a potential treatment to adopt within your agency. A brief description of each is included below. 
 	.row
 		.col-sm-12
 			%table.table.table-bordered
 				%thead
 					%th.custom-width-header-1
-						Treatment Being Considered
+						Potential Treatments
 					%th.custom-width-header-1
-						Selected for Adoption
+						Selected for Consideration
 				%tbody
 					= form_for @agency_treatment do |f|
 						%tr
 							%td
-								Behavioral
+								<b>Self-Management:</b> Self-management interventions help a child learn to independently regulate their own behaviors and act appropriately in a variety of home, school, and community-based situations.
 							%td
-								= f.radio_button :chosen_treatment, "Behavioral", :class => 'radioButtonList', :class => 'radioButtonList', :class => 'radioButtonList'
+								= f.radio_button :chosen_treatment, "Self-Management", :class => 'radioButtonList', :class => 'radioButtonList', :class => 'radioButtonList'
 						%tr
 							%td
-								Mental Health
+								<b>Social Stories/ Social Narratives:</b> Social stories/narrative interventions describe social situations in some detail by highlighting important cues and offering examples of how to respond appropriately.
 							%td
-								= f.radio_button :chosen_treatment, "Mental Health", :class => 'radioButtonList', :class => 'radioButtonList', :class => 'radioButtonList'
+								= f.radio_button :chosen_treatment, "Social Stories/ Social Narratives", :class => 'radioButtonList', :class => 'radioButtonList', :class => 'radioButtonList'
 						%tr
 							%td
-								Psychosocial
+								<b>Video Modeling:</b> Video modeling is a relatively simple intervention strategy that allows a child to observe a videotape of him or herself successfully engaging in a targeted behavior in order to encourage imitation of that behavior.
 							%td
-								= f.radio_button :chosen_treatment, "Psychosocial", :class => 'radioButtonList', :class => 'radioButtonList'
-						%tr
-							%td
-								Substance Abuse
-							%td
-								= f.radio_button :chosen_treatment, "Substance Abuse", :class => 'radioButtonList'
-						%tr
-							%td
-								Educational
-							%td
-								= f.radio_button :chosen_treatment, "Educational", :class => 'radioButtonList'
-						%tr
-							%td
-								Physical Health
-							%td
-								= f.radio_button :chosen_treatment, "Physical Health", :class => 'radioButtonList'
-						%tr
-							%td
-								ASD Treatment
-							%td
-								= f.radio_button :chosen_treatment, "ASD Treatment", :class => 'radioButtonList'
+								= f.radio_button :chosen_treatment, "Video Modeling", :class => 'radioButtonList', :class => 'radioButtonList'
+
 
 						= submit_tag 'Save', class: 'pull-right btn btn-sm btn-primary', :style => 'display:none;'

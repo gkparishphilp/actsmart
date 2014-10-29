@@ -4,6 +4,7 @@ class Task < ActiveRecord::Base
 
 	belongs_to	:agency
   	validates :name, presence: true
+  	validates :due_at, presence: true
 
 	def self.overdue
 		where("due_at < ? AND completed = ?", Time.zone.now, false)
