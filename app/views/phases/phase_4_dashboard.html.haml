@@ -89,7 +89,7 @@
 									= render 'tasks/short_task_eval', :task => task
 
 							- @current_agency.tasks.completed.each do |task|
-								= form_for task, remote:true do |f|
+								= form_for task do |f|
 									%tr{style: 'text-decoration: line-through; color: grey;'} 
 										%td
 											= f.check_box :completed, :class => "taskCheckbox", checked_value: "active"

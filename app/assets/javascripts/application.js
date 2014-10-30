@@ -55,14 +55,13 @@ $( document ).ready(function() {
 	$('.taskCheckbox').on('change', function() { $(this.form).submit() });
 
 	$('.openTaskCheckbox').on('click', function(){ 		
-			$(this).parent('td').parent('tr').next('tr').show();
-			$(this).parent('td').parent('tr').next('tr').next('tr').show();
+			$(this).parent('td').parent('tr').next('tr').toggle();
+			$(this).parent('td').parent('tr').next('tr').next('tr').toggle();
 	});
 
 	$('.taskEvalClose').on('click', function(){
 			$(this).parent('td').parent('tr').prev('tr').hide();
 			$(this).parent('td').parent('tr').hide();
-			// $(this).closest('.taskEval').hide();
 	});
 
 	$('form.edit_task').on('ajax:success',function(event, data, status, xhr){
