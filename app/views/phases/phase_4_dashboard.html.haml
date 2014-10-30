@@ -64,7 +64,7 @@
 								= form_for task, remote:true do |f|
 									%tr{style: 'color:red;'}
 										%td
-											= f.check_box :completed, :class => "taskCheckbox", checked_value: "active", "data-toggle" => 'modal', "data-target" => '#task_eval'
+											= f.check_box :completed, :class => "taskCheckbox openTaskCheckbox"
 										%td
 											= link_to task.name, '/tasks/'+task.id.to_s+'/edit', :style => 'color:red;'
 										%td
@@ -72,11 +72,13 @@
 										%td
 											= task.assigned_to if task.assigned_to.present?
 
+									= render 'tasks/short_task_eval', :task => task
+
 							- @current_agency.tasks.incomplete.each do |task|
 								= form_for task, remote:true do |f|
 									%tr
 										%td
-											= f.check_box :completed, :class => "taskCheckbox openTaskCheckbox", "data-toggle" => 'modal', "data-target" => '#task_eval'
+											= f.check_box :completed, :class => "taskCheckbox openTaskCheckbox"
 										%td
 											= link_to task.name, '/tasks/'+task.id.to_s+'/edit'
 										%td
@@ -84,8 +86,10 @@
 										%td
 											= task.assigned_to if task.assigned_to.present?
 
+									= render 'tasks/short_task_eval', :task => task
+
 							- @current_agency.tasks.completed.each do |task|
-								= form_for task, remote:true do |f|
+								= form_for task do |f|
 									%tr{style: 'text-decoration: line-through; color: grey;'} 
 										%td
 											= f.check_box :completed, :class => "taskCheckbox", checked_value: "active"
@@ -112,4 +116,3 @@
 
 
 = render 'tasks/new_modal'
-= render 'tasks/task_eval'
