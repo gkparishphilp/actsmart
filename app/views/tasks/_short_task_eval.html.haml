@@ -1,16 +1,16 @@
 =form_for task do |f|
 	%tr.taskEval.upperSection
 		%td{colspan:3}
-			What did you think of the task?
+			How satisfied is your team with how this activity was completed?
 		%td
-			Great
-			= f.radio_button :satsifaction_level, "Great", class: 'pull-right'
+			Satisfied
+			= f.radio_button :satisfaction_level, "Satisfied", class: 'pull-right'
 			%br
-			OK
-			= f.radio_button :satsifaction_level, "OK", class: 'pull-right'
+			Somewhat Satisfied
+			= f.radio_button :satisfaction_level, "Somewhat Satisfied", class: 'pull-right'
 			%br
-			Poor
-			= f.radio_button :satsifaction_level, "Poor", class: 'pull-right'
+			Not Satisfied
+			= f.radio_button :satisfaction_level, "Not Satisfied", class: 'pull-right'
 		%tr.taskEval
 			%td{colspan:4}
 				= f.text_field :concerns, placeholder: "Enter any concerns here"

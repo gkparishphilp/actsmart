@@ -2,15 +2,16 @@
 %footer.footer
 	.container
 		.row{style: 'margin-bottom:0;'}
-			.col-sm-10
+			.col-sm-12
 				.row{style: 'margin-bottom:0;'}
 					.col-xs-3
-						= image_tag 'casrc_logo.jpg', class: 'img img-responsive'
+						%a{ href: 'http://www.casrc.org', target: '_new' }
+							= image_tag 'casrc_logo.jpg', class: 'img img-responsive'
 						%br
-						%a{ href: 'http://www.nimh.nih.gov/index.shtml' }
+						%a{ href: 'http://www.nimh.nih.gov/index.shtml', target: '_new' }
 							= image_tag 'nimh_logo.gif', class: 'img img-responsive'
 					.col-xs-3
-						%a{ href: 'http://www.sdsu.edu/' }
+						%a{ href: 'http://www.sdsu.edu/', target: '_new' }
 							= image_tag 'SDSU_2Color.jpg', class: 'img img-responsive', style: "max-height:130px;"
 					.col-xs-6
 						%p							
@@ -20,10 +21,8 @@
 							%br
 							%br
 							Funded by the 
-							%a{ href: 'http://www.nimh.nih.gov/index.shtml' }
+							%a{ href: 'http://www.nimh.nih.gov/index.shtml', target: '_new' }
 								National Institutes of Mental Health 
 							(K01 MH093477; PI: A. Drahota)					
-			.col-sm-2
-				%a{ href: '/about' }
-					About
+
 

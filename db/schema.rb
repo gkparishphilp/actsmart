@@ -240,7 +240,7 @@ ActiveRecord::Schema.define(version: 20141029173051) do
     t.text     "content"
     t.text     "location"
     t.string   "duration"
-    t.datetime "due_at",             default: '2014-11-05 22:05:19'
+    t.datetime "due_at",             default: '2014-11-06 15:48:42'
     t.datetime "completed_at"
     t.integer  "status",             default: 1
     t.datetime "created_at"

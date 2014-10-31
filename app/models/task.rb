@@ -2,6 +2,8 @@ class Task < ActiveRecord::Base
 
 	enum status: { 'pending' => 0, 'active' => 1, 'completed' => 2, 'confirmed' => 3, 'overdue' => 4 }
 
+	attr_accessor :satisfaction_level
+
 	belongs_to	:agency
   	validates :name, presence: true
   	validates :due_at, presence: true
