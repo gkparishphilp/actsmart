@@ -11,7 +11,7 @@
 		.col-sm-12
 			%h1
 				Phase 1: Identify Practice & Delivery Gaps
-			%p
+			%p.larger
 				<u>Goal</u>:
 				Identify your agency’s areas of strength and areas of growth, and determine your agency’s receptivity to implementing a new research-based treatment.
 	.row
@@ -20,9 +20,14 @@
 				%h4
 					General Description
 				%p
-					The first goal of Phase 1 is to identify areas of strength to build upon, and areas of growth that your agency can address by implementation a new research-based treatment. The second goal is to determine your agency’s receptivity to implementing a new research-based treatment. Both of these goals are accomplished completing the ACT SMART Agency Assessment. 
+					There are two goals of Phase 1:
+					%ul
+						%li
+							Identify your agencies areas of strength and possible growth. 
+						%li
+							Determine your agency's receptivity to implementing a new research-based treatment to meet this need and build on your strengths.
 				%p
-					Agency leaders, supervisors, and direct providers at your agency will be asked to complete the confidential ACT SMART Agency Assessment. An additional option is for each of your agency’s clients or caregivers of clients to complete the Caregiver/Consumer Satisfaction Survey. 
+					Agency leaders, supervisors, and direct providers at your agency will be asked to complete the confidential ACT SMART Agency Assessment. An additional option is for each of your agency’s clients or caregivers of clients to complete the Caregiver Survey. 
 				%p
 					ACT SMART facilitators will analyze the data and provide specific feedback to your agency including: areas of strength, areas of growth, recommendations for next steps, and guidance about prioritizing agency goals.
 
@@ -64,7 +69,7 @@
 					%li
 						Encourage your staff to complete the online Agency Assessment.
 					%li
-						Optional: Assess Caregiver/Consumer Satisfaction
+						Optional: Ask caregivers to complete the Caregiver Survey
 				
 				- if @current_agency.responses.where( question_id: 2 ).last.try( :content ) == 'yes'
 					%i.fa.fa-check-circle-o{ style: 'color:#3a3;font-size:150%;'}

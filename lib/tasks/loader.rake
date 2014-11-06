@@ -826,33 +826,7 @@ namespace :activities do
             </p>
           </div>
         </div>
-        <div class='row' style='margin-top: 2em;'>
-          <div class='col-xs-3'>
-            <img alt="Rosemary" class="img img-responsive pull-right" src="/assets/rosemary.jpg" />
-          </div>
-          <div class='col-xs-9'>
-            <h3 style='margin-top: 0;'>
-              Rosemary Meza, B.A.
-            </h3>
-            <div class='subtitle'>
-              Research Assistant
-            </div>
-            <p>
-              Rosemary was a Research Assistant at San Diego State University and the Child and Adolescent Services Research Center (CASRC) during the development of the ACT SMART toolkit. She is currently in the Clinical Psychology Doctoral Program at the University of Washington. Her research interests focus on improving mental health services through the settings.
-            </p>
-            <h5 style='font-weight: bold;'>
-              Why is the ACT SMART toolkit important?
-            </h5>
-            <p>
-              As a former direct provider in an ASD community agency, I am strongly invested in
-              the improvement of outcomes for individuals with autism. I believe the ACT SMART
-              toolkit has the potential to improve client outcomes through assisting community
-              agencies in identifying and implementing a research-based treatment that best suits
-              their needs. I look forward to the valuable insight that will be gained through testing
-              the ACT SMART toolkit in ASD community agencies.
-            </p>
-          </div>
-        </div>
+        
         <div class='row' style='margin-top: 2em;'>
           <div class='col-xs-3'>
             <img alt="Jon" class="img img-responsive pull-right" src="/assets/jon.jpg" />
@@ -883,6 +857,34 @@ namespace :activities do
               opportunity to build and foster relationships with community agencies and gain
               increased awareness on how best to support agencies at implementing evidence-
               based interventions.
+            </p>
+          </div>
+        </div>
+
+        <div class='row' style='margin-top: 2em;'>
+          <div class='col-xs-3'>
+            <img alt="Rosemary" class="img img-responsive pull-right" src="/assets/rosemary.jpg" />
+          </div>
+          <div class='col-xs-9'>
+            <h3 style='margin-top: 0;'>
+              Rosemary Meza, B.A.
+            </h3>
+            <div class='subtitle'>
+              Research Assistant
+            </div>
+            <p>
+              Rosemary was a Research Assistant at San Diego State University and the Child and Adolescent Services Research Center (CASRC) during the development of the ACT SMART toolkit. She is currently in the Clinical Psychology Doctoral Program at the University of Washington. Her research interests focus on improving mental health services through the settings.
+            </p>
+            <h5 style='font-weight: bold;'>
+              Why is the ACT SMART toolkit important?
+            </h5>
+            <p>
+              As a former direct provider in an ASD community agency, I am strongly invested in
+              the improvement of outcomes for individuals with autism. I believe the ACT SMART
+              toolkit has the potential to improve client outcomes through assisting community
+              agencies in identifying and implementing a research-based treatment that best suits
+              their needs. I look forward to the valuable insight that will be gained through testing
+              the ACT SMART toolkit in ASD community agencies.
             </p>
           </div>
         </div>
