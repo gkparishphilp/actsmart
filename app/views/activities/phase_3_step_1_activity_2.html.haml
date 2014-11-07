@@ -58,7 +58,7 @@
 								%td
 									= i
 								%td{ :class=> "col-md-11" }
-									= treatment_adaptations.content
+									= Phase.find_by(id: 3).activities.second.questions.find_by(seq: i).content
 								%td
 									= f.radio_button :not_doing_adaptation, 'false'
 								%td 
