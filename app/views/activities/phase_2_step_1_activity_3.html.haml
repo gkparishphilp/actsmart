@@ -20,7 +20,9 @@
 			%h1
 				Activity 1: Treatment Under Consideration
 			%p
-				<u>Goal:</u> To identify which of the following specific research-based treatments your agency is considering for adoption. 
+				%span.h4
+					Goal:
+				To identify which of the following specific research-based treatments your agency is considering for adoption. 
 			%p
 				Please select a potential treatment to adopt within your agency. A brief description of each is included below. 
 	.row
@@ -29,24 +31,24 @@
 				%thead
 					%th.custom-width-header-1
 						Potential Treatments
-					%th.custom-width-header-1
+					%th.custom-width-header-1.text-center
 						Selected for Consideration
 				%tbody
 					= form_for @agency_treatment do |f|
 						%tr
 							%td
 								<b>Self-Management:</b> Self-management interventions help a child learn to independently regulate their own behaviors and act appropriately in a variety of home, school, and community-based situations.
-							%td
+							%td.text-center
 								= f.radio_button :chosen_treatment, "Self-Management", :class => 'radioButtonList', :class => 'radioButtonList', :class => 'radioButtonList'
 						%tr
 							%td
 								<b>Social Stories/ Social Narratives:</b> Social stories/narrative interventions describe social situations in some detail by highlighting important cues and offering examples of how to respond appropriately.
-							%td
+							%td.text-center
 								= f.radio_button :chosen_treatment, "Social Stories/ Social Narratives", :class => 'radioButtonList', :class => 'radioButtonList', :class => 'radioButtonList'
 						%tr
 							%td
 								<b>Video Modeling:</b> Video modeling is a relatively simple intervention strategy that allows a child to observe a videotape of him or herself successfully engaging in a targeted behavior in order to encourage imitation of that behavior.
-							%td
+							%td.text-center
 								= f.radio_button :chosen_treatment, "Video Modeling", :class => 'radioButtonList', :class => 'radioButtonList'
 
 
