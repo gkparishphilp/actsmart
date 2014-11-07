@@ -1,0 +1,1 @@
+Rails.application.config.assets.precompile += %w( agency_nav.css )
