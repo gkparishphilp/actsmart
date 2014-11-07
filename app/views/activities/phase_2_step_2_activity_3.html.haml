@@ -35,18 +35,18 @@
 					%thead
 						%th
 						%th
-						%th
+						%th.text-center
 							Yes
-						%th
+						%th.text-center
 							No
-						%th
+						%th.text-center
 							Don't Know
 					%tbody
 						- @activity.questions.where( section: 'section_1' ).order( :seq ).each do |question|
 							%tr
 								%td
 									= question.seq
-								%td
+								%td.col-md-10
 									= raw question.content
 								%td.text-center
 									= radio_button_tag "question_answers[#{question.id}]", :yes, @current_agency.responses.where( question_id: question.id ).first.try( :content ) == 'yes'
