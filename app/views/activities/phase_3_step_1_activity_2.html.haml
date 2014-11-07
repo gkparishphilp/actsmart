@@ -46,8 +46,8 @@
 						Yes
 					%th
 						No
-					%th
-						DK
+					%th.text-center
+						Don't Know
 				%tbody
 				-i = 0
 				= form_tag update_individual_treatment_adaptations_path, :method => "put", :id => "myAdaptationsList" do |f|	
@@ -59,11 +59,11 @@
 									= i
 								%td{ :class=> "col-md-11" }
 									= Phase.find_by(id: 3).activities.second.questions.find_by(seq: i).content
-								%td
+								%td.text-center
 									= f.radio_button :not_doing_adaptation, 'false'
-								%td 
+								%td.text-center 
 									= f.radio_button :not_doing_adaptation, 'true'
-								%td 
+								%td.text-center 
 									= f.radio_button :not_doing_adaptation, 'dk'
 							- if i == 14
 								%tr
@@ -72,7 +72,7 @@
 											Do you anticipate making the following context adaptations to the intervention you are considering at your agency:
 					= submit_tag 'Save', class: 'btn btn-primary', :style => "display:none;"
 					
-			%btn.btn.btn-primary#adaptationsList
+			%btn.btn.btn-primary.pull-right#adaptationsList
 				Save
 
 
