@@ -18,27 +18,36 @@
 				Phase 2: Treatment Selection & Adoption Decision
 			%p.larger
 				<u>Goal</u>:
-				Assist the implementation team select and adopt an appropriate research-based treatment to meet your agency’s needs.
+				Assist your agency's implementation team to select, evaluate, and adopt an appropriate research-based treatment that will meet your agency's needs.
 	.row
 		.col-sm-7
 			.well
 				%h5
 					General Description
 				%p
-					The purpose of phase 2 is to assist agency leaders select and adopt effective research-based treatments to meet your agency’s needs (<a href='/phases/1'>Identified in phase 1</a>). 
+					Using the information identified in Phase 1, Phase 2 will guide your implementation team through:
+					%ul
+						%li
+							identifying an appropriate research-based treatment,
+						%li
+							evaluating its characteristics to determine whether it would be appopriate to meet your client's needs and for your agency to use, 
+						%li
+							making a decision whether or not to adopt the research-based treatment.
+
 				%p
-					Information in this phase is used to select a research-based treatment and evaluate factors that are important to consider before you decide to adopt it. 
-				%p
-					Phase 2 is comprised of three steps: 
-					%ol
-						%li
-							Identifying an appropriate research-based treatment
-						%li
-							Evaluating treatment and provider factors (such as fit, benefit-cost estimator, feasibility)
-						%li
-							Making a decision whether or not to adopt the research-based treatment
-						%br
-						%br
+					To help your implementation team evaluate the potential treatment, you will need to access specific information, such as a description of the treatment, how it is supposed to be delivered to individuals with ASD, evidence of its effectiveness, and staff training requirements. To access this information, search for the original treatment article or manual on the Internet or in the research literature. You may be able to use the resources available in Step 1: Resource 1 to access this information. Your ACT SMART facilitator will be able to guide your team to the necessary resources if you feel that this would be helpful.
+				-#
+					%p
+						Phase 2 is comprised of three steps: 
+						%ol
+							%li
+								Identifying an appropriate research-based treatment
+							%li
+								Evaluating treatment and provider factors (such as fit, benefit-cost estimator, feasibility)
+							%li
+								Making a decision whether or not to adopt the research-based treatment
+							%br
+							%br
 
 
 		.col-sm-5
@@ -47,7 +56,7 @@
 				%i.fa.fa-circle-o
 				Step 1:
 				%a{ href: phase_step_path( @phase, @phase.steps.first ) }
-					Identify an appropriate research-based treatment
+					Identify an Appropriate Research-Based Treatment
 				%ul.none
 					%li
 						%i.fa.fa-circle-o
@@ -71,7 +80,7 @@
 				- else
 					%i.fa.fa-circle-o
 				%a{ href: phase_step_path( @phase, @phase.steps.second ) }
-					Step 2: Evaluate treatment and provider factors
+					Step 2: Evaluate Treatment and Provider Factors
 				%ul.none
 					%li
 						- if @current_agency.activity_complete?( @phase.steps.second.activities.find_by_seq( 1 ) )
@@ -119,7 +128,7 @@
 				%i.fa.fa-circle-o
 				Step 3:
 				%a{ href: phase_step_path( @phase, @phase.steps.third ) }
-					Make an adoption decision
+					Make an Adoption Decision
 				%ul.none
 					%li
 						- if @current_agency.activity_complete?( @phase.steps.third.activities.find_by_seq( 1 ) )
@@ -127,4 +136,4 @@
 						- else
 							%i.fa.fa-circle-o
 						%a{ href: phase_step_activity_path( @phase, @phase.steps.third, @phase.steps.third.activities.find_by_seq( 1 ) ) }
-							Activity 1: Feasibility Score
+							Activity 1: Adoption Decision

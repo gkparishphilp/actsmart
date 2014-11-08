@@ -14,7 +14,7 @@
 					%span.icon-bar
 			#top-navigation.nav-collapse.subnav-collapse.navbar-collapse.collapse
 				%ul.nav.navbar-nav.navbar-left
-					%li
+					-#%li
 						%a.nav-header{ href: '/about' }
 							About
 					%li
@@ -39,7 +39,7 @@
 								%a.nav-header{ href: manage_team_index_path }
 									Agency Team
 
-				%ul.nav.navbar-nav.navbar-right{ style: 'margin-right:1em;' }				
+				%ul.nav.navbar-nav.navbar-right{ style: 'margin-right:0.5em;' }				
 					- if current_user
 						%li
 							%a.nav-header{ href: dashboard_index_path, style: 'text-decoration:none;' }
