@@ -40,6 +40,7 @@
 					Team Members
 				%th
 				%th
+				%th
 
 			%tbody
 				- @agencies.each do |agency|
@@ -66,6 +67,10 @@
 							%a{ href: agency_progress_path( agency ) }
 								%i.fa.fa-eye
 								Review Progress
+						%td
+							%a.btn.btn-danger{ href: agency_path( agency ), data: { method: :delete, confirm: 'Are you sure?' } }
+								%i.fa.fa-trash-o
+								Delete
 	- else
 		%h3 No Agencies
 

@@ -10,11 +10,15 @@
 					Edit
 .container
 	.row
-		.col-sm-12
+		.col-sm-10
 			%h1
 				Edit
 				= @agency.name
-
+		.col-sm-2
+			.pull-right
+				%a.btn.btn-danger{ href: agency_path( @agency ), data: { method: :delete, confirm: 'Are you sure?' } }
+					%i.fa.fa-trash-o
+					delete
 	.row
 		= form_for @agency do |f|
 			.col-sm-8

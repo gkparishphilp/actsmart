@@ -7,20 +7,20 @@ class Agency < ActiveRecord::Base
 	has_many 	:agency_users, dependent: :destroy
 	has_many	:users, through: :agency_users
 
-	has_many	:budget_items
+	has_many	:budget_items, dependent: :destroy
 	
-	has_many	:funding_sources
-	has_many	:treatment_strategies
-	has_many	:treatment_adaptations
-	has_many	:agency_treatments
+	has_many	:funding_sources, dependent: :destroy
+	has_many	:treatment_strategies, dependent: :destroy
+	has_many	:treatment_adaptations, dependent: :destroy
+	has_many	:agency_treatments, dependent: :destroy
 
-	has_many	:messages
-	has_many	:respondings
-	has_many	:responses
+	has_many	:messages, dependent: :destroy
+	has_many	:respondings, dependent: :destroy
+	has_many	:responses, dependent: :destroy
 
-	has_many	:tasks
+	has_many	:tasks, dependent: :destroy
 
-	has_many	:treatments
+	has_many	:treatments, dependent: :destroy
 
   	after_create :create_treatment_strategies
   	after_create :create_treatment_adaptations
@@ -178,7 +178,7 @@ class Agency < ActiveRecord::Base
 	end
 
 	def lead
-		self.agency_users.find_by(role: "lead").user
+		self.agency_users.find_by(role: "lead").try( :user )
 	end
 
 	def to_s

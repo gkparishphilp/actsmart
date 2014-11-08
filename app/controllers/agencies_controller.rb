@@ -12,6 +12,12 @@ class AgenciesController < ApplicationController
 
 	end
 
+	def destroy
+		@agency = Agency.find( params[:id] )
+		@agency.destroy
+		redirect_to admin_index_path
+	end
+
 	def edit
 		@agency = Agency.find( params[:id] )	
 	end
@@ -24,7 +30,7 @@ class AgenciesController < ApplicationController
 		@agency = Agency.find( params[:id] )
 		if @agency.update( agency_params )
 			
-			if @agency.users.exists?
+			if @agency.users.exists? && params[:lead_id].present?
 				AgencyUser.where( agency_id: @agency.id, role: 'lead').last.update( role: 'member' )
 				AgencyUser.where( agency_id: @agency.id, user_id: params[:lead_id] ).last.update( role: 'lead' )
 			end

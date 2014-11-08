@@ -699,7 +699,7 @@ namespace :activities do
               Autism Model of Implementation (AMI) Phases and ACT SMART Steps
             </h4>
             <center>
-              <img alt="Figure1" class="img img-responsive" src="/assets/figure1.jpg" />
+              <img alt="Figure1" class="img img-responsive" src="https://s3.amazonaws.com/actsmart/figure1.jpg" />
             </center>
             <h2>
               ACT SMART Phases and Steps
@@ -803,7 +803,7 @@ namespace :activities do
         </div>
         <div class='row' style='margin-top: 2em;'>
           <div class='col-xs-3'>
-            <img alt="Drahota" class="img img-responsive pull-right" src="/assets/drahota.jpg" />
+            <img alt="Drahota" class="img img-responsive pull-right" src="https://s3.amazonaws.com/actsmart/drahota.jpg" />
           </div>
           <div class='col-xs-9'>
             <h3 style='margin-top: 0;'>
@@ -829,7 +829,7 @@ namespace :activities do
         
         <div class='row' style='margin-top: 2em;'>
           <div class='col-xs-3'>
-            <img alt="Jon" class="img img-responsive pull-right" src="/assets/jon.jpg" />
+            <img alt="Jon" class="img img-responsive pull-right" src="https://s3.amazonaws.com/actsmart/jon.jpg" />
           </div>
           <div class='col-xs-9'>
             <h3 style='margin-top: 0;'>
@@ -863,7 +863,7 @@ namespace :activities do
 
         <div class='row' style='margin-top: 2em;'>
           <div class='col-xs-3'>
-            <img alt="Rosemary" class="img img-responsive pull-right" src="/assets/rosemary.jpg" />
+            <img alt="Rosemary" class="img img-responsive pull-right" src="https://s3.amazonaws.com/actsmart/rosemary.jpg" />
           </div>
           <div class='col-xs-9'>
             <h3 style='margin-top: 0;'>
@@ -895,7 +895,7 @@ namespace :activities do
 
 	p=Page.create title: 'faqs', content: <<-END
 		<center>
-              <img alt="Logo wide" src="/assets/logo_wide.png" />
+              <img alt="Logo wide" src="https://s3.amazonaws.com/actsmart/logo_wide.png" />
             </center>
           </div>
           <div class='col-xs-12'>
