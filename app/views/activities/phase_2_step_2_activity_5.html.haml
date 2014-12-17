@@ -65,13 +65,13 @@
 				%p
 					2)	If funders do not currently fund this treatment, what are your next steps? 
 
-				= radio_button_tag "question_answers[#{@activity.questions.first.id}]", 'Proceed with treatment as a pay-out-of-pocket service.', @current_agency.responses.where( question_id: @activity.questions.first.id ).first.try( :content ) == 'Proceed with treatment as a pay-out-of-pocket service.'
+				= check_box_tag "question_answers[#{@activity.questions.first.id}]", 'Proceed with treatment as a pay-out-of-pocket service.', @current_agency.responses.where( question_id: @activity.questions.first.id ).first.try( :content ) == 'Proceed with treatment as a pay-out-of-pocket service.'
 				Proceed with treatment as a pay-out-of-pocket service.
 				%br
-				= radio_button_tag "question_answers[#{@activity.questions.first.id}]", 'Try to secure funding for the treatment.', @current_agency.responses.where( question_id: @activity.questions.first.id ).first.try( :content ) == 'Try to secure funding for the treatment.'
+				= check_box_tag "question_answers[#{@activity.questions.first.id}]", 'Try to secure funding for the treatment.', @current_agency.responses.where( question_id: @activity.questions.first.id ).first.try( :content ) == 'Try to secure funding for the treatment.'
 				Try to secure funding for the treatment.
 				%br
-				= radio_button_tag "question_answers[#{@activity.questions.first.id}]", 'Do not proceed with treatment.', @current_agency.responses.where( question_id: @activity.questions.first.id ).first.try( :content ) == 'Do not proceed with treatment.'
+				= check_box_tag "question_answers[#{@activity.questions.first.id}]", 'Do not proceed with treatment.', @current_agency.responses.where( question_id: @activity.questions.first.id ).first.try( :content ) == 'Do not proceed with treatment.'
 				Do not proceed with treatment.
 				%p
 				%p
@@ -80,7 +80,7 @@
 					= text_area_tag "question_answers[#{@activity.questions.second.id}]", @current_agency.responses.where( question_id: @activity.questions.second.id ).first.try( :content ), class: 'form-control'
 				
 				.clearfix
-				.form-group
+				.form-group.pull-right
 					= submit_tag 'Save', class: 'btn btn-primary'
 
 
