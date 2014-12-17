@@ -20,9 +20,9 @@
 			.col-sm-3.col-sm-offset-1
 				.well{ style: 'text-align:center;' }
 					%p
-						- if @current_agency.phase_complete?( Phase.find_by( name: 'phase_4' ) ) 
+						-# if @current_agency.phase_complete?( Phase.find_by( name: 'phase_4' ) ) 
 							%i.fa.fa-check-circle-o{ style: 'color:#3a3;font-size:150%;'}
-						- else
+						-# else
 							%i.fa.fa-circle-o{ style: 'font-size:130%;'}
 						%span{ style: 'font-weight: bold;' }
 							-# if @current_agency.phase_complete?( Phase.find_by( name: 'phase_3' ) ) 
