@@ -71,7 +71,7 @@ namespace :activities do
 		[
 			"Will it be possible to provide this treatment in the setting that you typically deliver services (home, clinic, school, etc.)?",
 			"Does your agency have the staff, materials, space, and other necessities to deliver this treatment?",
-			"Will this treatment be able to be delivered within your agency without modification?",
+			"Will this treatment be able to be delivered within your agency with any changes to it?",
 			"Will this treatment be used daily by multiple staff?",
 			"Can components of this treatment be tried out to evaluate its utility or suitability?",
 			"Is the treatment administratively feasible, given the policies and procedures of your agency?"		
@@ -113,7 +113,7 @@ namespace :activities do
 
 		q = act.questions.create seq: 2, name: 'what_staff_are_required', question_type: 'multi_select', section: 'staff_involved'
 		[
-			"Direct Providers", "Support Staff", "Supervisors", "Agency Leaders"
+			"Direct Providers", "Support Staff", "Supervisors", "Agency Leaders", "Support Staff"
 		].each do |prompt|
 			q.prompts.create content: prompt
 		end
