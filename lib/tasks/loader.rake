@@ -1331,9 +1331,9 @@ namespace :activities do
         </div>
         <div class='row'>
           <div class='col-sm-12'>
-            <h4>
+            <h1>
               Instructions
-            </h4>
+            </h1>
             <p>
               1)	<b>Review treatment resources and assessment materials</b> to determine if the treatment developer or others have suggested specific implementation and sustainment strategies. You might also want to review the 
               <a href='/phases/1'>

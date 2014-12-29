@@ -9,11 +9,11 @@ class Task < ActiveRecord::Base
   	validates :due_at, presence: true
 
 	def self.overdue
-		where("due_at < ? AND completed = ?", Time.zone.now, false)
+		where("due_at < ? AND completed = ?", Time.zone.now.end_of_day, false)
 	end
 
 	def self.incomplete
-		where("due_at >= ? AND completed = ?", Time.zone.now, false)
+		where("due_at >= ? AND completed = ?", Time.zone.now.end_of_day, false)
 	end
 
 	def self.completed

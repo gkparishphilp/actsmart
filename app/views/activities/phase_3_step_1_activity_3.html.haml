@@ -13,7 +13,7 @@
 	.row
 		.col-sm-12
 			%h1
-				Activity 3: Treatment Adaptations Table
+				Activity 3: Treatment Adaptation Plan
 			%p
 				To review instructions, see
 				= link_to 'Phase 3 Step 1 guide', phase_step_path( @phase, @step )
@@ -27,21 +27,21 @@
 					- for treatment_adaptations in @current_agency.treatment_adaptations.order('created_at ASC')
 						=fields_for "treatment_adaptations[]", treatment_adaptations do |f|
 							- if treatment_adaptations.not_doing_adaptation != 'true'
-								%h4
+								%h4{ style: 'margin-bottom: -6px;' }
 									= treatment_adaptations.name
 								%br
 								%table.table.table-bordered	
 									%thead
 										%th
-											Specify reason(s) for the adaptation
+											%center Specify reason(s) for the adaptation
 										%th{"data-toggle" => "tooltip", "data-container" => "body", "title" => "To help identify potential concerns, consult with others who are knowledgeable about the agency and/or the research-based treatment (e.g., adaptation team, implementation team, stakeholders/consumers, agency staff, treatment developers, etc.). Pay particular attention to any concerns that adaptations will impact the effectiveness of the intervention."}
-											Identify any specific concerns about the adaptation
+											%center Identify any specific concerns about the adaptation
 										%th
-											How will concerns be addressed?
+											%center How will concerns be addressed?
 										%th{"data-toggle" => "tooltip", "data-container" => "body", "title" => "Detail the specific steps of each adaptation that will be made. This may include the content or context of the treatment that will be adapted (e.g., the treatment modules will be reordered so that module three will precede module two.)."}
-											Specify how the adaptation will be made
+											%center Specify how the adaptation will be made
 										%th
-											Who will carry out the adaptation?
+											%center Who will carry out the adaptation?
 									%tbody
 										%tr
 											%td
@@ -57,13 +57,13 @@
 												= f.check_box :client_chars
 												Client characteristics (e.g., age, developmental age, ASD diagnosis, severity, culture, language, comorbid problems)
 												%br
-												= f.text_area :other_reasons
+												=# f.text_area :other_reasons
 											%td
 												= f.radio_button :concerns, true
-												True
+												No concerns
 												%br
 												= f.radio_button :concerns, false
-												False
+												Concerns exist
 												%br
 												%br
 												List concerns:
@@ -79,7 +79,7 @@
 												Address concern
 												%br
 												%br
-												If "Address concern" chosen, please list how:
+												If "Address concern" was chosen, please list how:
 												%br
 												= f.text_area :address_concern_text
 											%td
@@ -103,7 +103,6 @@
 												= f.check_box :implementation_team
 												Implementation Team
 												%br	
-												%br
 												Other:
 												%br
 												= f.text_area :other_implementer
@@ -117,5 +116,6 @@
 												%br
 												= f.radio_button :not_doing_adaptation, 'dk'
 												Uncertain
+												.pull-right= submit_tag 'Save', class: 'btn btn-primary'
 
 					= submit_tag 'Save', class: 'btn btn-primary'
