@@ -53,6 +53,7 @@
 					%table.table
 						%thead
 							%th
+								Done
 							%th
 								Task
 							%th
@@ -63,7 +64,7 @@
 							- @current_agency.tasks.overdue.each do |task|
 								= form_for task, remote:true do |f|
 									%tr{style: 'color:red;'}
-										%td
+										%td.centerCheckboxes
 											= f.check_box :completed, :class => "taskCheckbox openTaskCheckbox"
 										%td
 											= link_to task.name, '/tasks/'+task.id.to_s+'/edit', :style => 'color:red;'
@@ -77,7 +78,7 @@
 							- @current_agency.tasks.incomplete.each do |task|
 								= form_for task, remote:true do |f|
 									%tr
-										%td
+										%td.centerCheckboxes
 											= f.check_box :completed, :class => "taskCheckbox openTaskCheckbox"
 										%td
 											= link_to task.name, '/tasks/'+task.id.to_s+'/edit'
@@ -91,7 +92,7 @@
 							- @current_agency.tasks.completed.each do |task|
 								= form_for task do |f|
 									%tr{style: 'text-decoration: line-through; color: grey;'} 
-										%td
+										%td.centerCheckboxes
 											= f.check_box :completed, :class => "taskCheckbox", checked_value: "active"
 										%td
 											= link_to task.name, '/tasks/'+task.id.to_s+'/edit', style: 'text-decoration: line-through; color: grey;'
