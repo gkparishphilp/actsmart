@@ -24,7 +24,7 @@
 				%thead
 					%th.custom-width-header
 						Specific strategies
-					%th
+					%th.custom-width-header-considerations
 						Strategy considerations	
 					%th.custom-width-header-1
 						Selected for use
@@ -101,18 +101,17 @@
 								%td
 									= treatment_strategies.name
 								%td
-									.custom-cell-left
-										= f.check_box :use_currently
-										Use Currently
-										%br
-										= f.check_box :previous_success	
-										Previous success
-									.custom-cell-right
-										= f.check_box :feasible
-										Feasible
-										%br
-										= f.check_box :recommended
-										Recommended
+									= f.check_box :use_currently
+									Use Currently
+									%br
+									= f.check_box :previous_success	
+									Previous success
+									%br
+									= f.check_box :feasible
+									Feasible
+									%br
+									= f.check_box :recommended
+									Recommended
 								%td.text-center
 									= f.check_box :selected
 								%td
