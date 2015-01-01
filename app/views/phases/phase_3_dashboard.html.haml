@@ -99,7 +99,7 @@
 					Develop the Implementation and Sustainment Plan
 				%ul.none
 					%li
-						- if @current_agency.activity_complete?( @phase.steps.third.activities.find_by_seq( 1 ) )
+						- if @current_agency.treatment_strategies_complete?
 							%i.fa.fa-check-circle-o{ style: 'color:#3a3;'}
 						- else
 							%i.fa.fa-circle-o

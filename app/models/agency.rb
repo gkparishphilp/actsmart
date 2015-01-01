@@ -166,6 +166,10 @@ class Agency < ActiveRecord::Base
 		self.responses.where( activity_id: activity.id ).count >= activity.questions.where( required: true ).count
 	end
 
+	def treatment_strategies_complete?
+		self.treatment_strategies.where( :selected => true ).count >= 1	
+	end
+
 	def phase_complete?( phase )
 		if phase.id == 1
 			return self.responses.where( question_id: 1 ).last.try( :content ) == 'yes' && self.responses.where( question_id: 2 ).last.try( :content ) == 'yes'
