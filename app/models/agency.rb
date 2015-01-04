@@ -166,6 +166,10 @@ class Agency < ActiveRecord::Base
 		self.responses.where( activity_id: activity.id ).count >= activity.questions.where( required: true ).count
 	end
 
+	def training_requirements_complete?( activity )
+		self.responses.where( activity_id: activity.id ).count >= activity.questions.where( required: true ).count || self.responses.where( activity_id: activity.id ).first.content != 'yes' 
+	end
+
 	def treatment_strategies_complete?
 		self.treatment_strategies.where( :selected => true ).count >= 1	
 	end

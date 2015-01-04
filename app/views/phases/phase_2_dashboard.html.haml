@@ -104,7 +104,7 @@
 						%a{ href: phase_step_activity_path( @phase, @phase.steps.second, @phase.steps.second.activities.find_by_seq( 3 ) ) }
 							Activity 3: Clinical Value and Research Validity
 					%li
-						- if @current_agency.activity_complete?( @phase.steps.second.activities.find_by_seq( 4 ) )
+						- if @current_agency.training_requirements_complete?( @phase.steps.second.activities.find_by_seq( 4 ) )
 							%i.fa.fa-check-circle-o{ style: 'color:#3a3;'}
 						- else
 							%i.fa.fa-circle-o
