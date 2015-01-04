@@ -43,7 +43,10 @@ $( document ).ready(function() {
 	$('#closeFlash').on('click', function() { $("#customFlash").hide() });
 
 	$('.treatmentCheckbox').on('click', function() { $('#myTreatmentsForm').submit(); });
+	if ($('input#trainingRequired').is(':checked')) { $('.trainingReqForm').show(); };
+	if ($('input#noTrainingRequired').is(':checked')) { $('.trainingReqForm').hide(); };
 	$('#noTrainingRequired').on('click', function() { $('.trainingReqForm').hide(); });
+	$('#trainingRequired').on('click', function() { $('.trainingReqForm').show(); });
 
 	$('#addUserBtn').on('click', function() {
 		console.log('test');

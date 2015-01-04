@@ -34,7 +34,6 @@
 					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 1 ).id}]", :dk, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).first.try( :content ) == 'dk'
 					Don't Know
 					-# jQuery hides rest of form if 'No' is selected
-				- if @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).first.try( :content ) != 'no'
 					.trainingReqForm
 						%h4
 							Staff Involved:
