@@ -63,11 +63,11 @@
 						%tbody
 							- @current_agency.tasks.overdue.each do |task|
 								= form_for task, remote:true do |f|
-									%tr{style: 'color:red;'}
+									%tr{:class => 'overdueItems'}
 										%td.centerCheckboxes
 											= f.check_box :completed, :class => "taskCheckbox openTaskCheckbox"
 										%td
-											= link_to task.name, '/tasks/'+task.id.to_s+'/edit', :style => 'color:red;'
+											= link_to task.name, '/tasks/'+task.id.to_s+'/edit', :class => 'overdueItems'
 										%td
 											= task.due_at.to_date.strftime( "%m-%d-%Y" ) if task.due_at.present?
 										%td
@@ -81,7 +81,7 @@
 										%td.centerCheckboxes
 											= f.check_box :completed, :class => "taskCheckbox openTaskCheckbox"
 										%td
-											= link_to task.name, '/tasks/'+task.id.to_s+'/edit'
+											= link_to task.name, '/tasks/'+task.id.to_s+'/edit', :class => "taskName"
 										%td
 											= task.due_at.to_date.strftime( "%m-%d-%Y" ) if task.due_at.present?
 										%td

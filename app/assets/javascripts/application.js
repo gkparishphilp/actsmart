@@ -68,6 +68,14 @@ $( document ).ready(function() {
 
 	});
 
+	//dashboard - checked off tasks
+	$('.taskCheckbox').on('click', function(){ 
+		$(this).parent('td').parent('tr').toggleClass('strikeOut');
+		$(this).parent('td').next('td').children('a').toggleClass('strikeOut');
+		$(this).parent('td').next('td').next('td').toggleClass('strikeOut');
+		$(this).parent('td').next('td').next('td').next('td').toggleClass('strikeOut');
+	});
+
 	$('form.edit_task').on('ajax:success',function(event, data, status, xhr){
 		$('#customFlash').show().delay(2000).fadeOut('slow', function() { 
             $("#customFlash").hide()

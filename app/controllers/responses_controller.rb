@@ -30,6 +30,7 @@ class ResponsesController < ApplicationController
 
 	def reset_phase
 		@current_agency.responses.where(phase_id: params[:id]).delete_all
+		AgencyTreatment.where( agency_id: @current_agency.id ).first.update_attribute(:chosen_treatment, "")
 		set_flash 'Reset current phase responses'
 		redirect_to :back
 	end

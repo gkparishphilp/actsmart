@@ -137,10 +137,10 @@
 							%i.fa.fa-circle-o
 						%a{ href: phase_step_activity_path( @phase, @phase.steps.third, @phase.steps.third.activities.find_by_seq( 1 ) ) }
 							Activity 1: Adoption Decision
-
 	.row
 		.col-sm-12
 			.well
 				%h5
 					Treatment Under Consideration:
-					= @current_agency.agency_treatments.first.chosen_treatment
+					- if @current_agency.agency_treatments.first.chosen_treatment.present?
+						= @current_agency.agency_treatments.first.chosen_treatment
