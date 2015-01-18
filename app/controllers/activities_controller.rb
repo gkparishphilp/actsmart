@@ -10,6 +10,7 @@ class ActivitiesController < ApplicationController
 		@responding = @current_agency.respondings.where( activity_id: @activity.id ).first_or_create
 		@responding.touch
 			
+		UserEvent.record( :view, { user: current_user, agency: @current_agency, rate: 23.hours, parent_obj: @activity, content: "viewed #{@phase.label} Step #{@step.seq} Activity #{@activity.seq} " } )
 		
 		respond_to do |format|
 			format.html { render "activities/phase_#{@phase.seq}_step_#{@step.seq}_activity_#{@activity.seq}" }

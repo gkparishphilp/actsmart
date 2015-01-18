@@ -61,8 +61,45 @@
 							Lead
 					- if @agency.users.exists?
 						= select_tag :lead_id, options_from_collection_for_select( @agency.users, :id, :name, @agency.lead.id ), class: 'form-control'
+						%br
+						%label
+							= link_to 'Manage Team', manage_team_index_path( agency_id: @agency.id )
 
 					%hr
+						%table.table
+							%tr
+								%td
+									Viewed Phase 1 Dashboard?
+								%td
+									%b
+										- if UserEvent.where( agency_id: @agency.id ).find_by( content: 'viewed Phase 1 Dashboard' ).present?
+											Yes
+										- else
+											No
+
+							%tr
+								%td
+									Viewed Phase 1 Step 1?
+								%td
+									%b
+										- if UserEvent.where( agency_id: @agency.id ).find_by( content: 'viewed Phase 1 Step 1 Instructions' ).present?
+											Yes
+										- else
+											No
+							%tr
+								%td
+									Viewed Phase 1 Step 2?
+								%td
+									%b
+										- if UserEvent.where( agency_id: @agency.id ).find_by( content: 'viewed Phase 1 Step 2 Instructions' ).present?
+											Yes
+										- else
+											No
+							%tr
+								%td
+									= link_to 'View All Agency Events', user_events_path( agency_id: @agency.id )
+								%td
+
 						.form-group
 							= check_box_tag :assessment_complete, 'yes', @agency.responses.where( question_id: 1 ).last.try( :content ) == 'yes'
 							Assessment complete?

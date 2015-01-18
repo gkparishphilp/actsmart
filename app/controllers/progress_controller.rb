@@ -10,9 +10,9 @@ class ProgressController < ApplicationController
 		end	
 	end
 
-	def show
-		@agency = Agency.find( params[:agency_id] )
-		@phase = Phase.find_by( seq: params[:phase] )
-	end
+	# def show
+	# 	@agency = Agency.find( params[:agency_id] )
+	# 	@phase = Phase.find_by( seq: params[:phase] )
+	# end
 
 end

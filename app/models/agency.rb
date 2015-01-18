@@ -163,7 +163,13 @@ class Agency < ActiveRecord::Base
   	end
 
 	def activity_complete?( activity )
-		self.responses.where( activity_id: activity.id ).count >= activity.questions.where( required: true ).count
+		if activity.id == 10
+			self.funding_sources.present? || self.responses.where( activity_id: activity.id ).count >= activity.questions.count
+		elsif activity.id == 12
+			self.agency_treatments.first.chosen_treatment.present?
+		else
+			self.responses.where( activity_id: activity.id ).count >= activity.questions.where( required: true ).count
+		end
 	end
 
 	def training_requirements_complete?( activity )

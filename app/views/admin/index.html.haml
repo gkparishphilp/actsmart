@@ -13,6 +13,9 @@
 		.col-sm-2
 			
 
+	%a.btn.btn-primary.pull-right{ href: users_path, style: 'margin: 0 1em;' }
+		Manage Facilitators
+
 
 	%a.btn.btn-success.pull-right{ { data: { toggle: :modal, target: '#new_agency' } } }
 		Add Agency
@@ -59,6 +62,7 @@
 									= agency.lead.name.titleize
 						%td
 							= agency.users.count
+							= link_to 'Manage Team', manage_team_index_path( agency_id: agency.id )
 						%td
 							%a{ href: edit_agency_path( agency ) }
 								%i.fa.fa-pencil

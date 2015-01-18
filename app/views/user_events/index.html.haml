@@ -10,10 +10,14 @@
 					%strong
 						Events
 	.row
-		.col-xs-6
+		.col-xs-4
 			= raw paginate @events
-		.col-xs-6
+		.col-xs-8
 			= form_tag user_events_path, method: :get, class: 'form-inline' do
+				Agency:
+				= select_tag :agency_id, options_from_collection_for_select( Agency.all, :id, :name, params[:agency_id] ), prompt: 'All', class: 'form-control'
+				&nbsp;&nbsp;
+				Event:
 				= select_tag :name, options_from_collection_for_select( UserEvent.select( :name ).distinct, :name, :name, params[:name] ), prompt: 'All', class: 'form-control'
 				= submit_tag 'Filter', class: 'btn btn-primary'
 				= link_to 'Clear', user_events_path, class: 'btn btn-default btn-xs'

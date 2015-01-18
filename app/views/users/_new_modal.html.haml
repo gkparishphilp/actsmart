@@ -9,6 +9,7 @@
 			= form_for User.new do |f|
 				= hidden_field_tag :agency_id, args[:agency_id]
 				= hidden_field_tag :lead, true if args[:lead].present?
+				= hidden_field_tag :facilitator, true if args[:facilitator].present?
 				.modal-body
 					.form-group
 						= f.label :name

@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
     private
 
     def set_agency
-      @current_agency = current_user.try( :agency )
+      @current_agency = current_user.try( :agency ) || Agency.find_by( id: params[:agency_id] )
     end
 
 

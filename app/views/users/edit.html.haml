@@ -1,7 +1,16 @@
 .container
 	.row
 		.col-sm-12
-			%h1 Edit Team
+			%ol.breadcrumb
+				%li
+					= link_to 'Admin', admin_index_path
+				%li
+					= link_to 'Team', manage_team_index_path( agency_id: @user.agency.id )
+				%li
+					Edit User
+	.row
+		.col-sm-12
+			%h1 Edit User
 
 	.row
 		.col-sm-6

@@ -1,0 +1,43 @@
+
+.container
+	.row
+		.col-sm-12
+			%ol.breadcrumb
+				%li
+					= link_to 'Admin', admin_index_path
+				%li
+					Manage Facilitators
+	
+	
+	.row
+		.col-sm-12
+			%a.btn.btn-success#addUserBtn{ data: { toggle: :modal, target: '#new_user' } }
+				Add
+
+			%table.table
+				- @users.each do |user|
+					%tr
+						%td
+							= user.name
+						%td
+							= user.email
+						%td
+							.btn-group
+								%button.btn.btn-mini.btn-default.dropdown-toggle{ data: { toggle: :dropdown } }
+									%i.fa.fa-cog
+									%b.caret
+								%ul.dropdown-menu
+									%li
+										%a{ href: edit_user_path( user ) }
+											%i.fa.fa-pencil
+											Edit
+
+									%li.divider
+									%li
+										%a{ href: user_path( user ), data: { method: 'delete', confirm: 'Are you sure?' } }
+											%i.fa.fa-trash-o
+											Delete
+
+
+
+= render 'users/new_modal', args: { facilitator: true }
