@@ -30,7 +30,7 @@ class Agency < ActiveRecord::Base
   	def to_csv(agency)
   		CSV.generate do |csv|
   			csv << [agency.name]
-			csv << ['Phase', 'Step', 'Activity', 'Question Number', 'Question', 'Response']
+			csv << ['Phase', 'Step', 'Activity', 'Question Number', 'Question', 'Response', 'Recorded At']
 			agency.responses.order("phase_id ASC", "question_id ASC").each do |response|
 				if response.question.name.present?
 					question = response.question.name 
@@ -39,7 +39,7 @@ class Agency < ActiveRecord::Base
 				end
 				
 				csv << [response.phase_id, response.step_id, response.activity_id, response.question_id, 
-					question, response.content
+					question, response.content, response.created_at
 				]
 			end
 
@@ -69,7 +69,7 @@ class Agency < ActiveRecord::Base
 			csv << [agency.agency_treatments.first.chosen_treatment] if agency.agency_treatments.first.chosen_treatment.present?
 			csv << ['Task', 'Concerns', 'Satisfaction Level']
 			agency.tasks.order("id ASC").each do |ts|
-				csv << [ts.name, ts.concerns, ts.satsifaction_level]
+				csv << [ts.name, ts.concerns, ts.satisfaction_level]
 			end	
 		end
   	end
