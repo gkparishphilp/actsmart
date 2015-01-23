@@ -29,21 +29,22 @@
 						Offer Funding?
 					%th
 						Reimbursement Rate
+					%th
 				%tbody
 					- @current_agency.funding_sources.each do |source|
-						%tr
-							%td
-								= source.name
-							%td
-								= source.offer_funding? ? 'Yes' : 'No'
-							%td
-								- if source.reimbursement_rate.is_a?( Numeric )
-									- if source.reimbursement_rate <= 1
-										= number_to_percentage( source.reimbursement_rate * 100, precision: 0 )
-									- else
-										= number_to_percentage( source.reimbursement_rate, precision: 0 )
-								- else
-									= source.reimbursement_rate
+						= form_for source do |f|
+							%tr
+								%td
+									= f.text_field :name, class: 'form-control'
+								%td
+									= f.radio_button :offer_funding, true
+									Yes
+									= f.radio_button :offer_funding, false
+									No
+								%td
+									= f.text_field :reimbursement_rate, class: 'form-control'
+								%td
+									= f.submit 'Update', class: 'btn btn-success'
 
 					= form_for FundingSource.new do |f|
 						%tr

@@ -17,6 +17,17 @@ class FundingSourcesController < ApplicationController
 		redirect_to :back
 	end
 
+	def update
+		@source = @current_agency.funding_sources.find( params[:id] )
+		if @source.update( funding_source_params )
+			set_flash 'Updated'
+		else
+			set_flash 'Could not update', :danger, @source
+		end
+		redirect_to :back
+		
+	end
+
 	
 	private
 
