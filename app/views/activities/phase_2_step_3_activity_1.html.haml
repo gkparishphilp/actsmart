@@ -9,30 +9,115 @@
 				%li
 					Step 3
 				%li
-					Activity 1: Feasibility Score
-	.row
+					Activity 1: Adoption Decision
+	.row	
 		.col-sm-12
 			%h1
-				Activity 1:  Feasibility Score
-			-#%p.larger
-				<u>Goal</u>: To review your results from Phase 2 activities and understand it's implications on your adoption decision.  
+				Activity 1:  Adoption Decision
 
-			- if @current_agency.agency_treatments.present?
-				- feasability_score = @current_agency.responses.where(phase_id: 2).where(content: 'yes').count
-				%h4
-					Feasability Score
-				%p
-					Based on your current submissions in Step 2, you have been given a feasability score of
-					= feasability_score
-					for 
+			- if @current_agency.agency_treatments.first.chosen_treatment.present?
+				%h3
 					= @current_agency.agency_treatments.first.chosen_treatment
-					treatment.
+
+				= form_tag responses_path do
+					= hidden_field_tag :activity_id, @activity.id
+				
+					%table.table
+						%thead
+							%th
+							%th Fit & Feasibility
+							%th Clinical Value & Utility
+							%th Training Requirements
+							%th Funding
+						%tbody
+							%tr
+								%td
+									Ratings
+								%td
+									Fit Score:
+									%b= @current_agency.responses.where( activity_id: 6 ).where( content: 'yes' ).count
+								%td
+									Value Score:
+									%b= @current_agency.responses.where( question_id: 15..19 ).where( content: 'yes' ).count
+								%td
+									Training Required:
+									%b= @current_agency.responses.where( question_id: Question.find_by( name: 'are_there_training_requirements' ) ).try( :content )
+								%td
+									Reimbursed?
+									%b
+										= @current_agency.funding_sources.where( offer_funding: true ).present? ? 'Yes' : 'No'
+							%tr
+								%td
+								%td
+									Feasibility Score:
+									%b= @current_agency.responses.where( activity_id: 7 ).where( content: 'yes' ).count
+								%td
+									Validity Score:
+									%b= @current_agency.responses.where( question_id: 20..24 ).where( content: 'yes' ).count
+								%td
+								%td
+							%tr
+								%td
+									Importance of this factor to the adoption decision
+								%td
+									= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 1 ).id}]", :high, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).first.try( :content ) == 'high'
+									High
+									%br
+									= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 1 ).id}]", :medium, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).first.try( :content ) == 'medium'
+									Medium
+									%br
+									= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 1 ).id}]", :low, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 1 ).id ).first.try( :content ) == 'low'
+									Low
+								%td
+									= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 2 ).id}]", :high, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 2 ).id ).first.try( :content ) == 'high'
+									High
+									%br
+									= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 2 ).id}]", :medium, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 2 ).id ).first.try( :content ) == 'medium'
+									Medium
+									%br
+									= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 2 ).id}]", :low, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 2 ).id ).first.try( :content ) == 'low'
+									Low
+								%td
+									= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 3 ).id}]", :high, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 3 ).id ).first.try( :content ) == 'high'
+									High
+									%br
+									= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 3 ).id}]", :medium, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 3 ).id ).first.try( :content ) == 'medium'
+									Medium
+									%br
+									= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 3 ).id}]", :low, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 3 ).id ).first.try( :content ) == 'low'
+									Low
+								%td
+									= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 5 ).id}]", :high, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 5 ).id ).first.try( :content ) == 'high'
+									High
+									%br
+									= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 5 ).id}]", :medium, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 5 ).id ).first.try( :content ) == 'medium'
+									Medium
+									%br
+									= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 5 ).id}]", :low, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 5 ).id ).first.try( :content ) == 'low'
+									Low
+
+				
+					Final Adoption Decision: 
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 6 ).id}]", :yes, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 6 ).id ).first.try( :content ) == 'yes'
+					Yes
+					%span{ style: 'margin: auto 0.5em;' }
+					= radio_button_tag "question_answers[#{@activity.questions.find_by( seq: 6 ).id}]", :no, @current_agency.responses.where( question_id: @activity.questions.find_by( seq: 6 ).id ).first.try( :content ) == 'no'
+					No
+					%br
+					%br
+					.pull-right{ style: 'margin-right: 2em;' }
+						= submit_tag 'Save', class: 'btn btn-primary'
+					%br
+					%br
+
+				%hr	
 				%p
 					To erase all current responses for Step 2 and begin evaluation for a new treatment, click below.
 				= link_to 'Reset Phase 2', '/phases/2/reset', :method => 'delete', :class => "btn btn-md btn-danger", :confirm => 'Are you sure?'
-
-			-else
+			- else
 				%h4
 					Please fill out the 
 					= link_to 'Treatment Selection sheet', '/phases/2/steps/3/activities/4'
 					to be given your Feasability Score.
+
+			

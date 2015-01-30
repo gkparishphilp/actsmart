@@ -30,6 +30,7 @@
 					%th
 						Reimbursement Rate
 					%th
+					%th 
 				%tbody
 					- @current_agency.funding_sources.each do |source|
 						= form_for source do |f|
@@ -45,6 +46,9 @@
 									= f.text_field :reimbursement_rate, class: 'form-control'
 								%td
 									= f.submit 'Update', class: 'btn btn-success'
+								%td
+									%a.btn.btn-danger{ href: funding_source_path( source ), data: { method: :delete, confirm: 'Are you sure?' } }
+										X
 
 					= form_for FundingSource.new do |f|
 						%tr

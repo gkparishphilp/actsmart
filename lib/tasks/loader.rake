@@ -271,6 +271,15 @@ namespace :activities do
 		act = step3.activities.create seq: 1
 
 
+		q = act.questions.create seq: 1, name: 'fit_feasibility_importance'
+		q = act.questions.create seq: 2, name: 'value_utility_importance'
+		q = act.questions.create seq: 3, name: 'training_importance'
+		q = act.questions.create seq: 4, name: 'benefit_cost_importance'
+		q = act.questions.create seq: 5, name: 'funding_importance'
+
+		q = act.questions.create seq: 6, name: 'final_adoption_desision'
+
+
 
 
 

@@ -14,6 +14,7 @@ class FundingSourcesController < ApplicationController
 	def destroy
 		@source = @current_agency.funding_sources.find( params[:id] )
 		@source.destroy
+		set_flash "Source removed"
 		redirect_to :back
 	end
 
