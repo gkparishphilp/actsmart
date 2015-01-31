@@ -45,9 +45,6 @@
 									%tbody
 										%tr
 											%td
-												= f.check_box :system_level
-												System-level factors (e.g., funding/resources, internal or contracted services, politics, policies)
-												%br
 												= f.check_box :org_level
 												Organization-level factors (e.g., training space and resources, session time, treatment duration, agency philosophy/fit)
 												%br
@@ -56,6 +53,9 @@
 												%br
 												= f.check_box :client_chars
 												Client characteristics (e.g., age, developmental age, ASD diagnosis, severity, culture, language, comorbid problems)
+												%br
+												= f.check_box :system_level
+												System-level factors (e.g., funding/resources, internal or contracted services, politics, policies)
 												%br
 												=# f.text_area :other_reasons
 											%td
