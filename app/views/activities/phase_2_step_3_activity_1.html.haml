@@ -15,6 +15,12 @@
 			%h1
 				Activity 1:  Adoption Decision
 
+			%p.larger
+				Goal: To review all of the important information guiding your adoption decision about the treatment and to determine whether or not to adopt the treatment.
+
+			%p
+				When deciding whether or not to adopt a treatment for agency-wide use, it is important to organize all of the information relevant to your decision making process in one place. By doing so, a systematic decision will be made based on a comprehensive set of data.
+
 			- if @current_agency.agency_treatments.first.chosen_treatment.present?
 				%h3
 					= @current_agency.agency_treatments.first.chosen_treatment
