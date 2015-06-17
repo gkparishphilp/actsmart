@@ -67,9 +67,9 @@ class Agency < ActiveRecord::Base
 			end	
 			csv << ['Chosen Treatment']
 			csv << [agency.agency_treatments.first.chosen_treatment] if agency.agency_treatments.first.chosen_treatment.present?
-			csv << ['Task', 'Concerns', 'Satisfaction Level']
+			csv << ['Task', 'Concerns', 'Satisfaction Level', 'Due', 'Assigned', 'Details']
 			agency.tasks.order("id ASC").each do |ts|
-				csv << [ts.name, ts.concerns, ts.satisfaction_level]
+				csv << [ts.name, ts.concerns, ts.satisfaction_level, ts.due_at, ts.assigned_to, ts.content]
 			end	
 		end
   	end
