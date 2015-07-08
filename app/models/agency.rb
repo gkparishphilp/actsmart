@@ -20,7 +20,7 @@ class Agency < ActiveRecord::Base
 
 	has_many	:tasks, dependent: :destroy
 
-	has_many	:treatments, dependent: :destroy
+	has_many	:treatments
 
   	after_create :create_treatment_strategies
   	after_create :create_treatment_adaptations
